@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الكيمياء 106 - الفصل الأول</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 font-sans">
+    <div class="max-w-4xl mx-auto" id="app">
+        
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">اختبار الكيمياء العضوية 106</h1>
+            <p class="text-gray-500">الفصل الأول: الروابط والتركيب الجزيئي الأساسي</p>
+            <p class="text-sm text-gray-400 mt-1" dir="ltr">(The Basics Bonding and Molecular Structure)</p>
+            
+            <div id="results-section"></div>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Part 1: MCQ -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-blue-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الأول: اختيار من متعدد (Multiple Choice)</h2>
+                </div>
+                <div class="p-6 space-y-8" id="mcq-container"></div>
+            </section>
+
+            <!-- Part 2: True/False -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-teal-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الثاني: صح أم خطأ (True / False)</h2>
+                </div>
+                <div class="p-6 space-y-8" id="tf-container"></div>
+            </section>
+
+            <!-- Part 3: Fill in the Blanks -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-purple-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الثالث: املأ الفراغات (Fill in the blanks)</h2>
+                </div>
+                <div class="p-6 space-y-8">
+                    <div class="bg-purple-50 border border-purple-100 rounded-xl p-5 mb-2 shadow-sm">
+                        <p class="text-purple-800 font-bold mb-3 flex items-center gap-2" id="fill-wordbank-title">
+                            <!-- Alert Icon injected here -->
+                            صندوق الكلمات (Word Bank) المتاحة للاختيار:
+                        </p>
+                        <div class="flex flex-wrap gap-2" dir="ltr" id="fill-wordbank-container"></div>
+                    </div>
+                    <div id="fill-container" class="space-y-8"></div>
+                </div>
+            </section>
+
+            <!-- Part 4: Matching -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-orange-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الرابع: التوصيل (Matching)</h2>
+                </div>
+                <div class="p-6 space-y-8">
+                    <div class="bg-orange-50 border border-orange-100 rounded-lg p-4 mb-6 shadow-sm">
+                        <p class="text-orange-800 text-sm flex items-center gap-2 font-medium" id="match-info-title">
+                            <!-- Alert Icon injected here -->
+                            اختر التعريف المناسب من القائمة المنسدلة لكل مصطلح.
+                        </p>
+                    </div>
+                    <div class="space-y-6" id="match-container"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Action Button -->
+        <div class="mt-10 text-center pb-12" id="submit-btn-container">
+            <button onclick="calculateScore()" class="bg-gray-800 hover:bg-gray-900 text-white text-xl font-bold py-4 px-12 rounded-full shadow-xl transition-transform hover:scale-105 active:scale-95">
+                تقديم الإجابات وتقييم الاختبار
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // Icons Dictionary (SVG Strings)
+        const icons = {
+            CheckCircle2: `<svg class="w-5 h-5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+            XCircle: `<svg class="w-5 h-5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`,
+            AlertCircle: `<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+            Trophy: `<svg class="w-12 h-12 text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
+            RefreshCcw: `<svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21v-5h5"/></svg>`
+        };
+
+        // Quiz Data
+        const quizData = {
+            mcq: [
+                { id: 'q1', q: 'What is the maximum number of electrons that the M shell (<i>n</i> = 3) can hold?', options: [{ text: "2", label: "2" }, { text: "8", label: "8" }, { text: "18", label: "18" }, { text: "32", label: "32" }], correct: "18", explanation: 'The maximum capacity of a shell is given by the formula 2<i>n</i><sup>2</sup>. For the M shell (<i>n</i> = 3), it is 2(3)<sup>2</sup> = 18 electrons.' },
+                { id: 'q2', q: 'According to the Brønsted-Lowry definition, which species acts as a base in the following reaction?<br/><br/><span class="bg-gray-100 px-3 py-1 rounded font-mono block w-fit mt-2">NH<sub>3</sub>(aq) + H<sub>2</sub>O(l) &#8652; NH<sub>4</sub><sup>+</sup>(aq) + OH<sup>-</sup>(aq)</span>', options: [{ text: "NH3", label: 'NH<sub>3</sub>' }, { text: "H2O", label: 'H<sub>2</sub>O' }, { text: "NH4+", label: 'NH<sub>4</sub><sup>+</sup>' }, { text: "OH-", label: 'OH<sup>-</sup>' }], correct: "NH3", explanation: 'Ammonia (NH<sub>3</sub>) is the Brønsted-Lowry base because it accepts a hydrogen cation (proton) to form the ammonium ion (NH<sub>4</sub><sup>+</sup>).' },
+                { id: 'q3', q: 'Which of the following substituents exhibits an electron-withdrawing inductive effect (-I effect)?', options: [{ text: "-CH3", label: '-CH<sub>3</sub>' }, { text: "-C2H5", label: '-C<sub>2</sub>H<sub>5</sub>' }, { text: "-NO2", label: '-NO<sub>2</sub>' }, { text: "-H", label: '-H' }], correct: "-NO2", explanation: 'Alkyl groups like methyl (-CH<sub>3</sub>) and ethyl (-C<sub>2</sub>H<sub>5</sub>) are electron-donating (+I), while groups like -NO<sub>2</sub>, -CN, and halogens are electron-withdrawing (-I).' },
+                { id: 'q4', q: 'In a molecule of ethane (H<sub>3</sub>C-CH<sub>3</sub>), the carbon-carbon bond is formed by:', options: [{ text: "Transfer of electrons", label: 'Transfer of electrons (Ionic bond)' }, { text: "Equal sharing of electrons", label: 'Equal sharing of electrons (Non-polar covalent bond)' }, { text: "Unequal sharing of electrons", label: 'Unequal sharing of electrons (Polar covalent bond)' }, { text: "One carbon providing both electrons", label: 'One carbon providing both electrons (Coordinate bond)' }], correct: "Equal sharing of electrons", explanation: 'Since both carbon atoms have identical electronegativity, they share the electron pair equally, forming a non-polar covalent bond.' },
+                { id: 'q5', q: 'The structure of the carbonate ion (CO<sub>3</sub><sup>2-</sup>) is best described as:', options: [{ text: "Alternating bonds", label: 'A molecule with rapidly alternating single and double bonds' }, { text: "Resonance hybrid", label: 'A resonance hybrid of three contributing structures' }, { text: "Single bonds only", label: 'A structure with only single bonds' }, { text: "Coordinate bonds only", label: 'A molecule containing coordinate covalent bonds only' }], correct: "Resonance hybrid", explanation: 'The true structure of CO<sub>3</sub><sup>2-</sup> is a resonance hybrid. It does not physically alternate among structures, which explains why all C-O bond lengths are identical.' }
+            ],
+            tf: [
+                { id: 'q6', q: 'Isotopes like <sup>12</sup>C and <sup>14</sup>C are atoms of the same element that have the same number of protons but different numbers of neutrons.', correct: "True", explanation: 'True. Isotopes have identical atomic numbers (protons) but differ in mass numbers due to a different count of neutrons.' },
+                { id: 'q7', q: 'According to the Pauli exclusion principle, a single atomic orbital can hold a maximum of 3 electrons.', correct: "False", explanation: 'False. The Pauli exclusion principle states that only <b>two</b> electrons can occupy the same orbital, and they must have opposite spins.' },
+                { id: 'q8', q: 'A coordinate covalent bond occurs when one of the atoms provides both bonding electrons, such as when H<sub>2</sub>O combines with H<sup>+</sup> to form H<sub>3</sub>O<sup>+</sup>.', correct: "True", explanation: 'True. In a coordinate covalent bond, one atom donates the entire electron pair to form the bond with an electron-deficient species (like a Lewis acid).' },
+                { id: 'q9', q: 'A polar covalent bond occurs when an electron pair is shared equally between two atoms of the same electronegativity.', correct: "False", explanation: 'False. That describes a <b>non-polar</b> covalent bond. A polar covalent bond occurs when electrons are shared <b>unequally</b> due to a difference in electronegativity.' },
+                { id: 'q10', q: 'Friedrich Wöhler\'s synthesis of urea from ammonium cyanate disproved the vitalism theory by showing organic compounds could be made from inorganic sources.', correct: "True", explanation: 'True. Heating ammonium cyanate (inorganic) to produce urea (organic) demonstrated that a "vital force" from living organisms was not required.' }
+            ],
+            fill: [
+                { id: 'q11', part1: 'Electrons are confined to specific regions of space called ', part2: ', which represent the primary pathways followed by electrons around an atom\'s nucleus.', accepted: "shells", explanation: 'A shell is the region/pathway where electrons reside, characterized by a principal quantum number (n).' },
+                { id: 'q12', part1: 'The tendency for an atom to react and achieve a valence shell containing eight electrons is called the ', part2: ' rule.', accepted: "octet", explanation: 'The octet rule drives elements (especially C, N, O, F) to form bonds until they achieve the stable noble gas configuration of 8 valence electrons.' },
+                { id: 'q13', part1: 'An atom that gives up electrons and becomes positively charged is called a ', part2: '.', accepted: "cation", explanation: 'Cations are positively charged ions formed when atoms (typically electropositive metals) lose valence electrons.' },
+                { id: 'q14', part1: 'A ', part2: ' is defined as any chemical species (molecule or ion) that can accept a pair of electrons.', accepted: "Lewis acid", explanation: 'According to G.N. Lewis, acids accept electron pairs, whereas bases donate electron pairs.' },
+                { id: 'q15', part1: 'Ethanol and methoxymethane have the same molecular formula (C<sub>2</sub>H<sub>6</sub>O) but different arrangements of atoms. Therefore, they are known as constitutional ', part2: '.', accepted: "isomers", explanation: 'Isomers have identical molecular formulas but distinct structural formulas and consequently different physical and chemical properties.' }
+            ],
+            match: [
+                { id: 'q16', term: "Aufbau Principle", correctMatch: "Orbitals of lowest energy are filled first." },
+                { id: 'q17', term: "Hund's Rule", correctMatch: "Every orbital in a subshell is singly occupied before any is doubly occupied." },
+                { id: 'q18', term: "Electronegativity", correctMatch: "The tendency of an atom to attract electrons when bonded." },
+                { id: 'q19', term: "Inductive Effect", correctMatch: "The permanent displacement of electrons in a sigma bond towards the more electronegative element." },
+                { id: 'q20', term: "Lewis Base", correctMatch: "Any species (molecule or ion) that can donate a pair of electrons." }
+            ],
+            matchOptions: [
+                "Every orbital in a subshell is singly occupied before any is doubly occupied.",
+                "The tendency of an atom to attract electrons when bonded.",
+                "The permanent displacement of electrons in a sigma bond towards the more electronegative element.",
+                "Orbitals of lowest energy are filled first.",
+                "Any species (molecule or ion) that can donate a pair of electrons."
+            ]
+        };
+
+        const fillWordBank = ["Lewis acid", "shells", "octet", "isomers", "cation"];
+
+        // State variables
+        let answers = {};
+        let submitted = false;
+        let score = 0;
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('fill-wordbank-title').insertAdjacentHTML('afterbegin', icons.AlertCircle);
+            document.getElementById('match-info-title').insertAdjacentHTML('afterbegin', icons.AlertCircle);
+            initQuiz();
+        });
+
+        function initQuiz() {
+            answers = {};
+            submitted = false;
+            score = 0;
+            
+            document.getElementById('results-section').innerHTML = '';
+            document.getElementById('submit-btn-container').classList.remove('hidden');
+
+            renderMCQ();
+            renderTF();
+            renderFill();
+            renderMatch();
+        }
+
+        // --- Render Functions ---
+
+        function renderMCQ() {
+            const html = quizData.mcq.map((q, index) => {
+                const optionsHtml = q.options.map((opt, optIndex) => {
+                    const letter = String.fromCharCode(97 + optIndex);
+                    return `
+                        <label data-question-id="${q.id}" data-option-value="${opt.text}" class="flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors option-label-mcq">
+                            <input type="radio" name="${q.id}" value="${opt.text}" class="hidden" onchange="handleAnswerChange('${q.id}', '${opt.text}', 'mcq')">
+                            <div class="option-box w-7 h-7 rounded-md flex items-center justify-center mr-3 font-bold text-sm shadow-sm transition-colors bg-gray-100 text-gray-600 border border-gray-300">
+                                ${letter}
+                            </div>
+                            <span class="text-gray-700 text-lg">${opt.label}</span>
+                        </label>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+                        <div class="font-medium text-lg text-gray-800 mb-4 leading-relaxed" dir="ltr">
+                            <span class="text-blue-600 font-bold mr-2">${index + 1}.</span>
+                            ${q.q}
+                        </div>
+                        <div class="grid grid-cols-1 gap-3" dir="ltr">
+                            ${optionsHtml}
+                        </div>
+                        <div id="feedback-${q.id}" class="hidden mt-3"></div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('mcq-container').innerHTML = html;
+        }
+
+        function renderTF() {
+            const html = quizData.tf.map((q, index) => {
+                const optionsHtml = ['True', 'False'].map(opt => `
+                    <label data-question-id="${q.id}" data-option-value="${opt}" class="flex items-center px-6 py-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer transition-all flex-1 justify-center">
+                        <input type="radio" name="${q.id}" value="${opt}" class="hidden" onchange="handleAnswerChange('${q.id}', '${opt}', 'tf')">
+                        <span class="font-bold text-lg text-gray-600">${opt}</span>
+                    </label>
+                `).join('');
+
+                return `
+                    <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+                        <div class="font-medium text-lg text-gray-800 mb-4 leading-relaxed" dir="ltr">
+                            <span class="text-teal-600 font-bold mr-2">${index + 6}.</span>
+                            ${q.q}
+                        </div>
+                        <div class="flex gap-4" dir="ltr">
+                            ${optionsHtml}
+                        </div>
+                        <div id="feedback-${q.id}" class="hidden mt-3"></div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('tf-container').innerHTML = html;
+        }
+
+        function renderFill() {
+            // Render word bank
+            document.getElementById('fill-wordbank-container').innerHTML = fillWordBank.map(word => 
+                `<span class="bg-white border border-purple-200 text-purple-700 px-4 py-1.5 rounded-lg text-sm font-bold shadow-sm">${word}</span>`
+            ).join('');
+
+            // Render questions
+            const html = quizData.fill.map((q, index) => {
+                const selectOptions = `<option value="" disabled selected>Select...</option>` + 
+                    fillWordBank.map(word => `<option value="${word}">${word}</option>`).join('');
+
+                return `
+                    <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+                        <div class="font-medium text-lg text-gray-800 mb-4 leading-relaxed flex flex-wrap items-center gap-y-2" dir="ltr">
+                            <span class="text-purple-600 font-bold mr-2">${index + 11}.</span>
+                            <span>${q.part1}</span>
+                            <select id="select-${q.id}" name="${q.id}" onchange="handleAnswerChange('${q.id}', this.value, 'fill')" class="mx-2 pb-1 border-b-2 border-purple-300 hover:border-purple-500 focus:border-purple-600 outline-none text-center text-purple-700 font-bold min-w-[150px] bg-transparent transition-colors cursor-pointer" dir="ltr">
+                                ${selectOptions}
+                            </select>
+                            <span>${q.part2}</span>
+                        </div>
+                        <div id="feedback-${q.id}" class="hidden mt-3"></div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('fill-container').innerHTML = html;
+        }
+
+        function renderMatch() {
+            const selectOptions = `<option value="" disabled selected>Select the correct match...</option>` + 
+                quizData.matchOptions.map((opt, i) => `<option value="${opt}">${opt}</option>`).join('');
+
+            const html = quizData.match.map((q, index) => {
+                return `
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 border-b border-gray-100 pb-6 last:border-0 last:pb-0" dir="ltr">
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <p class="font-bold text-gray-800 text-lg flex items-center">
+                                <span class="text-orange-600 mr-2">${index + 16}.</span>
+                                <span class="bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-200 shadow-sm">${q.term}</span>
+                            </p>
+                        </div>
+                        <div class="md:w-2/3">
+                            <select id="select-${q.id}" name="${q.id}" onchange="handleAnswerChange('${q.id}', this.value, 'match')" class="w-full p-3 rounded-lg border bg-white border-gray-300 focus:border-orange-500 outline-none transition-colors cursor-pointer shadow-sm">
+                                ${selectOptions}
+                            </select>
+                            <div id="feedback-${q.id}" class="hidden mt-3"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('match-container').innerHTML = html;
+        }
+
+        // --- Interaction Logic ---
+
+        function handleAnswerChange(qId, value, type) {
+            if (submitted) return;
+            answers[qId] = value;
+
+            if (type === 'mcq') {
+                // Reset styling for all options in this question
+                const labels = document.querySelectorAll(`label[data-question-id="${qId}"]`);
+                labels.forEach(label => {
+                    label.className = "flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors option-label-mcq";
+                    const box = label.querySelector('.option-box');
+                    box.className = "option-box w-7 h-7 rounded-md flex items-center justify-center mr-3 font-bold text-sm shadow-sm transition-colors bg-gray-100 text-gray-600 border border-gray-300";
+                });
+
+                // Apply styling to selected
+                const selectedLabel = document.querySelector(`label[data-question-id="${qId}"][data-option-value="${value}"]`);
+                if (selectedLabel) {
+                    selectedLabel.className = "flex items-center p-3 rounded-lg border border-blue-500 bg-blue-50 cursor-pointer transition-colors option-label-mcq";
+                    const selectedBox = selectedLabel.querySelector('.option-box');
+                    selectedBox.className = "option-box w-7 h-7 rounded-md flex items-center justify-center mr-3 font-bold text-sm shadow-sm transition-colors bg-blue-600 text-white";
+                }
+            } else if (type === 'tf') {
+                // Reset styling
+                const labels = document.querySelectorAll(`label[data-question-id="${qId}"]`);
+                labels.forEach(label => {
+                    label.className = "flex items-center px-6 py-3 rounded-xl border border-gray-200 hover:bg-gray-50 cursor-pointer transition-all flex-1 justify-center";
+                    label.querySelector('span').className = "font-bold text-lg text-gray-600";
+                });
+
+                // Apply styling
+                const selectedLabel = document.querySelector(`label[data-question-id="${qId}"][data-option-value="${value}"]`);
+                if (selectedLabel) {
+                    selectedLabel.className = "flex items-center px-6 py-3 rounded-xl border border-teal-500 bg-teal-50 shadow-sm cursor-pointer transition-all flex-1 justify-center";
+                    selectedLabel.querySelector('span').className = "font-bold text-lg text-teal-700";
+                }
+            }
+            // Note: Fill and Match selects natively update their visual text upon selection.
+        }
+
+        // --- Score Calculation & Submission ---
+
+        function calculateScore() {
+            if (submitted) return;
+            let currentScore = 0;
+            
+            // Check answers
+            quizData.mcq.forEach(q => { if (answers[q.id] === q.correct) currentScore++; });
+            quizData.tf.forEach(q => { if (answers[q.id] === q.correct) currentScore++; });
+            quizData.fill.forEach(q => { if (answers[q.id] === q.accepted) currentScore++; });
+            quizData.match.forEach(q => { if (answers[q.id] === q.correctMatch) currentScore++; });
+
+            score = currentScore;
+            submitted = true;
+
+            // Render Results Header
+            document.getElementById('results-section').innerHTML = `
+                <div class="mt-6 p-6 bg-blue-50 rounded-xl border border-blue-100 flex flex-col items-center justify-center animate-fade-in">
+                    ${icons.Trophy}
+                    <h2 class="text-2xl font-bold text-blue-900 mb-1">النتيجة النهائية</h2>
+                    <p class="text-3xl font-black text-blue-600 mb-4">${score} / 20</p>
+                    <button onclick="resetQuiz()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors font-medium shadow-md">
+                        ${icons.RefreshCcw}
+                        إعادة الاختبار
+                    </button>
+                </div>
+            `;
+            document.getElementById('submit-btn-container').classList.add('hidden');
+
+            // Disable all inputs
+            document.querySelectorAll('input, select').forEach(el => {
+                el.disabled = true;
+                if(el.tagName === 'SELECT') el.classList.remove('cursor-pointer');
+                if(el.parentElement.tagName === 'LABEL') {
+                    el.parentElement.classList.remove('cursor-pointer');
+                    el.parentElement.classList.add('cursor-default');
+                }
+            });
+
+            // Show Feedback for all sections
+            quizData.mcq.forEach(q => showFeedbackBlock(q.id, answers[q.id] === q.correct, q.options.find(o => o.text === q.correct)?.label || q.correct, q.explanation));
+            quizData.tf.forEach(q => showFeedbackBlock(q.id, answers[q.id] === q.correct, q.correct, q.explanation));
+            
+            // Fill Feedback & Select Styling
+            quizData.fill.forEach(q => {
+                showFeedbackBlock(q.id, answers[q.id] === q.accepted, q.accepted, q.explanation);
+                const select = document.getElementById(`select-${q.id}`);
+                select.classList.remove('border-purple-300', 'hover:border-purple-500', 'focus:border-purple-600');
+                if (answers[q.id] === q.accepted) {
+                    select.classList.add('border-green-500', 'text-green-700');
+                    select.classList.remove('text-purple-700');
+                } else {
+                    select.classList.add('border-red-500', 'text-red-700');
+                    select.classList.remove('text-purple-700');
+                }
+            });
+
+            // Match Feedback & Select Styling
+            quizData.match.forEach(q => {
+                const select = document.getElementById(`select-${q.id}`);
+                const feedbackContainer = document.getElementById(`feedback-${q.id}`);
+                const isCorrect = answers[q.id] === q.correctMatch;
+
+                select.classList.remove('bg-white', 'border-gray-300', 'focus:border-orange-500');
+                if (isCorrect) {
+                    select.classList.add('bg-green-50', 'border-green-300', 'text-green-800');
+                    feedbackContainer.innerHTML = `
+                        <div class="text-sm bg-green-50 text-green-800 p-3 rounded-lg border border-green-200 text-right" dir="rtl">
+                            <p class="font-bold flex items-center gap-1">${icons.CheckCircle2} إجابة صحيحة!</p>
+                        </div>
+                    `;
+                } else {
+                    select.classList.add('bg-red-50', 'border-red-300', 'text-red-800');
+                    feedbackContainer.innerHTML = `
+                        <div class="text-sm bg-red-50 text-red-800 p-3 rounded-lg border border-red-200 text-right" dir="rtl">
+                            <p class="font-bold flex items-center gap-1 mb-2">${icons.XCircle} إجابة خاطئة</p>
+                            <p><span class="font-semibold">الإجابة الصحيحة هي:</span> <span dir="ltr" class="block mt-1 p-2 bg-white rounded border border-red-100 font-medium">${q.correctMatch}</span></p>
+                        </div>
+                    `;
+                }
+                feedbackContainer.classList.remove('hidden');
+            });
+
+            // Scroll back to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Shared function for MCQ, TF, Fill feedback rendering
+        function showFeedbackBlock(id, isCorrect, correctText, explanation) {
+            const container = document.getElementById(`feedback-${id}`);
+            const blockHtml = `
+                <div class="mt-3 p-4 rounded-lg flex items-start gap-3 ${isCorrect ? 'bg-green-50 text-green-800 border border-green-200' : 'bg-red-50 text-red-800 border border-red-200'}">
+                    ${isCorrect ? icons.CheckCircle2 : icons.XCircle}
+                    <div class="text-sm w-full" dir="ltr">
+                        <p class="font-bold mb-1 text-right" dir="rtl">
+                            ${isCorrect ? "إجابة صحيحة!" : "إجابة خاطئة"}
+                        </p>
+                        ${!isCorrect && correctText ? `
+                            <p class="mb-2 text-right" dir="rtl">
+                                <span class="font-semibold text-gray-700">الإجابة الصحيحة هي:</span> <span dir="ltr" class="font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200">${correctText}</span>
+                            </p>
+                        ` : ''}
+                        <div class="bg-white/50 p-3 rounded mt-2 border border-black/5">
+                            <span class="font-bold text-gray-900 block mb-1">Explanation:</span>
+                            ${explanation}
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = blockHtml;
+            container.classList.remove('hidden');
+        }
+
+        function resetQuiz() {
+            initQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+    </script>
+</body>
+</html>

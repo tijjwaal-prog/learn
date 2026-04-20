@@ -1,91 +1,52 @@
 // ==========================================
-// ⚙️ قاعدة بيانات الكورس والدروس
+// ⚙️ إعدادات الربط مع Google Drive
 // ==========================================
-// يمكنك تعديل العناوين أو مسارات الملفات من هنا بسهولة
 
-const courseLessons = [
-    {
-        title: "الحصة 1: أسس الترابط",
-        pdf: "Lessons/Lesson 01/pdf.pdf",
-        infoImg: "Lessons/Lesson 01/info.png",
-        mapImg: "Lessons/Lesson 01/map.png",
-        quiz: "Lessons/Lesson 01/quiz.html"
-    },
-    {
-        title: "الحصة 2",
-        pdf: "Lessons/Lesson 02/pdf.pdf",
-        infoImg: "Lessons/Lesson 02/info.png",
-        mapImg: "Lessons/Lesson 02/map.png",
-        quiz: "Lessons/Lesson 02/quiz.html"
-    },
-    {
-        title: "الحصة 3",
-        pdf: "Lessons/Lesson 03/pdf.pdf",
-        infoImg: "Lessons/Lesson 03/info.png",
-        mapImg: "Lessons/Lesson 03/map.png",
-        quiz: "Lessons/Lesson 03/quiz.html"
-    },
-    {
-        title: "الحصة 4",
-        pdf: "Lessons/Lesson 04/pdf.pdf",
-        infoImg: "Lessons/Lesson 04/info.png",
-        mapImg: "Lessons/Lesson 04/map.png",
-        quiz: "Lessons/Lesson 04/quiz.html"
-    },
-    {
-        title: "الحصة 5",
-        pdf: "Lessons/Lesson 05/pdf.pdf",
-        infoImg: "Lessons/Lesson 05/info.png",
-        mapImg: "Lessons/Lesson 05/map.png",
-        quiz: "Lessons/Lesson 05/quiz.html"
-    },
-    {
-        title: "الحصة 6",
-        pdf: "Lessons/Lesson 06/pdf.pdf",
-        infoImg: "Lessons/Lesson 06/info.png",
-        mapImg: "Lessons/Lesson 06/map.png",
-        quiz: "Lessons/Lesson 06/quiz.html"
-    },
-    {
-        title: "الحصة 7",
-        pdf: "Lessons/Lesson 07/pdf.pdf",
-        infoImg: "Lessons/Lesson 07/info.png",
-        mapImg: "Lessons/Lesson 07/map.png",
-        quiz: "Lessons/Lesson 07/quiz.html"
-    },
-    {
-        title: "الحصة 8",
-        pdf: "Lessons/Lesson 08/pdf.pdf",
-        infoImg: "Lessons/Lesson 08/info.png",
-        mapImg: "Lessons/Lesson 08/map.png",
-        quiz: "Lessons/Lesson 08/quiz.html"
-    },
-    {
-        title: "الحصة 9",
-        pdf: "Lessons/Lesson 09/pdf.pdf",
-        infoImg: "Lessons/Lesson 09/info.png",
-        mapImg: "Lessons/Lesson 09/map.png",
-        quiz: "Lessons/Lesson 09/quiz.html"
-    },
-    {
-        title: "الحصة 10",
-        pdf: "Lessons/Lesson 10/pdf.pdf",
-        infoImg: "Lessons/Lesson 10/info.png",
-        mapImg: "Lessons/Lesson 10/map.png",
-        quiz: "Lessons/Lesson 10/quiz.html"
-    },
-    {
-        title: "الحصة 11",
-        pdf: "Lessons/Lesson 11/pdf.pdf",
-        infoImg: "Lessons/Lesson 11/info.png",
-        mapImg: "Lessons/Lesson 11/map.png",
-        quiz: "Lessons/Lesson 11/quiz.html"
-    },
-    {
-        title: "الحصة 12",
-        pdf: "Lessons/Lesson 12/pdf.pdf",
-        infoImg: "Lessons/Lesson 12/info.png",
-        mapImg: "Lessons/Lesson 12/map.png",
-        quiz: "Lessons/Lesson 12/quiz.html"
+// 1. رابط الـ Web App الذي ستحصل عليه بعد نشر السكربت من Google Apps Script (الصقه هنا بدلاً من الرابط الوهمي)
+const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxTzm1wUhLLo1WwUSpjaWMhPbnH_13gcP6icCqGqwl7sAI1wR9Xp3Ohaj436PnwrsqOEg/exec";
+
+// 2. معرف المجلد الرئيسي للمادة على Google Drive (وهو موجود في الرابط الذي أرسلته)
+const DRIVE_FOLDER_ID = "1pcfdQ2TTATprTqkfL44PdJ_SkfYR6jqm";
+
+// مصفوفة الدروس التي سيتم تعبئتها تلقائياً
+let courseLessons = [];
+
+/**
+ * دالة لجلب الدروس من Google Drive
+ */
+async function fetchLessonsFromDrive() {
+    try {
+        if (!GOOGLE_APP_SCRIPT_URL || GOOGLE_APP_SCRIPT_URL.trim() === "") {
+            throw new Error("لم تقم بإضافة رابط السكربت (API) في ملف lessons.js");
+        }
+
+        const response = await fetch(`${GOOGLE_APP_SCRIPT_URL}?folderId=${DRIVE_FOLDER_ID}`);
+
+        if (!response.ok) {
+            throw new Error("حدث خطأ أثناء الاتصال بالخادم");
+        }
+
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        // تحويل الروابط لتجنب حظر عرض الصور (Hotlinking) الجديد من Google
+        courseLessons = data.map(lesson => {
+            if (lesson.infoImg && lesson.infoImg.includes("uc?export=view&id=")) {
+                lesson.infoImg = lesson.infoImg.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w2000";
+            }
+            if (lesson.mapImg && lesson.mapImg.includes("uc?export=view&id=")) {
+                lesson.mapImg = lesson.mapImg.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w2000";
+            }
+            // بالنسبة للـ PDF نتركه كما هو لأن العرض المدمج preview يعمل دائماً
+            return lesson;
+        });
+
+        return true;
+    } catch (error) {
+        console.error("Fetch Error:", error);
+        throw error;
     }
-];
+}

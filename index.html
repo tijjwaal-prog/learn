@@ -71,6 +71,18 @@
 
 <body class="bg-slate-50 text-slate-800 h-screen overflow-hidden flex flex-col md:flex-row">
 
+    <!-- شاشة التحميل العامة للمزامنة مع Google Drive -->
+    <div id="global-loader"
+        class="fixed inset-0 bg-slate-50 z-50 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mb-6"></div>
+        <h2 class="text-2xl font-bold text-slate-800 mb-2">جاري جلب الملفات</h2>
+        <p id="loader-message" class="text-slate-500 text-base max-w-md text-center px-4">التطبيق يقوم بمزامنة الحصص
+            والملفات من Google Drive، يرجى الانتظار بضع ثوانٍ...</p>
+        <button id="loader-retry-btn" onclick="location.reload()"
+            class="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 transition text-white rounded-lg font-bold hidden shadow-md">إعادة
+            المحاولة</button>
+    </div>
+
     <!-- القائمة الجانبية -->
     <aside class="w-full md:w-72 bg-white shadow-lg flex flex-col z-20 flex-shrink-0">
         <!-- ترويسة القائمة -->
@@ -362,9 +374,35 @@
             }
         }
 
-        // تهيئة التطبيق عند الفتح
-        document.addEventListener("DOMContentLoaded", () => {
-            loadLesson(0);
+        // تهيئة التطبيق عند الفتح والتخاطب مع Google Drive
+        document.addEventListener("DOMContentLoaded", async () => {
+            const loader = document.getElementById('global-loader');
+            const loaderMessage = document.getElementById('loader-message');
+            const retryBtn = document.getElementById('loader-retry-btn');
+            const headerLoader = document.querySelector('#global-loader h2');
+            const spinner = document.querySelector('#global-loader .animate-spin');
+
+            try {
+                // استدعاء دالة الجلب من lessons.js
+                await fetchLessonsFromDrive();
+
+                if (courseLessons && courseLessons.length > 0) {
+                    loadLesson(0);
+                    // إخفاء مجسم التحميل بنعومة
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.style.display = 'none', 500);
+                } else {
+                    throw new Error("المجلد فارغ، لم يتم العثور على أي دروس تتطابق مع الشروط.");
+                }
+            } catch (err) {
+                // إظهار رسالة الخطأ للمستخدم
+                spinner.style.display = 'none';
+                headerLoader.innerText = "اكتمل مع وجود خطأ";
+                headerLoader.classList.replace("text-slate-800", "text-red-600");
+                loaderMessage.innerText = "تفاصيل الخطأ: " + err.message + "\nتأكد من وضع رابط الـ Web App الخاص بك في ملف lessons.js";
+                loaderMessage.classList.replace("text-slate-500", "text-red-500");
+                retryBtn.classList.remove("hidden");
+            }
         });
 
     </script>

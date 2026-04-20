@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الكيمياء 106 - الفصل الرابع</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* إضافة خط عربي جميل ليتناسب مع التصميم */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Tajawal', sans-serif;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto">
+        
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">اختبار الكيمياء العضوية 106</h1>
+            <p class="text-gray-500">الفصل الرابع: الألكانات والألكانات الحلقية</p>
+            <p class="text-sm text-gray-400 mt-1" dir="ltr">(Alkanes and Cycloalkanes)</p>
+            
+            <!-- Results Container (Hidden by default) -->
+            <div id="results-container" class="hidden mt-6 p-6 bg-blue-50 rounded-xl border border-blue-100 flex flex-col items-center justify-center animate-fade-in">
+                <svg class="w-12 h-12 text-blue-500 mb-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                <h2 class="text-2xl font-bold text-blue-900 mb-1">النتيجة النهائية</h2>
+                <p id="final-score" class="text-3xl font-black text-blue-600 mb-4">0 / 20</p>
+                <button onclick="resetQuiz()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors font-medium shadow-md">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21v-5h5"/></svg>
+                    إعادة الاختبار
+                </button>
+            </div>
+        </div>
+
+        <div class="space-y-8" id="quiz-sections">
+            
+            <!-- Part 1: Multiple Choice -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-blue-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الأول: اختيار من متعدد (Multiple Choice)</h2>
+                </div>
+                <div class="p-6 space-y-8" id="mcq-container">
+                    <!-- MCQ questions will be injected here via JS -->
+                </div>
+            </section>
+
+            <!-- Part 2: True/False -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-teal-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الثاني: صح أم خطأ (True / False)</h2>
+                </div>
+                <div class="p-6 space-y-8" id="tf-container">
+                    <!-- TF questions will be injected here via JS -->
+                </div>
+            </section>
+
+            <!-- Part 3: Fill in the Blanks -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-purple-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الثالث: املأ الفراغات (Fill in the blanks)</h2>
+                </div>
+                <div class="p-6 space-y-8">
+                    <div class="bg-purple-50 border border-purple-100 rounded-xl p-5 mb-2 shadow-sm">
+                        <p class="text-purple-800 font-bold mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            صندوق الكلمات (Word Bank) المتاحة للاختيار:
+                        </p>
+                        <div class="flex flex-wrap gap-2" dir="ltr" id="word-bank-container">
+                            <!-- Word bank items injected via JS -->
+                        </div>
+                    </div>
+                    <div id="fill-container" class="space-y-8">
+                        <!-- Fill questions injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 4: Matching -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-orange-600 text-white px-6 py-4">
+                    <h2 class="text-xl font-bold">الجزء الرابع: التوصيل (Matching)</h2>
+                </div>
+                <div class="p-6 space-y-8">
+                    <div class="bg-orange-50 border border-orange-100 rounded-lg p-4 mb-6 shadow-sm">
+                        <p class="text-orange-800 text-sm flex items-center gap-2 font-medium">
+                            <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            اختر التعريف المناسب من القائمة المنسدلة لكل مصطلح.
+                        </p>
+                    </div>
+                    <div class="space-y-6" id="match-container">
+                        <!-- Match questions injected here -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Action Button -->
+        <div class="mt-10 text-center pb-12" id="submit-container">
+            <button onclick="calculateScore()" class="bg-gray-800 hover:bg-gray-900 text-white text-xl font-bold py-4 px-12 rounded-full shadow-xl transition-transform hover:scale-105 active:scale-95">
+                تقديم الإجابات وتقييم الاختبار
+            </button>
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Icons
+        const icons = {
+            check: '<svg class="w-5 h-5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+            cross: '<svg class="w-5 h-5 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>'
+        };
+
+        // Quiz Data Definition
+        const quizData = {
+            mcq: [
+                { 
+                    id: 'q1', 
+                    q: "According to IUPAC rules, how is the parent name of an alkane determined?", 
+                    options: [
+                        { text: "most_substituents", label: "The chain with the most substituents" },
+                        { text: "longest_chain", label: "The longest continuous chain of carbon atoms" },
+                        { text: "lowest_weight", label: "The chain with the lowest molecular weight" },
+                        { text: "most_hydrogen", label: "The chain containing the most hydrogen atoms" }
+                    ], 
+                    correct: "longest_chain", 
+                    explanation: "The root (parent) name of an alkane is always based on the longest continuous chain of carbon atoms in the molecule." 
+                },
+                { 
+                    id: 'q2', 
+                    q: "Which of the following alkanes is expected to have the highest boiling point?", 
+                    options: [
+                        { text: "2,2-dimethylpropane", label: "2,2-dimethylpropane (neopentane)" },
+                        { text: "2-methylbutane", label: "2-methylbutane (isopentane)" },
+                        { text: "n-pentane", label: "<i>n</i>-pentane" },
+                        { text: "all_same", label: "All have the same boiling point since they are isomers" }
+                    ], 
+                    correct: "n-pentane", 
+                    explanation: "<i>n</i>-pentane has a rod-like shape, providing more surface area for van der Waals attractions compared to its branched, spherical isomers. More attractions mean a higher boiling point." 
+                },
+                { 
+                    id: 'q3', 
+                    q: "In the chair conformation of cyclohexane, which position is more stable for a bulky substituent (like a methyl group)?", 
+                    options: [
+                        { text: "Axial", label: "Axial position" },
+                        { text: "Equatorial", label: "Equatorial position" },
+                        { text: "Both_equal", label: "Both are equally stable" },
+                        { text: "Depends", label: "It depends on the temperature" }
+                    ], 
+                    correct: "Equatorial", 
+                    explanation: "The preferred conformation is the one where the bulky substituent is <b>equatorial</b>. This minimizes steric crowding (1,3-diaxial interactions) with other axial hydrogens." 
+                },
+                { 
+                    id: 'q4', 
+                    q: "What is the correct order of the three main steps in the radical chain mechanism for the halogenation of alkanes?", 
+                    options: [
+                        { text: "Init_Term_Prop", label: "Initiation &rarr; Termination &rarr; Propagation" },
+                        { text: "Prop_Init_Term", label: "Propagation &rarr; Initiation &rarr; Termination" },
+                        { text: "Init_Prop_Term", label: "Initiation &rarr; Propagation &rarr; Termination" },
+                        { text: "Term_Prop_Init", label: "Termination &rarr; Propagation &rarr; Initiation" }
+                    ], 
+                    correct: "Init_Prop_Term", 
+                    explanation: "The mechanism starts with <i>Initiation</i> (creating radicals), followed by <i>Propagation</i> (a repeating cycle that forms the product), and ends with <i>Termination</i> (radicals combining)." 
+                },
+                { 
+                    id: 'q5', 
+                    q: "What is the general molecular formula for acyclic saturated hydrocarbons (alkanes)?", 
+                    options: [
+                        { text: "CnH2n", label: "C<sub>n</sub>H<sub>2n</sub>" },
+                        { text: "CnH2n-2", label: "C<sub>n</sub>H<sub>2n-2</sub>" },
+                        { text: "CnH2n+2", label: "C<sub>n</sub>H<sub>2n+2</sub>" },
+                        { text: "CnHn", label: "C<sub>n</sub>H<sub>n</sub>" }
+                    ], 
+                    correct: "CnH2n+2", 
+                    explanation: "Acyclic alkanes are fully saturated with hydrogen atoms, fitting the general formula C<sub>n</sub>H<sub>2n+2</sub>." 
+                }
+            ],
+            tf: [
+                { 
+                    id: 'q6', 
+                    q: "Conformers (rotamers), such as the staggered and eclipsed forms of ethane, can easily interconvert at room temperature by rotating about the C-C single bond.", 
+                    correct: "True", 
+                    explanation: "True. There is enough thermal energy available at room temperature for the C-C single bond to rotate rapidly, interconverting the conformations." 
+                },
+                { 
+                    id: 'q7', 
+                    q: "The eclipsed conformation of ethane is more stable (has lower potential energy) than the staggered conformation.", 
+                    correct: "False", 
+                    explanation: "False. The <b>staggered</b> conformation is the most stable (lowest energy) because the electrons in the C-H bonds are as far apart as possible, reducing repulsion." 
+                },
+                { 
+                    id: 'q8', 
+                    q: "Cis-trans isomers of cycloalkanes (like cis- and trans-1,2-dimethylcyclopentane) can easily interconvert by rotating around the carbon-carbon single bonds in the ring.", 
+                    correct: "False", 
+                    explanation: "False. The cyclic structure limits rotation. To interconvert cis and trans isomers, bonds would literally have to be broken and remade." 
+                },
+                { 
+                    id: 'q9', 
+                    q: "Alkanes are highly soluble in water because they can form strong hydrogen bonds with water molecules.", 
+                    correct: "False", 
+                    explanation: "False. Alkanes contain only nonpolar C-C and C-H bonds. They cannot form hydrogen bonds and are therefore insoluble in polar solvents like water." 
+                },
+                { 
+                    id: 'q10', 
+                    q: "The complete combustion of an alkane in the presence of excess oxygen produces carbon dioxide (CO<sub>2</sub>), water (H<sub>2</sub>O), and evolves considerable heat.", 
+                    correct: "True", 
+                    explanation: "True. Combustion is an exothermic oxidation reaction. For example: CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O + heat." 
+                }
+            ],
+            fill: [
+                { 
+                    id: 'q11', 
+                    part1: "A series of compounds in which members are built up in a regular, repetitive way (like adding a -CH<sub>2</sub>- group to lengthen the chain) is called a ", 
+                    part2: " series.",
+                    accepted: "homologous", 
+                    explanation: "A homologous series is a family of hydrocarbons with similar chemical properties who share the same general formula." 
+                },
+                { 
+                    id: 'q12', 
+                    part1: "The weak attractive forces between temporary polarized nonpolar molecules, such as alkane molecules, are called ", 
+                    part2: " attractions.",
+                    accepted: "van der Waals", 
+                    explanation: "Because alkanes are nonpolar, their molecules are held together only by weak van der Waals forces (London dispersion forces)." 
+                },
+                { 
+                    id: 'q13', 
+                    part1: "When a cyclohexane ring undergoes a \"ring flip\", all the axial bonds become ", 
+                    part2: " bonds, and vice versa.",
+                    accepted: "equatorial", 
+                    explanation: "During a ring flip, the chair conformation shifts, changing all axial substituents to equatorial and all equatorial substituents to axial." 
+                },
+                { 
+                    id: 'q14', 
+                    part1: "Cis-trans isomers (such as <i>cis</i>-1,2-dimethylcyclopentane) are a type of configurational isomers, which fall under the broader category of ", 
+                    part2: ".",
+                    accepted: "stereoisomers", 
+                    explanation: "Stereoisomers have the same order of attachment of atoms but different arrangements of the atoms in 3D space." 
+                },
+                { 
+                    id: 'q15', 
+                    part1: "The first step (initiation) in the radical halogenation of methane involves the ", 
+                    part2: " of the Cl-Cl or Br-Br bond using light or heat to generate radicals.",
+                    accepted: "homolysis", 
+                    explanation: "Homolysis (homolytic cleavage) splits the bond evenly so that each halogen atom takes one electron, becoming a highly reactive radical." 
+                }
+            ],
+            match: [
+                { id: 'q16', term: "Methane (CH₄)", correctMatch: "The simplest alkane and the main constituent of natural gas." },
+                { id: 'q17', term: "Isobutyl group", correctMatch: "A branched alkyl substituent derived from isobutane, represented as (CH₃)₂CH-CH₂-" },
+                { id: 'q18', term: "Staggered conformation", correctMatch: "The most stable arrangement for ethane where C-H bonds bisect H-C-H angles." },
+                { id: 'q19', term: "Chlorination", correctMatch: "A radical substitution reaction where a chlorine atom replaces a hydrogen atom." },
+                { id: 'q20', term: "Cyclobutane", correctMatch: "A four-membered cyclic alkane that adopts a puckered conformation to reduce strain." }
+            ],
+            matchOptions: [
+                "The simplest alkane and the main constituent of natural gas.",
+                "The most stable arrangement for ethane where C-H bonds bisect H-C-H angles.",
+                "A radical substitution reaction where a chlorine atom replaces a hydrogen atom.",
+                "A four-membered cyclic alkane that adopts a puckered conformation to reduce strain.",
+                "A branched alkyl substituent derived from isobutane, represented as (CH₃)₂CH-CH₂-"
+            ]
+        };
+
+        const fillWordBank = ["van der Waals", "equatorial", "homologous", "homolysis", "stereoisomers"];
+        let isSubmitted = false;
+
+        // Initialize UI Elements
+        function renderQuiz() {
+            // Render Word Bank
+            const wordBankContainer = document.getElementById('word-bank-container');
+            wordBankContainer.innerHTML = fillWordBank.map(word => 
+                `<span class="bg-white border border-purple-200 text-purple-700 px-4 py-1.5 rounded-lg text-sm font-bold shadow-sm">${word}</span>`
+            ).join('');
+
+            // Render MCQ
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqContainer.innerHTML = quizData.mcq.map((q, index) => {
+                const optionsHtml = q.options.map((opt, optIndex) => {
+                    const letter = String.fromCharCode(97 + optIndex);
+                    return `
+                        <label id="label_${q.id}_${opt.text}" class="mcq-label flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer transition-colors hover:bg-gray-50">
+                            <input type="radio" name="${q.id}" value="${opt.text}" class="hidden" onchange="handleRadioChange('${q.id}', '${opt.text}')">
+                            <div id="icon_${q.id}_${opt.text}" class="w-7 h-7 rounded-md flex items-center justify-center mr-3 font-bold text-sm shadow-sm transition-colors bg-gray-100 text-gray-600 border border-gray-300">
+                                ${letter}
+                            </div>
+                            <span class="text-gray-700 text-lg">${opt.label}</span>
+                        </label>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0" id="block_${q.id}">
+                        <div class="font-medium text-lg text-gray-800 mb-4 leading-relaxed" dir="ltr">
+                            <span class="text-blue-600 font-bold mr-2">${index + 1}.</span>${q.q}
+                        </div>
+                        <div class="grid grid-cols-1 gap-3" dir="ltr">
+                            ${optionsHtml}
+                        </div>
+                        <div id="feedback_${q.id}" class="hidden mt-3 p-4 rounded-lg flex items-start gap-3"></div>
+                    </div>
+                `;
+            }).join('');
+
+            // Render TF
+            const tfContainer = document.getElementById('tf-container');
+            tfContainer.innerHTML = quizData.tf.map((q, index) => {
+                const optionsHtml = ['True', 'False'].map((opt) => `
+                    <label id="label_${q.id}_${opt}" class="tf-label flex items-center px-6 py-3 rounded-xl border border-gray-200 cursor-pointer transition-all flex-1 justify-center hover:bg-gray-50">
+                        <input type="radio" name="${q.id}" value="${opt}" class="hidden" onchange="handleTFChange('${q.id}', '${opt}')">
+                        <span id="text_${q.id}_${opt}" class="font-bold text-lg text-gray-600">${opt}</span>
+                    </label>
+                `).join('');
+
+                return `
+                    <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0" id="block_${q.id}">
+                        <div class="font-medium text-lg text-gray-800 mb-4 leading-relaxed" dir="ltr">
+                            <span class="text-teal-600 font-bold mr-2">${index + 6}.</span>${q.q}
+                        </div>
+                        <div class="flex gap-4" dir="ltr">
+                            ${optionsHtml}
+                        </div>
+                        <div id="feedback_${q.id}" class="hidden mt-3 p-4 rounded-lg flex items-start gap-3"></div>
+                    </div>
+                `;
+            }).join('');
+
+            // Render Fill
+            const fillContainer = document.getElementById('fill-container');
+            fillContainer.innerHTML = quizData.fill.map((q, index) => {
+                const options = fillWordBank.map(w => `<option value="${w}">${w}</option>`).join('');
+                return `
+                    <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0" id="block_${q.id}">
+                        <div class="font-medium text-lg text-gray-800 mb-4 leading-relaxed flex flex-wrap items-center gap-y-2" dir="ltr">
+                            <span class="text-purple-600 font-bold mr-2">${index + 11}.</span>
+                            <span>${q.part1}</span>
+                            <select id="input_${q.id}" class="mx-2 pb-1 border-b-2 outline-none text-center text-purple-700 font-bold min-w-[150px] bg-transparent transition-colors cursor-pointer border-purple-300 hover:border-purple-500 focus:border-purple-600" dir="ltr">
+                                <option value="" disabled selected>Select...</option>
+                                ${options}
+                            </select>
+                            <span>${q.part2}</span>
+                        </div>
+                        <div id="feedback_${q.id}" class="hidden mt-3 p-4 rounded-lg flex items-start gap-3"></div>
+                    </div>
+                `;
+            }).join('');
+
+            // Render Match
+            const matchContainer = document.getElementById('match-container');
+            matchContainer.innerHTML = quizData.match.map((q, index) => {
+                const options = quizData.matchOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+                return `
+                    <div class="flex flex-col md:flex-row md:items-center gap-4 border-b border-gray-100 pb-6 last:border-0 last:pb-0" dir="ltr" id="block_${q.id}">
+                        <div class="md:w-1/3 flex-shrink-0">
+                            <p class="font-bold text-gray-800 text-lg flex items-center">
+                                <span class="text-orange-600 mr-2">${index + 16}.</span>
+                                <span class="bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-200 shadow-sm">${q.term}</span>
+                            </p>
+                        </div>
+                        <div class="md:w-2/3">
+                            <select id="input_${q.id}" class="w-full p-3 rounded-lg border bg-white border-gray-300 focus:border-orange-500 outline-none transition-colors cursor-pointer shadow-sm">
+                                <option value="" disabled selected>Select the correct match...</option>
+                                ${options}
+                            </select>
+                            <div id="feedback_${q.id}" class="hidden mt-3"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Handle styling for radio buttons selection
+        function handleRadioChange(questionId, selectedValue) {
+            if (isSubmitted) return;
+            
+            // Reset styles for all options in this question
+            const labels = document.querySelectorAll(`#block_${questionId} .mcq-label`);
+            labels.forEach(label => {
+                label.classList.remove('border-blue-500', 'bg-blue-50');
+                label.classList.add('border-gray-200');
+                const icon = label.querySelector('div');
+                icon.classList.remove('bg-blue-600', 'text-white');
+                icon.classList.add('bg-gray-100', 'text-gray-600', 'border-gray-300');
+            });
+
+            // Apply selected styles
+            const selectedLabel = document.getElementById(`label_${questionId}_${selectedValue}`);
+            if (selectedLabel) {
+                selectedLabel.classList.remove('border-gray-200', 'hover:bg-gray-50');
+                selectedLabel.classList.add('border-blue-500', 'bg-blue-50');
+                const selectedIcon = document.getElementById(`icon_${questionId}_${selectedValue}`);
+                selectedIcon.classList.remove('bg-gray-100', 'text-gray-600', 'border-gray-300');
+                selectedIcon.classList.add('bg-blue-600', 'text-white');
+            }
+        }
+
+        function handleTFChange(questionId, selectedValue) {
+            if (isSubmitted) return;
+
+            // Reset styles
+            const labels = document.querySelectorAll(`#block_${questionId} .tf-label`);
+            labels.forEach(label => {
+                label.classList.remove('border-teal-500', 'bg-teal-50', 'shadow-sm');
+                label.classList.add('border-gray-200');
+                const text = label.querySelector('span');
+                text.classList.remove('text-teal-700');
+                text.classList.add('text-gray-600');
+            });
+
+            // Apply selected styles
+            const selectedLabel = document.getElementById(`label_${questionId}_${selectedValue}`);
+            if (selectedLabel) {
+                selectedLabel.classList.remove('border-gray-200', 'hover:bg-gray-50');
+                selectedLabel.classList.add('border-teal-500', 'bg-teal-50', 'shadow-sm');
+                const selectedText = document.getElementById(`text_${questionId}_${selectedValue}`);
+                selectedText.classList.remove('text-gray-600');
+                selectedText.classList.add('text-teal-700');
+            }
+        }
+
+        function createFeedbackHTML(isCorrect, correctText, explanation) {
+            let html = isCorrect ? icons.check : icons.cross;
+            html += `<div class="text-sm w-full" dir="ltr">
+                <p class="font-bold mb-1 text-right" dir="rtl">${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة'}</p>`;
+            
+            if (!isCorrect && correctText) {
+                html += `<p class="mb-2 text-right" dir="rtl"><span class="font-semibold text-gray-700">الإجابة الصحيحة هي:</span> <span dir="ltr" class="font-bold text-blue-700 bg-white px-2 py-0.5 rounded border border-blue-200">${correctText}</span></p>`;
+            }
+            
+            if(explanation) {
+                html += `<div class="bg-white/50 p-3 rounded mt-2 border border-black/5">
+                    <span class="font-bold text-gray-900 block mb-1">Explanation:</span> 
+                    ${explanation}
+                </div>`;
+            }
+            html += `</div>`;
+            return html;
+        }
+
+        function createMatchFeedbackHTML(isCorrect, correctText) {
+            if(isCorrect) {
+                 return `<div class="text-sm bg-green-50 text-green-800 p-3 rounded-lg border border-green-200 text-right" dir="rtl">
+                    <p class="font-bold flex items-center gap-1">${icons.check} إجابة صحيحة!</p>
+                 </div>`;
+            } else {
+                 return `<div class="text-sm bg-red-50 text-red-800 p-3 rounded-lg border border-red-200 text-right" dir="rtl">
+                    <p class="font-bold flex items-center gap-1 mb-2">${icons.cross} إجابة خاطئة</p>
+                    <p><span class="font-semibold">الإجابة الصحيحة هي:</span> <span dir="ltr" class="block mt-1 p-2 bg-white rounded border border-red-100 font-medium">${correctText}</span></p>
+                 </div>`;
+            }
+        }
+
+        function calculateScore() {
+            let score = 0;
+            isSubmitted = true;
+
+            // Evaluate MCQ
+            quizData.mcq.forEach(q => {
+                const selected = document.querySelector(`input[name="${q.id}"]:checked`)?.value;
+                const isCorrect = selected === q.correct;
+                if (isCorrect) score++;
+
+                const feedback = document.getElementById(`feedback_${q.id}`);
+                feedback.classList.remove('hidden');
+                feedback.classList.add(isCorrect ? 'bg-green-50' : 'bg-red-50', isCorrect ? 'text-green-800' : 'text-red-800', 'border', isCorrect ? 'border-green-200' : 'border-red-200');
+                
+                const correctLabel = q.options.find(o => o.text === q.correct)?.label;
+                feedback.innerHTML = createFeedbackHTML(isCorrect, correctLabel, q.explanation);
+                
+                // Disable inputs
+                document.querySelectorAll(`input[name="${q.id}"]`).forEach(el => {
+                    el.disabled = true;
+                    el.parentElement.classList.remove('cursor-pointer', 'hover:bg-gray-50');
+                    el.parentElement.classList.add('cursor-default');
+                });
+            });
+
+            // Evaluate TF
+            quizData.tf.forEach(q => {
+                const selected = document.querySelector(`input[name="${q.id}"]:checked`)?.value;
+                const isCorrect = selected === q.correct;
+                if (isCorrect) score++;
+
+                const feedback = document.getElementById(`feedback_${q.id}`);
+                feedback.classList.remove('hidden');
+                feedback.classList.add(isCorrect ? 'bg-green-50' : 'bg-red-50', isCorrect ? 'text-green-800' : 'text-red-800', 'border', isCorrect ? 'border-green-200' : 'border-red-200');
+                
+                feedback.innerHTML = createFeedbackHTML(isCorrect, q.correct, q.explanation);
+
+                // Disable inputs
+                document.querySelectorAll(`input[name="${q.id}"]`).forEach(el => {
+                    el.disabled = true;
+                    el.parentElement.classList.remove('cursor-pointer', 'hover:bg-gray-50');
+                    el.parentElement.classList.add('cursor-default');
+                });
+            });
+
+            // Evaluate Fill
+            quizData.fill.forEach(q => {
+                const input = document.getElementById(`input_${q.id}`);
+                const selected = input.value;
+                const isCorrect = selected === q.accepted;
+                if (isCorrect) score++;
+
+                input.disabled = true;
+                input.classList.remove('border-purple-300', 'hover:border-purple-500', 'focus:border-purple-600', 'cursor-pointer');
+                input.classList.add(isCorrect ? 'border-green-500' : 'border-red-500', isCorrect ? 'text-green-700' : 'text-red-700');
+
+                const feedback = document.getElementById(`feedback_${q.id}`);
+                feedback.classList.remove('hidden');
+                feedback.classList.add(isCorrect ? 'bg-green-50' : 'bg-red-50', isCorrect ? 'text-green-800' : 'text-red-800', 'border', isCorrect ? 'border-green-200' : 'border-red-200');
+                feedback.innerHTML = createFeedbackHTML(isCorrect, q.accepted, q.explanation);
+            });
+
+            // Evaluate Match
+            quizData.match.forEach(q => {
+                const input = document.getElementById(`input_${q.id}`);
+                const selected = input.value;
+                const isCorrect = selected === q.correctMatch;
+                if (isCorrect) score++;
+
+                input.disabled = true;
+                input.classList.remove('bg-white', 'border-gray-300', 'focus:border-orange-500', 'cursor-pointer');
+                input.classList.add(isCorrect ? 'bg-green-50' : 'bg-red-50', isCorrect ? 'border-green-300' : 'border-red-300', isCorrect ? 'text-green-800' : 'text-red-800');
+
+                const feedback = document.getElementById(`feedback_${q.id}`);
+                feedback.classList.remove('hidden');
+                feedback.innerHTML = createMatchFeedbackHTML(isCorrect, q.correctMatch);
+            });
+
+            // Update UI State
+            document.getElementById('final-score').innerText = `${score} / 20`;
+            document.getElementById('results-container').classList.remove('hidden');
+            document.getElementById('submit-container').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            isSubmitted = false;
+            document.getElementById('results-container').classList.add('hidden');
+            document.getElementById('submit-container').classList.remove('hidden');
+            
+            // Re-render everything to reset state smoothly
+            renderQuiz();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize application
+        window.onload = renderQuiz;
+
+    </script>
+</body>
+</html>

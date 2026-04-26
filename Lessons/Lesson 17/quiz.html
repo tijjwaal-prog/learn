@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Alcohols with more than One Hydroxyl Group</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #f0fdf4;
+            /* خلفية خضراء مزرقة فاتحة جداً */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #0d9488 0%, #0369a1 100%);
         }
     </style>
 </head>
@@ -62,26 +65,29 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-teal-900 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-droplet text-teal-600"></i>
+                Alcohols with more than One Hydroxyl Group
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (166 - 176): Glycols, Glycerol &
+                their Reactions</p>
         </div>
 
-        <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+        <!-- حاوية الاختبار -->
+        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-teal-100">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-teal-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +95,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +124,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-teal-800 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-teal-600"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +140,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-teal-100">
+            <i class="fa-solid fa-flask-vial text-7xl text-teal-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم الكحولات متعددة الهيدروكسيل بنجاح.</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-teal-50 border border-teal-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-teal-800 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-teal-500">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-teal-900 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +167,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "What is the correct systematic (IUPAC) name for glycerol?",
+                options: ["1,2-ethanediol", "1,2,3-propanetriol", "1,3-propanediol", "1,2,3-butanetriol"],
+                a: "1,2,3-propanetriol",
+                exp: "Glycerol has a three-carbon backbone with one hydroxyl (-OH) group attached to each carbon atom, making it a triol."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "Which of the following is the most common commercial use for ethylene glycol (1,2-ethanediol)?",
+                options: ["Food sweetener", "Automobile antifreeze", "Soap manufacturing", "Cooking oil"],
+                a: "Automobile antifreeze",
+                exp: "Ethylene glycol mixes completely with water and significantly lowers its freezing point (and raises its boiling point), making it an ideal engine coolant and antifreeze."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "Ethylene glycol is industrially prepared by the hydration (addition of water) of which intermediate compound?",
+                options: ["Ethylene oxide", "Acetaldehyde", "Ethanol", "Chloroethane"],
+                a: "Ethylene oxide",
+                exp: "Ethylene reacts with oxygen over a silver catalyst to form the cyclic ether ethylene oxide, which is then hydrolyzed with water to produce ethylene glycol."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "What happens when a vicinal diol (like 1,2-ethanediol) is treated with periodic acid (HIO₄)?",
+                options: ["It is reduced to an alkane.", "The C-C bond is cleaved to form two carbonyl compounds.", "It is dehydrated to an alkyne.", "It forms a cyclic ether."],
+                a: "The C-C bond is cleaved to form two carbonyl compounds.",
+                exp: "Periodic acid (HIO₄) selectively breaks the carbon-carbon bond between the adjacent hydroxyl groups, oxidizing them into aldehydes or ketones."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "The reaction of glycerol with concentrated nitric acid (HNO₃) and sulfuric acid (H₂SO₄) produces a compound primarily used as:",
+                options: ["A fertilizer", "A flavoring agent", "An explosive and heart medication", "A plasticizer"],
+                a: "An explosive and heart medication",
+                exp: "The reaction produces nitroglycerin (glyceryl trinitrate). It is a powerful explosive (dynamite component) and is also used medically as a vasodilator to treat angina (chest pain)."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
-            },
-            {
-                type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "Ethylene glycol and glycerol are virtually insoluble in water due to their hydrocarbon carbon chains.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. The presence of multiple -OH groups allows them to form a massive network of hydrogen bonds with water molecules, making them completely miscible (soluble in all proportions) with water."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "Propylene glycol is often used as a safer, non-toxic alternative to ethylene glycol in food, cosmetics, and eco-friendly antifreeze.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. Ethylene glycol is highly toxic to mammals (it metabolizes to harmful oxalic acid), whereas propylene glycol is generally recognized as safe and metabolizes to normal lactic acid."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
-            },
-            {
-                type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "A 'vicinal' diol is a compound where both hydroxyl (-OH) groups are attached to the exact same carbon atom.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. A vicinal diol has -OH groups on ADJACENT (neighboring) carbon atoms. Diols on the SAME carbon are called 'geminal' diols (or hydrates) and are usually highly unstable."
+            },
+            {
+                type: "True / False",
+                q: "Glycerol is naturally found as the structural backbone of animal fats and vegetable oils (triglycerides).",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. Fats and oils are esters formed from one molecule of glycerol and three long-chain fatty acids. Saponification (hydrolysis) of these fats yields soap and free glycerol."
+            },
+            {
+                type: "True / False",
+                q: "Alcohols with multiple hydroxyl groups typically have much lower boiling points than monohydric alcohols of similar molecular weight.",
+                options: ["True", "False"],
+                a: "False",
+                exp: "False. More -OH groups mean more extensive intermolecular hydrogen bonding. This results in significantly HIGHER boiling points and higher viscosity (making them thick and syrupy)."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "Glycerol is a thick, syrupy liquid, meaning it is highly ________ due to intense intermolecular hydrogen bonding.",
+                options: ["Saponification", "Polyester", "Hygroscopic", "Viscous", "Oxidation"],
+                a: "Viscous",
+                exp: "The three hydroxyl groups create a strong network of hydrogen bonds, heavily restricting the movement and flow of the liquid molecules, resulting in high viscosity."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "Ethylene glycol is heavily used as a raw material in the industrial manufacture of ________ fibers and plastics (such as PET).",
+                options: ["Saponification", "Polyester", "Hygroscopic", "Viscous", "Oxidation"],
+                a: "Polyester",
+                exp: "Ethylene glycol reacts with terephthalic acid via condensation polymerization to form polyethylene terephthalate (PET), a globally essential plastic."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "Glycerol has the exceptional ability to absorb and hold moisture from the surrounding air, a property known as being ________.",
+                options: ["Saponification", "Polyester", "Hygroscopic", "Viscous", "Oxidation"],
+                a: "Hygroscopic",
+                exp: "Because it is hygroscopic, glycerol acts as an excellent humectant, used in lotions, cosmetics, and baked goods to prevent them from drying out."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "The alkaline hydrolysis of animal fats and vegetable oils using NaOH to produce soap and glycerol is called ________.",
+                options: ["Saponification", "Polyester", "Hygroscopic", "Viscous", "Oxidation"],
+                a: "Saponification",
+                exp: "Reacting a triglyceride with lye (NaOH) cleaves the ester bonds, yielding sodium salts of fatty acids (soap) and liberating the glycerol backbone."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "The reaction of a vicinal diol with periodic acid (HIO₄) is a specific type of ________ cleavage that produces carbonyl compounds.",
+                options: ["Saponification", "Polyester", "Hygroscopic", "Viscous", "Oxidation"],
+                a: "Oxidation",
+                exp: "Cleavage by HIO₄ is an oxidative process that specifically targets the C-C bond situated between two adjacent -OH groups."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the structure/description to its correct identity: \nHO-CH₂-CH₂-OH",
+                options: ["Ethylene glycol", "Glycerol", "Propylene glycol", "Reagent for cleaving vicinal diols", "Explosive and vasodilator"],
+                a: "Ethylene glycol",
+                exp: "Also known as 1,2-ethanediol. It is highly toxic, has a sweet taste, and is the primary component of automotive antifreeze."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the structure/description to its correct identity: \nHO-CH₂-CH(OH)-CH₂-OH",
+                options: ["Ethylene glycol", "Glycerol", "Propylene glycol", "Reagent for cleaving vicinal diols", "Explosive and vasodilator"],
+                a: "Glycerol",
+                exp: "Also known as 1,2,3-propanetriol or glycerin. A non-toxic, sweet-tasting, highly viscous liquid used in food and cosmetics."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the structure/description to its correct identity: \nCH₃-CH(OH)-CH₂-OH",
+                options: ["Ethylene glycol", "Glycerol", "Propylene glycol", "Reagent for cleaving vicinal diols", "Explosive and vasodilator"],
+                a: "Propylene glycol",
+                exp: "Also known as 1,2-propanediol. It is an FDA-approved, non-toxic alternative to ethylene glycol, used widely in pharmaceuticals and food."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the structure/description to its correct identity: \nPeriodic Acid (HIO₄)",
+                options: ["Ethylene glycol", "Glycerol", "Propylene glycol", "Reagent for cleaving vicinal diols", "Explosive and vasodilator"],
+                a: "Reagent for cleaving vicinal diols",
+                exp: "This reagent specifically breaks the C-C bond of 1,2-diols, acting as a diagnostic test for vicinal hydroxyl groups."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the structure/description to its correct identity: \nNitroglycerin (Glyceryl trinitrate)",
+                options: ["Ethylene glycol", "Glycerol", "Propylene glycol", "Reagent for cleaving vicinal diols", "Explosive and vasodilator"],
+                a: "Explosive and vasodilator",
+                exp: "Formed by the complete esterification of glycerol with nitric acid. It is the active ingredient in dynamite and a potent medication for angina."
             }
         ];
 
@@ -338,10 +351,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-teal-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Saponification, Polyester, Hygroscopic, Viscous, Oxidation";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-teal-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Ethylene glycol, Glycerol, Propylene glycol, Reagent for cleaving vicinal diols, Explosive and vasodilator";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +368,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-teal-600 hover:bg-teal-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +397,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-teal-600', 'hover:bg-teal-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-teal-600', 'hover:bg-teal-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +464,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "مستوى احترافي عالٍ! استيعابك لخواص وتطبيقات الجلايكول والجليسرول مبهر جداً. 🌟";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "أداء قوي وممتاز! مع مراجعة بسيطة لتفاعلات الأكسدة ستصبح خبيراً. 👍";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "هذه المركبات لها تطبيقات صناعية وطبية هامة. راجع خواصها وأعد الاختبار لتثبيت المعرفة! 💡";
             }
         }
 

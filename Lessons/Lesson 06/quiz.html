@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Compounds Containing C–Z σ bonds</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #f5f3ff;
+            /* خلفية بنفسجي فاتح جداً */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #6d28d9 0%, #4338ca 100%);
         }
     </style>
 </head>
@@ -62,26 +65,30 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-violet-800 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-link text-violet-600"></i>
+                Compounds Containing C–Z σ bonds
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (65 - 68): Halides, Alcohols,
+                Ethers, Amines & Thiols</p>
         </div>
 
+        <!-- حاوية الاختبار -->
         <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-violet-100">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-violet-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-violet-100 text-violet-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +96,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-fuchsia-50 border-l-4 border-fuchsia-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +125,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-violet-700 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-violet-500"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +141,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-violet-100">
+            <i class="fa-solid fa-flask text-7xl text-violet-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم المركبات التي تحتوي على روابط (C–Z).</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-violet-50 border border-violet-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-violet-700 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-violet-400">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-violet-800 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +168,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "Why is the carbon-halogen (C-X) bond in an alkyl halide polar?",
+                options: ["Halogens are less electronegative than carbon.", "Halogens are more electronegative than carbon.", "Carbon and halogens have the exact same electronegativity.", "The bond is fully ionic, not covalent."],
+                a: "Halogens are more electronegative than carbon.",
+                exp: "Electronegative atoms (like F, Cl, Br) pull the shared electrons in the sigma bond toward themselves, giving the carbon a partial positive charge (electrophilic center)."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "Consider the compound 2-chloro-2-methylpropane. How is this alkyl halide structurally classified?",
+                options: ["Primary (1°)", "Secondary (2°)", "Tertiary (3°)", "Quaternary (4°)"],
+                a: "Tertiary (3°)",
+                exp: "The carbon atom bonded to the chlorine is directly attached to three other carbon atoms (three methyl groups), making it a tertiary (3°) alkyl halide."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "How does the structural classification of amines differ from that of alcohols and alkyl halides?",
+                options: ["Amines are classified by the number of carbons attached directly to the Nitrogen atom.", "Amines are classified by the carbon attached to the -OH group.", "Amines cannot be tertiary.", "Amines are classified based on the halogen attached."],
+                a: "Amines are classified by the number of carbons attached directly to the Nitrogen atom.",
+                exp: "Unlike alcohols (classified by the carbon attached to OH), amines are classified as 1°, 2°, or 3° based on how many carbon groups are directly bonded to the Nitrogen atom itself."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "What is the general structural formula of an ether, which contains two C-O sigma bonds?",
+                options: ["R-OH", "R-CO-R'", "R-O-R'", "R-COOH"],
+                a: "R-O-R'",
+                exp: "Ethers consist of a central oxygen atom connected to two alkyl or aryl groups via C-O single (sigma) bonds."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "Which functional group is the sulfur analog of an alcohol, containing a C-S sigma bond?",
+                options: ["Sulfide", "Thiol (Mercaptan)", "Sulfoxide", "Ether"],
+                a: "Thiol (Mercaptan)",
+                exp: "A thiol has the structure R-SH. It is structurally similar to an alcohol (R-OH) but has a sulfur atom in place of the oxygen atom."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
+                q: "As the size of the halogen atom increases down the periodic table (from F to I), the C-X bond length increases and the bond strength decreases.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
+                exp: "Iodine is much larger than Fluorine. A larger atomic radius leads to longer, weaker bonds because the orbital overlap between Carbon and the Halogen is less effective."
             },
             {
                 type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "Compounds containing C-O or C-N sigma bonds, such as small alcohols and amines, cannot form hydrogen bonds with water.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. Small alcohols and amines are typically very soluble in water because the highly electronegative O and N atoms can readily form strong hydrogen bonds with water molecules."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "In a C-Z sigma bond where Z is more electronegative than Carbon, the Carbon atom acts as an electrophile.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. The electronegative Z atom pulls electron density away, leaving Carbon with a partial positive charge (δ+). This makes Carbon an electrophilic (electron-seeking) center susceptible to nucleophilic attack."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
-            },
-            {
-                type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "An epoxide is a highly stable type of cyclic ether containing a five-membered ring.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. An epoxide is a specific type of cyclic ether that contains a THREE-membered ring (two carbons and one oxygen). The significant ring strain makes them highly reactive, not stable."
+            },
+            {
+                type: "True / False",
+                q: "The nitrogen atom in an amine possesses a lone pair of electrons, allowing the molecule to act as both a Lewis base and a nucleophile.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. The non-bonding pair of electrons on the sp³ hybridized Nitrogen can be donated to an electrophile or a proton, which perfectly fits the definition of a Lewis base and a nucleophile."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "The polar nature of the C-Z bond creates a molecular ________ moment if the individual bond polarities do not cancel out symmetrically.",
+                options: ["Electronegative", "Primary", "Sulfide", "Dipole", "Hydrogen"],
+                a: "Dipole",
+                exp: "A dipole moment is the measure of net molecular polarity. Since C-Z bonds are inherently polar, asymmetrical molecules containing them will have a permanent dipole."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "An alkyl halide is classified as ________ (1°) if the carbon bonded to the halogen is attached to only one other carbon atom.",
+                options: ["Electronegative", "Primary", "Sulfide", "Dipole", "Hydrogen"],
+                a: "Primary",
+                exp: "A 1° carbon is attached to exactly one other Carbon. For example, in CH₃-CH₂-Cl, the carbon bearing the chlorine is attached only to the methyl group."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "In an amine, the nitrogen atom is more ________ than carbon, which naturally polarizes the C-N sigma bond.",
+                options: ["Electronegative", "Primary", "Sulfide", "Dipole", "Hydrogen"],
+                a: "Electronegative",
+                exp: "Nitrogen (group 15) is further to the right on the periodic table than carbon (group 14), meaning it attracts the shared bonding electrons more strongly."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "Alcohols have significantly higher boiling points than alkanes of similar molecular weight due to their ability to form strong intermolecular ________ bonds.",
+                options: ["Electronegative", "Primary", "Sulfide", "Dipole", "Hydrogen"],
+                a: "Hydrogen",
+                exp: "The strong electrostatic attraction between the partially positive H of one alcohol and the lone pair on the O of another alcohol requires significant heat energy to break."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "A ________ is the sulfur analog of an ether, characterized by a C-S-C structural connectivity.",
+                options: ["Electronegative", "Primary", "Sulfide", "Dipole", "Hydrogen"],
+                a: "Sulfide",
+                exp: "Just as an ether is R-O-R, a sulfide (also commonly called a thioether) has the structure R-S-R."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the description to the correct functional group: \nContains a hydroxyl (-OH) group directly bonded to an sp³ hybridized carbon.",
+                options: ["Alkyl Halide", "Alcohol", "Ether", "Amine", "Thiol"],
+                a: "Alcohol",
+                exp: "The C-O sigma bond links the alkyl chain directly to the hydroxyl group, forming an alcohol (e.g., Ethanol)."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the description to the correct functional group: \nContains a halogen atom (F, Cl, Br, or I) bonded to an sp³ hybridized carbon.",
+                options: ["Alkyl Halide", "Alcohol", "Ether", "Amine", "Thiol"],
+                a: "Alkyl Halide",
+                exp: "Alkyl halides (or haloalkanes) feature a highly polarized C-X sigma bond, making them excellent substrates for substitution and elimination reactions."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the description to the correct functional group: \nContains an oxygen atom bonded to two distinct alkyl or aryl carbon groups.",
+                options: ["Alkyl Halide", "Alcohol", "Ether", "Amine", "Thiol"],
+                a: "Ether",
+                exp: "The general formula is R-O-R'. Diethyl ether is a historically famous example used as an early surgical anesthetic and common laboratory solvent."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the description to the correct functional group: \nContains a nitrogen atom bonded to one, two, or three alkyl/aryl groups.",
+                options: ["Alkyl Halide", "Alcohol", "Ether", "Amine", "Thiol"],
+                a: "Amine",
+                exp: "Amines are derivatives of ammonia featuring C-N sigma bonds. They are characterized by their basicity and often have strong, fishy odors."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the description to the correct functional group: \nContains a sulfhydryl (-SH) group bonded to a carbon atom.",
+                options: ["Alkyl Halide", "Alcohol", "Ether", "Amine", "Thiol"],
+                a: "Thiol",
+                exp: "Thiols (R-SH) contain a C-S sigma bond and are infamous for their extremely strong, often foul odors (like skunk spray or rotten eggs)."
             }
         ];
 
@@ -338,10 +352,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-fuchsia-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Electronegative, Primary, Sulfide, Dipole, Hydrogen";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-fuchsia-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Alkyl Halide, Alcohol, Ether, Amine, Thiol";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +369,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-violet-400 hover:bg-violet-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +398,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-violet-400', 'hover:bg-violet-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-violet-400', 'hover:bg-violet-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +465,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "أداء استثنائي! فهمك للروابط القطبية والمجموعات الوظيفية عميق جداً. 🎯";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "عمل جيد جداً! مع مراجعة بسيطة لتصنيف الأمينات والكحولات ستكون جاهزاً تماماً. 👍";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "تحتاج لمراجعة خواص الكهروسلبية (Electronegativity) وتأثيرها. لا تقلق، التدريب يصنع الفارق! 💡";
             }
         }
 

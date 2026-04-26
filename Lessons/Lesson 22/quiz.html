@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functional Groups Quiz</title>
+    <title>Amino acids, Peptides and Proteins</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
@@ -17,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f0fdfa;
-            /* لون سماوي فاتح جداً للخلفية */
+            background-color: #fdf4ff;
+            /* خلفية وردية/بنفسجية فاتحة جداً */
         }
 
         .en-text {
@@ -57,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+            background: linear-gradient(135deg, #a21caf 0%, #be185d 100%);
         }
     </style>
 </head>
@@ -68,16 +68,17 @@
         <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-cyan-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-diagram-project text-cyan-600"></i>
-                Functional Groups
+                class="text-3xl md:text-4xl font-bold text-fuchsia-900 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-dna text-fuchsia-600"></i>
+                Amino Acids & Proteins
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (61 - 64): Identification &
-                Structures</p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (243 - 252): Structures, Properties
+                & Peptides</p>
         </div>
 
         <!-- حاوية الاختبار -->
-        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-cyan-100">
+        <div id="quiz-container"
+            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-fuchsia-200">
             <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
@@ -85,9 +86,9 @@
 
             <div class="p-6 md:p-8">
                 <!-- معلومات السؤال الحالي -->
-                <div class="flex justify-between items-center border-b border-cyan-100 pb-4 mb-6">
+                <div class="flex justify-between items-center border-b border-fuchsia-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-cyan-100 text-cyan-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-fuchsia-100 text-fuchsia-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -103,7 +104,7 @@
 
                 <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-pink-50 border-l-4 border-pink-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
                 <!-- الخيارات -->
@@ -126,8 +127,8 @@
 
             <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-cyan-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-cyan-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-fuchsia-800 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-fuchsia-600"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
                 <div></div> <!-- Spacer -->
@@ -142,16 +143,16 @@
 
         <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-cyan-100">
-            <i class="fa-solid fa-microscope text-7xl text-cyan-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-fuchsia-200">
+            <i class="fa-solid fa-microscope text-7xl text-fuchsia-700 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم المجموعات الوظيفية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم الأحماض الأمينية والبروتينات بنجاح.</p>
 
-            <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-cyan-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-cyan-400">/ 20</span>
+            <div class="bg-fuchsia-50 border border-fuchsia-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-fuchsia-800 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-fuchsia-500">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-cyan-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-fuchsia-900 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -167,149 +168,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which functional group is present in the molecule CH₃-CH₂-OH?",
-                options: ["Carboxylic acid", "Ether", "Alcohol", "Ketone"],
-                a: "Alcohol",
-                exp: "The -OH (hydroxyl) group attached directly to an sp³ hybridized (saturated) carbon atom is the defining characteristic of an alcohol."
+                q: "What type of chemical bond links amino acids together to form peptides and proteins?",
+                options: ["Hydrogen bond", "Peptide bond (Amide linkage)", "Ester bond", "Glycosidic bond"],
+                a: "Peptide bond (Amide linkage)",
+                exp: "A peptide bond is a covalent amide linkage formed by a condensation reaction between the carboxyl group (-COOH) of one amino acid and the amino group (-NH₂) of another, releasing water."
             },
             {
                 type: "Multiple Choice",
-                q: "What is the general structural formula for a ketone?",
-                options: ["R-CHO", "R-CO-R'", "R-O-R'", "R-COOH"],
-                a: "R-CO-R'",
-                exp: "A ketone contains a carbonyl group (C=O) bonded to two other carbon atoms (R and R'). R-CHO represents an aldehyde, where the carbonyl is attached to at least one hydrogen."
+                q: "At its isoelectric point (pI), what is the overall net electrical charge of an amino acid?",
+                options: ["+1", "-1", "Zero", "It varies depending on the amino acid"],
+                a: "Zero",
+                exp: "At the isoelectric point (pI), the amino acid exists exactly as a neutral dipolar ion (zwitterion) where the positive charge of the -NH₃⁺ group perfectly balances the negative charge of the -COO⁻ group."
             },
             {
                 type: "Multiple Choice",
-                q: "The presence of a nitrogen atom bonded to carbon atoms (e.g., R-NH₂) indicates which functional group?",
-                options: ["Amide", "Amine", "Nitrile", "Nitro"],
-                a: "Amine",
-                exp: "Amines are organic derivatives of ammonia (NH₃) where one, two, or all three hydrogen atoms are replaced by alkyl or aryl (carbon) groups."
+                q: "Which stereochemical configuration is found in almost all naturally occurring amino acids in biological proteins?",
+                options: ["D configuration", "L configuration", "Meso configuration", "Racemic mixture"],
+                a: "L configuration",
+                exp: "Unlike carbohydrates (which are mostly D-sugars), almost all naturally occurring building blocks of proteins are L-amino acids."
             },
             {
                 type: "Multiple Choice",
-                q: "Which functional group contains BOTH a carbonyl group (C=O) and a hydroxyl group (-OH) attached to the exact same carbon atom?",
-                options: ["Ester", "Aldehyde", "Carboxylic Acid", "Alcohol"],
-                a: "Carboxylic Acid",
-                exp: "The -COOH group is known as the carboxyl group. It combines a carbonyl (C=O) and a hydroxyl (-OH) group on the same carbon, which gives the molecule its acidic properties."
+                q: "What happens to the structure of a neutral amino acid when it is placed in a highly acidic solution (low pH)?",
+                options: ["It becomes a zwitterion.", "It loses a proton to become an anion.", "The carboxylate group is protonated, giving the molecule a net positive charge (cation).", "It denatures into separate atoms."],
+                a: "The carboxylate group is protonated, giving the molecule a net positive charge (cation).",
+                exp: "In a low pH (high H⁺ concentration) environment, the -COO⁻ group accepts a proton to become -COOH. Since the -NH₃⁺ group remains positive, the entire molecule acts as a cation."
             },
             {
                 type: "Multiple Choice",
-                q: "An organic compound with the structure R-C(=O)-O-R' belongs to which class of compounds?",
-                options: ["Ethers", "Esters", "Carboxylic acids", "Anhydrides"],
-                a: "Esters",
-                exp: "Esters are formed from a carboxylic acid and an alcohol. The structural linkage consists of a carbonyl group adjacent to an ether-like oxygen (R-COO-R')."
+                q: "Which chemical reagent is commonly used to detect the presence of amino acids by producing a characteristic deep blue or purple color?",
+                options: ["Benedict's Reagent", "Tollens' Reagent", "Ninhydrin", "Bromine water"],
+                a: "Ninhydrin",
+                exp: "Ninhydrin reacts with the free alpha-amino groups of amino acids to produce a deeply colored product known as Ruhemann's purple, commonly used in chromatography and forensics."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Aldehydes always have their carbonyl group (C=O) at the end (terminal) of a carbon chain.",
-                options: ["True", "False"],
-                a: "True",
-                exp: "Because the structure of an aldehyde is R-CHO, the carbonyl carbon must be attached to at least one hydrogen atom. This forces it to be at the absolute end of the carbon skeleton."
-            },
-            {
-                type: "True / False",
-                q: "Ethers have the general formula R-OH, where an oxygen atom is bonded to a hydrogen atom.",
+                q: "Essential amino acids are those that the human body can easily synthesize on its own in sufficient quantities.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "Ethers have the general formula R-O-R', where an oxygen atom bridges two carbon groups. R-OH is the formula for an alcohol."
+                exp: "False. 'Essential' means they are essential to your diet because your body CANNOT synthesize them (or cannot synthesize them fast enough) to meet its physiological needs."
             },
             {
                 type: "True / False",
-                q: "An amide is formed when the -OH of a carboxylic acid is conceptually replaced by an amino group (-NH₂).",
+                q: "A dipolar ion (zwitterion) contains both a positive and a negative charge but is completely neutral overall.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "Amides contain the functional group -C(=O)N-, which is a carbonyl group directly attached to a nitrogen atom. They are key components of proteins (peptide bonds)."
+                exp: "True. Because the internal acid (-COOH) donates a proton to the internal base (-NH₂), it forms -COO⁻ and -NH₃⁺. The +1 and -1 cancel out, yielding a net charge of zero."
             },
             {
                 type: "True / False",
-                q: "Alkyl halides (haloalkanes) contain a halogen atom (F, Cl, Br, or I) bonded to an sp² hybridized carbon of a double bond.",
+                q: "The primary structure of a protein refers specifically to its unique, linear sequence of amino acids connected by peptide bonds.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. The primary structure is simply the sequence (like letters in a word). It directly dictates how the protein will eventually fold into its 3D shapes."
+            },
+            {
+                type: "True / False",
+                q: "In a highly basic solution (high pH), an amino acid exists primarily as a cation with a net positive charge.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "Alkyl halides have a halogen bonded to a single-bonded, sp³ hybridized carbon. If the halogen is bonded to an sp² carbon of an alkene, it is called a vinylic halide, not an alkyl halide."
+                exp: "False. In a high pH (low H⁺) environment, the base removes a proton from the -NH₃⁺ group, turning it into neutral -NH₂. The molecule retains its -COO⁻ group, becoming an ANION (net negative charge)."
             },
             {
                 type: "True / False",
-                q: "Functional groups are the specific parts of a molecule that determine its chemical properties and reactivity.",
+                q: "An amphoteric compound is defined as a substance that is capable of acting exclusively as an acid.",
                 options: ["True", "False"],
-                a: "True",
-                exp: "While the carbon backbone provides the inert physical framework, the functional groups are the 'active sites' where chemical reactions occur."
+                a: "False",
+                exp: "False. An amphoteric substance (like an amino acid or water) can act as BOTH an acid (donating protons) and a base (accepting protons) depending on the environment."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "The -OH group is called the ________ group and is the defining characteristic of both alcohols and phenols.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Hydroxyl",
-                exp: "The hydroxyl group (-OH) is highly polar and allows molecules like alcohols to participate in hydrogen bonding, significantly increasing their boiling points."
+                q: "An amino acid molecule that contains both a positive ammonium group (-NH₃⁺) and a negative carboxylate group (-COO⁻) is chemically known as a ________.",
+                options: ["Isoelectric", "Peptide", "Zwitterion", "Essential", "Denaturation"],
+                a: "Zwitterion",
+                exp: "Zwitterion comes from the German word 'zwitter', meaning hybrid. It perfectly describes a molecule carrying opposite electrical charges."
             },
             {
                 type: "Fill in the Blank",
-                q: "The C=O double bond is known as the ________ group, which is a structural feature shared by aldehydes, ketones, carboxylic acids, and amides.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Carbonyl",
-                exp: "The carbonyl group is strongly polarized (carbon is partially positive, oxygen is partially negative), making it a prime target for nucleophilic attack."
+                q: "The exact pH value at which an amino acid has no net electrical charge (existing 100% as a dipolar ion) is its ________ point.",
+                options: ["Isoelectric", "Peptide", "Zwitterion", "Essential", "Denaturation"],
+                a: "Isoelectric",
+                exp: "At the isoelectric point (pI), the amino acid will not migrate in an electric field during electrophoresis."
             },
             {
                 type: "Fill in the Blank",
-                q: "A benzene ring attached to a main chain as a substituent (C₆H₅-) is an example of an ________ group, specifically called a phenyl group.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Aromatic",
-                exp: "Aromatic rings (like benzene) have specialized stability due to a continuous ring of delocalized pi electrons."
+                q: "Amino acids that must be obtained entirely through the food we eat are classified as ________ amino acids.",
+                options: ["Isoelectric", "Peptide", "Zwitterion", "Essential", "Denaturation"],
+                a: "Essential",
+                exp: "Humans typically have 9 essential amino acids (like Leucine, Lysine, and Tryptophan) out of the 20 standard amino acids."
             },
             {
                 type: "Fill in the Blank",
-                q: "The functional group represented generally by -X (where X = F, Cl, Br, I) is the ________ group.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Halogen",
-                exp: "Halogens are highly electronegative. When attached to an alkyl chain, they create a polar carbon-halogen bond, making the carbon susceptible to nucleophilic substitution."
+                q: "The covalent linkage formed between the carboxyl group of one amino acid and the amino group of another is called a ________ bond.",
+                options: ["Isoelectric", "Peptide", "Zwitterion", "Essential", "Denaturation"],
+                a: "Peptide",
+                exp: "A peptide bond is a specific type of amide bond that forms the backbone of all protein chains."
             },
             {
                 type: "Fill in the Blank",
-                q: "The sweet smell of many fruits and flowers is naturally due to the presence of the ________ functional group (R-COO-R').",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Ester",
-                exp: "Esters are volatile, neutral compounds widely known for their pleasant, fruity, or floral odors and are heavily used in flavorings and perfumes."
+                q: "The process of destroying a protein's 3D shape (secondary, tertiary, or quaternary structures) using heat or acids without breaking the primary sequence is called ________.",
+                options: ["Isoelectric", "Peptide", "Zwitterion", "Essential", "Denaturation"],
+                a: "Denaturation",
+                exp: "Cooking an egg is a classic example of denaturation. The protein loses its biological function because it loses its specific folded shape."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-O-R' (An oxygen atom bridging two alkyl or aryl groups).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Ether",
-                exp: "Ethers (R-O-R') are generally unreactive chemically, which makes them excellent solvents for conducting organic reactions (e.g., Diethyl ether)."
+                q: "Match the term to its correct definition: \nPrimary Structure",
+                options: ["The linear sequence of amino acids in a polypeptide chain", "Localized folding patterns like alpha-helices and beta-pleated sheets", "The overall 3D shape of a single polypeptide chain due to R-group interactions", "The arrangement of multiple polypeptide subunits into a single functional complex", "A substance capable of acting as either an acid or a base"],
+                a: "The linear sequence of amino acids in a polypeptide chain",
+                exp: "The primary structure is the simple 'string of pearls', held together exclusively by strong covalent peptide bonds."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-NH₂ (A nitrogen atom attached to an alkyl group).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Amine",
-                exp: "Amines are basic in nature because the nitrogen atom possesses a lone pair of electrons that can accept a proton (H⁺)."
+                q: "Match the term to its correct definition: \nSecondary Structure",
+                options: ["The linear sequence of amino acids in a polypeptide chain", "Localized folding patterns like alpha-helices and beta-pleated sheets", "The overall 3D shape of a single polypeptide chain due to R-group interactions", "The arrangement of multiple polypeptide subunits into a single functional complex", "A substance capable of acting as either an acid or a base"],
+                a: "Localized folding patterns like alpha-helices and beta-pleated sheets",
+                exp: "Secondary structures are formed primarily by hydrogen bonding between the backbone C=O and N-H groups."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-COOH (A carbonyl group directly bonded to a hydroxyl group).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Carboxylic Acid",
-                exp: "Carboxylic acids act as weak acids because the resulting carboxylate ion (after losing H⁺) is highly stabilized by resonance."
+                q: "Match the term to its correct definition: \nTertiary Structure",
+                options: ["The linear sequence of amino acids in a polypeptide chain", "Localized folding patterns like alpha-helices and beta-pleated sheets", "The overall 3D shape of a single polypeptide chain due to R-group interactions", "The arrangement of multiple polypeptide subunits into a single functional complex", "A substance capable of acting as either an acid or a base"],
+                a: "The overall 3D shape of a single polypeptide chain due to R-group interactions",
+                exp: "This is the complete 3D folding driven by the side chains (R-groups) interacting via hydrophobic effects, disulfide bridges, and ionic bonds."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-CHO (A carbonyl group directly bonded to at least one hydrogen atom).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Aldehyde",
-                exp: "The presence of the C-H bond on the carbonyl carbon makes aldehydes easily oxidizable into carboxylic acids, unlike ketones."
+                q: "Match the term to its correct definition: \nQuaternary Structure",
+                options: ["The linear sequence of amino acids in a polypeptide chain", "Localized folding patterns like alpha-helices and beta-pleated sheets", "The overall 3D shape of a single polypeptide chain due to R-group interactions", "The arrangement of multiple polypeptide subunits into a single functional complex", "A substance capable of acting as either an acid or a base"],
+                a: "The arrangement of multiple polypeptide subunits into a single functional complex",
+                exp: "Only proteins with multiple chains (subunits), like Hemoglobin, have a quaternary structure."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-CO-R' (A carbonyl group bonded between two carbon atoms).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Ketone",
-                exp: "Ketones (like Acetone) have the carbonyl group securely positioned in the middle of the carbon skeleton, making them resistant to mild oxidation."
+                q: "Match the term to its correct definition: \nAmphoteric",
+                options: ["The linear sequence of amino acids in a polypeptide chain", "Localized folding patterns like alpha-helices and beta-pleated sheets", "The overall 3D shape of a single polypeptide chain due to R-group interactions", "The arrangement of multiple polypeptide subunits into a single functional complex", "A substance capable of acting as either an acid or a base"],
+                a: "A substance capable of acting as either an acid or a base",
+                exp: "Because amino acids have a basic amino group and an acidic carboxyl group, they are perfectly amphoteric and act as excellent buffers."
             }
         ];
 
@@ -351,10 +352,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-cyan-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Carbonyl, Hydroxyl, Aromatic, Ester, Halogen";
+                elExtraInstructions.innerHTML = "<strong class='text-fuchsia-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Isoelectric, Peptide, Zwitterion, Essential, Denaturation";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-cyan-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Carboxylic Acid, Aldehyde, Ether, Amine, Ketone";
+                elExtraInstructions.innerHTML = "<strong class='text-fuchsia-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> The linear sequence of amino acids in a polypeptide chain, Localized folding patterns like alpha-helices and beta-pleated sheets, The overall 3D shape of a single polypeptide chain due to R-group interactions, The arrangement of multiple polypeptide subunits into a single functional complex, A substance capable of acting as either an acid or a base";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -368,7 +369,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-cyan-400 hover:bg-cyan-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-fuchsia-600 hover:bg-fuchsia-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -397,11 +398,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-cyan-400', 'hover:bg-cyan-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-fuchsia-600', 'hover:bg-fuchsia-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-cyan-400', 'hover:bg-cyan-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-fuchsia-600', 'hover:bg-fuchsia-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -464,11 +465,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء كيميائي مذهل! أنت تميز المجموعات الوظيفية ببراعة. 🧪👨‍🔬";
+                msgEl.textContent = "مستوى احترافي عالٍ! فهمك الدقيق للـ Zwitterions وهياكل البروتين يدل على تركيز ممتاز. 🌟";
             } else if (score >= 13) {
-                msgEl.textContent = "مستوى ممتاز! بعض التمييز الدقيق بين المجموعات المتشابهة (كالكتيون والألدهيد) سيجعلك خبيراً. 👍";
+                msgEl.textContent = "عمل رائع ومجهود يذكر! 👏 مع مراجعة بسيطة لمستويات بناء البروتين ستكون جاهزاً تماماً.";
             } else {
-                msgEl.textContent = "المجموعات الوظيفية تحتاج إلى حفظ وتدريب بصري. راجع التفسيرات وأعد المحاولة بثقة! 📘";
+                msgEl.textContent = "كيمياء الأحماض الأمينية تحتاج لربط المفاهيم. راجع التفسيرات وأعد الاختبار لتثبيت معلوماتك! 💡";
             }
         }
 

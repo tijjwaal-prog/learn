@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Organic Amines and related Nitrogen Compounds</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #f0f9ff;
+            /* خلفية سماوية فاتحة جداً */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #3730a3 100%);
         }
     </style>
 </head>
@@ -62,26 +65,29 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-sky-900 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-network-wired text-sky-600"></i>
+                Organic Amines & Nitrogen Compounds
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (225 - 242): Properties, Basicity &
+                Reactions</p>
         </div>
 
-        <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+        <!-- حاوية الاختبار -->
+        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-sky-200">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-sky-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +95,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-indigo-50 border-l-4 border-indigo-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +124,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-sky-800 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-sky-500"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +140,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-sky-200">
+            <i class="fa-solid fa-graduation-cap text-7xl text-sky-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم كيمياء الأمينات والمركبات النيتروجينية.</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-sky-50 border border-sky-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-sky-800 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-sky-500">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-sky-900 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +167,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "How is an amine classified as primary (1°), secondary (2°), or tertiary (3°)?",
+                options: ["By the degree of the carbon atom attached to the nitrogen.", "By the number of carbon groups directly bonded to the nitrogen atom.", "By the number of lone pairs on the nitrogen atom.", "By the number of double bonds present in the molecule."],
+                a: "By the number of carbon groups directly bonded to the nitrogen atom.",
+                exp: "Unlike alcohols (which are classified by the carbon they attach to), amines are classified strictly by how many organic (alkyl/aryl) groups replace the hydrogens of ammonia directly on the Nitrogen."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "Which of the following compounds is generally the strongest base in an aqueous solution?",
+                options: ["Ammonia (NH₃)", "Aniline (C₆H₅NH₂)", "Dimethylamine (CH₃)₂NH", "Pyridine (C₅H₅N)"],
+                a: "Dimethylamine (CH₃)₂NH",
+                exp: "Aliphatic amines (like dimethylamine) are stronger bases than ammonia due to the electron-donating inductive effect of the alkyl groups. Aromatic amines (like aniline) are much weaker because their lone pair is delocalized by resonance."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "What is the systematic IUPAC name for CH₃-CH₂-CH₂-NH₂?",
+                options: ["Propanamide", "Propylamine", "1-Propanamine", "Azapropane"],
+                a: "1-Propanamine",
+                exp: "The longest chain is propane. Dropping the 'e' and adding 'amine' gives propanamine. The amino group is on the first carbon, so it is 1-propanamine."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "When a primary aromatic amine (like aniline) is treated with nitrous acid (NaNO₂ + HCl) at a cold temperature (0-5°C), what is the critically important intermediate formed?",
+                options: ["A nitro compound", "An aryldiazonium salt", "A secondary amine", "A phenol"],
+                a: "An aryldiazonium salt",
+                exp: "This is the diazotization reaction. It forms an aryldiazonium salt (Ar-N₂⁺ Cl⁻), which is remarkably stable at low temperatures and is a gateway to synthesizing many other aromatic compounds."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "The reduction of a nitrile (R-C≡N) using hydrogen gas and a metal catalyst (or LiAlH₄) directly yields which type of compound?",
+                options: ["A carboxylic acid", "A primary amine", "A secondary amine", "An amide"],
+                a: "A primary amine",
+                exp: "The strong reducing agent adds two equivalents of hydrogen across the carbon-nitrogen triple bond, fully saturating it to form a primary amine (R-CH₂-NH₂)."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
-            },
-            {
-                type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "Tertiary (3°) amines possess significantly higher boiling points than primary (1°) amines of comparable molecular weight.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. Tertiary amines (R₃N) have NO hydrogen atoms directly bonded to the nitrogen, so they cannot form hydrogen bonds with each other. Thus, their boiling points are much lower than 1° and 2° amines."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "Aniline is a weaker base than cyclohexylamine because the lone pair of electrons on aniline's nitrogen is delocalized into the aromatic ring.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. Resonance spreads the lone pair's electron density throughout the benzene ring, making it far less available to accept a proton (H⁺) compared to the localized lone pair in cyclohexylamine."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
+                q: "A quaternary ammonium salt contains a nitrogen atom bearing a positive formal charge and is bonded to exactly four organic groups.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
+                exp: "True. Because nitrogen (Group 15) uses its lone pair to form a fourth covalent bond with a carbon, it ends up with a +1 formal charge (e.g., R₄N⁺ X⁻). These do not act as bases."
             },
             {
                 type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "Primary aliphatic amines react with nitrous acid (HNO₂) to form stable diazonium salts that can be stored at room temperature.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. Aliphatic diazonium salts are extremely UNSTABLE. They rapidly and violently decompose even at low temperatures, releasing nitrogen gas (N₂) and leaving behind a carbocation (which typically becomes an alcohol)."
+            },
+            {
+                type: "True / False",
+                q: "Because amines are organic bases, they react readily with strong mineral acids (like HCl) to form water-soluble ammonium salts.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. The lone pair on the nitrogen accepts a proton from the acid, forming an ionic ammonium salt (R-NH₃⁺ Cl⁻) which is highly soluble in polar solvents like water."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "In aqueous solutions, alkyl groups tend to increase the ________ of an amine due to their electron-donating inductive effects.",
+                options: ["Basicity", "Diazotization", "Resonance", "Quaternary", "Alkylation"],
+                a: "Basicity",
+                exp: "By pushing electron density toward the nitrogen, alkyl groups make the lone pair more negatively charged and therefore more attractive to protons (H⁺)."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "The reaction of ammonia with an alkyl halide to form a mixture of 1°, 2°, and 3° amines is known as exhaustive ________.",
+                options: ["Basicity", "Diazotization", "Resonance", "Quaternary", "Alkylation"],
+                a: "Alkylation",
+                exp: "Because the newly formed primary amine is still a good nucleophile, it continues to react with the alkyl halide in an SN2 reaction, making it hard to stop at just one substitution."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "Aniline is a significantly weaker base than methylamine because its nitrogen lone pair is stabilized by ________ with the benzene pi system.",
+                options: ["Basicity", "Diazotization", "Resonance", "Quaternary", "Alkylation"],
+                a: "Resonance",
+                exp: "The ability to draw multiple resonance structures where the nitrogen's lone pair is shared with the ring carbons demonstrates this stabilizing, base-weakening effect."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "The conversion of a primary aromatic amine into an Ar-N₂⁺ ion using cold nitrous acid is a crucial synthetic process called ________.",
+                options: ["Basicity", "Diazotization", "Resonance", "Quaternary", "Alkylation"],
+                a: "Diazotization",
+                exp: "This reaction is paramount in industrial chemistry, especially for the synthesis of vibrant 'azo dyes'."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "A nitrogen atom that has completely utilized its lone pair to bond to four alkyl groups forms a ________ ammonium salt.",
+                options: ["Basicity", "Diazotization", "Resonance", "Quaternary", "Alkylation"],
+                a: "Quaternary",
+                exp: "Quaternary (4°) ammonium salts are permanently charged regardless of the pH of the solution."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the description to the correct nitrogen-containing structure: \nA primary aliphatic amine.",
+                options: ["R-NH₂", "R₂NH", "R₃N", "R-C≡N", "Ar-N₂⁺ Cl⁻"],
+                a: "R-NH₂",
+                exp: "The nitrogen is attached to exactly one alkyl group and two hydrogen atoms, meaning it can participate in hydrogen bonding."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the description to the correct nitrogen-containing structure: \nA secondary amine.",
+                options: ["R-NH₂", "R₂NH", "R₃N", "R-C≡N", "Ar-N₂⁺ Cl⁻"],
+                a: "R₂NH",
+                exp: "The nitrogen is attached to exactly two carbon groups and one hydrogen atom."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the description to the correct nitrogen-containing structure: \nA tertiary amine.",
+                options: ["R-NH₂", "R₂NH", "R₃N", "R-C≡N", "Ar-N₂⁺ Cl⁻"],
+                a: "R₃N",
+                exp: "The nitrogen is attached to three carbon groups and zero hydrogen atoms. It cannot act as a hydrogen bond donor."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the description to the correct nitrogen-containing structure: \nA nitrile (also known as a cyanide compound).",
+                options: ["R-NH₂", "R₂NH", "R₃N", "R-C≡N", "Ar-N₂⁺ Cl⁻"],
+                a: "R-C≡N",
+                exp: "Contains a carbon-nitrogen triple bond. Reduction of this group is a primary method for synthesizing 1° amines."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the description to the correct nitrogen-containing structure: \nAn aryldiazonium salt.",
+                options: ["R-NH₂", "R₂NH", "R₃N", "R-C≡N", "Ar-N₂⁺ Cl⁻"],
+                a: "Ar-N₂⁺ Cl⁻",
+                exp: "Contains the highly reactive -N≡N⁺ group attached to an aromatic ring. It is an excellent leaving group in substitution reactions."
             }
         ];
 
@@ -338,10 +351,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-indigo-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Basicity, Diazotization, Resonance, Quaternary, Alkylation";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-indigo-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> R-NH₂, R₂NH, R₃N, R-C≡N, Ar-N₂⁺ Cl⁻";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +368,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-sky-600 hover:bg-sky-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +397,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-sky-600', 'hover:bg-sky-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-sky-600', 'hover:bg-sky-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +464,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "أداء استثنائي ومثالي! 🌟 استيعابك لقاعدية الأمينات وتفاعلات أملاح الديازونيوم صلب جداً.";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "عمل رائع! 👏 تذكر دائماً كيف يؤثر الرنين على قاعدية الأنيلين للوصول للعلامة الكاملة.";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "كيمياء النيتروجين تتطلب ربط الهياكل بخواصها. راجع التفسيرات وأعد الاختبار لتثبيت المعرفة! 💡";
             }
         }
 

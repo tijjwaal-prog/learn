@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Nomenclature of Alcohols</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #f0fdfa;
+            /* خلفية سماوية فاتحة جداً (مائي) */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%);
         }
     </style>
 </head>
@@ -62,26 +65,29 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-cyan-800 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-droplet text-cyan-600"></i>
+                Nomenclature of Alcohols
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (149 - 155): IUPAC Rules, Common
+                Names & Classification</p>
         </div>
 
-        <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+        <!-- حاوية الاختبار -->
+        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-cyan-200">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-cyan-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-cyan-100 text-cyan-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +95,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +124,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-cyan-700 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-cyan-500"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +140,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-cyan-200">
+            <i class="fa-solid fa-glass-water text-7xl text-cyan-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم تسمية الكحولات وتصنيفاتها بنجاح.</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-cyan-700 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-cyan-500">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-cyan-800 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +167,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "What is the specific IUPAC suffix used to denote the presence of an alcohol functional group?",
+                options: ["-al", "-oic acid", "-one", "-ol"],
+                a: "-ol",
+                exp: "In IUPAC nomenclature, the principal functional group determines the suffix. For alcohols, the '-e' ending of the parent alkane is dropped and '-ol' is added (e.g., methane → methanol)."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "According to IUPAC rules, how is the parent carbon chain of an alcohol selected and numbered?",
+                options: ["Find the longest carbon chain, number it from left to right.", "Find the longest carbon chain containing the -OH group, and number to give the -OH the lowest possible number.", "Number the chain to give the alkyl substituents the lowest possible numbers.", "Number alphabetically based on substituents."],
+                a: "Find the longest carbon chain containing the -OH group, and number to give the -OH the lowest possible number.",
+                exp: "The principal functional group (-OH) has priority. The parent chain MUST contain the carbon bonded to the -OH, and numbering must start from the end that gives this carbon the lowest locant."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "What is the correct IUPAC name for the structure CH₃-CH(OH)-CH₂-CH₃?",
+                options: ["2-Butanol (or Butan-2-ol)", "3-Butanol", "1-Butanol", "Butyl alcohol"],
+                a: "2-Butanol (or Butan-2-ol)",
+                exp: "The longest chain is 4 carbons (butane). Numbering from the left gives the -OH group position 2. Numbering from the right gives 3. The lower number (2) is correct."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "How are alcohols that contain exactly two hydroxyl (-OH) groups named in the IUPAC system?",
+                options: ["As -diols", "As -triols", "As -glycols", "As -diones"],
+                a: "As -diols",
+                exp: "When two hydroxyl groups are present, the full alkane name is retained (the 'e' is not dropped), and the suffix '-diol' is added (e.g., ethane-1,2-diol)."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "What is the accepted common name for 2-propanol (CH₃-CH(OH)-CH₃)?",
+                options: ["Propyl alcohol", "Isopropyl alcohol", "Sec-butyl alcohol", "Isobutyl alcohol"],
+                a: "Isopropyl alcohol",
+                exp: "The IUPAC name is 2-propanol. Its common name is formed by naming the alkyl group attached to the -OH, which in this case is the branched 'isopropyl' group."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
-            },
-            {
-                type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "When naming an alcohol, the parent chain must be the absolute longest continuous carbon chain in the molecule, regardless of whether it contains the -OH group.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. The fundamental rule is that the parent chain MUST include the carbon atom bonded directly to the hydroxyl (-OH) group, even if there is a longer chain that doesn't."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "In a cyclic alcohol (like cyclopentanol), the carbon atom attached to the hydroxyl group is automatically assigned position number 1.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. Because the -OH group defines the principal functional group of the ring, it dictates the numbering. The '1-' is usually omitted from the name (e.g., cyclopentanol, not 1-cyclopentanol)."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
-            },
-            {
-                type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "If a molecule contains both a carbon-carbon double bond (C=C) and a hydroxyl group (-OH), the double bond receives priority for lower numbering.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. The hydroxyl group (-OH) has a higher nomenclature priority than double or triple bonds. Therefore, the chain is numbered to give the -OH the lowest possible number."
+            },
+            {
+                type: "True / False",
+                q: "Phenol is the universally accepted IUPAC name for an aromatic benzene ring with a single hydroxyl (-OH) group directly attached to it.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. While its systematic name is hydroxybenzene, the name 'Phenol' is fully accepted by IUPAC and serves as the parent name for its derivatives."
+            },
+            {
+                type: "True / False",
+                q: "A tertiary (3°) alcohol has its hydroxyl group attached to a carbon atom that is bonded to exactly three other carbon atoms.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. The classification of an alcohol (1°, 2°, 3°) is entirely based on the degree of the carbon atom bonded to the -OH group."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "The -OH functional group is chemically referred to as the ________ group.",
+                options: ["Glycol", "Glycerol", "Phenol", "Hydroxyl", "Suffix"],
+                a: "Hydroxyl",
+                exp: "The hydroxyl group (-OH) is highly polar and forms strong hydrogen bonds, dominating the physical properties of alcohols."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "When naming alcohols according to IUPAC rules, the 'e' ending of the parent alkane is replaced by the ________ '-ol'.",
+                options: ["Glycol", "Glycerol", "Phenol", "Hydroxyl", "Suffix"],
+                a: "Suffix",
+                exp: "The suffix is the end of the chemical name that explicitly defines the principal functional group present in the molecule."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "An alcohol containing two -OH groups located on adjacent carbon atoms is commonly referred to as a ________.",
+                options: ["Glycol", "Glycerol", "Phenol", "Hydroxyl", "Suffix"],
+                a: "Glycol",
+                exp: "Vicinal diols (like ethane-1,2-diol) are almost universally called glycols (e.g., ethylene glycol, which is widely used as antifreeze)."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "1,2,3-propanetriol, a non-toxic, viscous liquid widely used in cosmetics, food, and as a backbone of fats, is known by its common name ________.",
+                options: ["Glycol", "Glycerol", "Phenol", "Hydroxyl", "Suffix"],
+                a: "Glycerol",
+                exp: "Glycerol (also called glycerin) is a triol that forms the structural backbone of triglycerides (fats and oils)."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "An aromatic compound where the -OH group is directly attached to an sp² hybridized carbon of a benzene ring is called ________.",
+                options: ["Glycol", "Glycerol", "Phenol", "Hydroxyl", "Suffix"],
+                a: "Phenol",
+                exp: "Phenols are a distinct class of compounds from aliphatic alcohols because the aromatic ring significantly increases the acidity of the hydroxyl hydrogen."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the chemical name to its correct description/common name: \nMethanol (CH₃OH)",
+                options: ["Wood alcohol", "Grain alcohol", "Ethylene glycol", "Cyclic secondary alcohol", "Tertiary (3°) alcohol"],
+                a: "Wood alcohol",
+                exp: "Methanol is commonly called wood alcohol because it was historically produced by the destructive distillation of wood. It is highly toxic."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the chemical name to its correct description/common name: \nEthanol (CH₃CH₂OH)",
+                options: ["Wood alcohol", "Grain alcohol", "Ethylene glycol", "Cyclic secondary alcohol", "Tertiary (3°) alcohol"],
+                a: "Grain alcohol",
+                exp: "Ethanol is known as grain alcohol because it is produced by the fermentation of sugars and starches found in grains."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the chemical name to its correct description/common name: \n1,2-Ethanediol (HO-CH₂-CH₂-OH)",
+                options: ["Wood alcohol", "Grain alcohol", "Ethylene glycol", "Cyclic secondary alcohol", "Tertiary (3°) alcohol"],
+                a: "Ethylene glycol",
+                exp: "This is the most common diol, widely utilized as automotive antifreeze due to its ability to lower the freezing point of water."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the chemical name to its correct description/common name: \nCyclohexanol",
+                options: ["Wood alcohol", "Grain alcohol", "Ethylene glycol", "Cyclic secondary alcohol", "Tertiary (3°) alcohol"],
+                a: "Cyclic secondary alcohol",
+                exp: "The -OH is attached to a carbon within a 6-membered ring. That ring carbon is bonded to two other carbons, making it secondary."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the chemical name to its correct description/common name: \n2-Methyl-2-propanol",
+                options: ["Wood alcohol", "Grain alcohol", "Ethylene glycol", "Cyclic secondary alcohol", "Tertiary (3°) alcohol"],
+                a: "Tertiary (3°) alcohol",
+                exp: "Commonly known as tert-butyl alcohol. The central carbon bearing the -OH is also bonded to three methyl (-CH₃) groups."
             }
         ];
 
@@ -338,10 +351,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-sky-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Glycol, Glycerol, Phenol, Hydroxyl, Suffix";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-sky-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Wood alcohol, Grain alcohol, Ethylene glycol, Cyclic secondary alcohol, Tertiary (3°) alcohol";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +368,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-cyan-500 hover:bg-cyan-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +397,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-cyan-500', 'hover:bg-cyan-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-cyan-500', 'hover:bg-cyan-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +464,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "أداء كيميائي مثالي! 🌟 فهمك لقواعد التسمية والأولويات صلب جداً.";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "عمل رائع! 👏 بقليل من التركيز على قواعد الأولويات (Priority) ستصل للكمال.";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "قواعد (IUPAC) تحتاج للتدريب المستمر. راجع التفسيرات وأعد المحاولة! 💡";
             }
         }
 

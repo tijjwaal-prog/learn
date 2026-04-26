@@ -4,406 +4,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الكيمياء العضوية | الكورس الشامل</title>
+    <title>Addition and Substitution Reactions Compared</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="lessons.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
-
         body {
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        /* تخصيص شريط التمرير */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f8fafc;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* تأثيرات التبويبات */
-        .tab-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .tab-content.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .nav-btn {
-            transition: all 0.2s ease;
-        }
-
-        .nav-btn.active {
-            background-color: #eff6ff;
-            color: #1d4ed8;
-            font-weight: 700;
-            border-right-width: 4px;
-            border-right-color: #2563eb;
-        }
-
-        .nav-btn:not(.active) {
-            border-right-width: 4px;
-            border-right-color: transparent;
-        }
-
-        .nav-btn:not(.active):hover {
+            font-family: 'Cairo', sans-serif;
             background-color: #f8fafc;
-            color: #475569;
+            /* خلفية رمادية مزرقة فاتحة جداً */
+        }
+
+        .en-text {
+            font-family: 'Roboto', sans-serif;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .option-btn {
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .theme-gradient {
+            background: linear-gradient(135deg, #0f766e 0%, #0369a1 100%);
         }
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 h-screen overflow-hidden flex flex-col md:flex-row">
+<body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
-    <!-- شاشة التحميل العامة للمزامنة مع Google Drive -->
-    <div id="global-loader"
-        class="fixed inset-0 bg-slate-50 z-50 flex flex-col items-center justify-center transition-opacity duration-500">
-        <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mb-6"></div>
-        <h2 class="text-2xl font-bold text-slate-800 mb-2">جاري جلب الملفات</h2>
-        <p id="loader-message" class="text-slate-500 text-base max-w-md text-center px-4">التطبيق يقوم بمزامنة الحصص
-            والملفات من Google Drive، يرجى الانتظار بضع ثوانٍ...</p>
-        <button id="loader-retry-btn" onclick="location.reload()"
-            class="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 transition text-white rounded-lg font-bold hidden shadow-md">إعادة
-            المحاولة</button>
+    <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
+        <div class="text-center mb-8">
+            <h1
+                class="text-3xl md:text-4xl font-bold text-teal-800 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-scale-balanced text-teal-600"></i>
+                Addition & Substitution Reactions Compared
+            </h1>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (113 - 126): Alkenes vs. Aromatics &
+                Alkanes</p>
+        </div>
+
+        <!-- حاوية الاختبار -->
+        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-teal-100">
+            <!-- شريط التقدم -->
+            <div class="bg-gray-200 h-2 w-full">
+                <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
+            </div>
+
+            <div class="p-6 md:p-8">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-teal-100 pb-4 mb-6">
+                    <span id="question-type"
+                        class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        Multiple Choice
+                    </span>
+                    <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
+                        السؤال <span id="current-q-num">1</span> من <span id="total-q-num">20</span>
+                    </span>
+                </div>
+
+                <!-- نص السؤال -->
+                <h2 id="question-text"
+                    class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
+                    Loading question...
+                </h2>
+
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
+                <div id="extra-instructions"
+                    class="en-text hidden mb-6 p-4 bg-sky-50 border-l-4 border-sky-500 rounded-r text-slate-800 text-sm shadow-sm">
+                </div>
+
+                <!-- الخيارات -->
+                <div id="options-container" class="en-text space-y-3 mb-8">
+                </div>
+
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
+                <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
+                    <div class="flex items-start gap-4">
+                        <div id="feedback-icon" class="mt-1 text-2xl"></div>
+                        <div class="w-full">
+                            <h3 id="feedback-title" class="font-bold text-lg mb-1"></h3>
+                            <div class="text-sm leading-relaxed mt-2 p-3 rounded-lg" id="feedback-content-bg">
+                                <span id="feedback-explanation" class="font-medium block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ذيل الحاوية (الأزرار) -->
+            <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
+                <div id="score-display" class="font-bold text-teal-700 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-teal-500"></i> النتيجة: <span id="current-score"
+                        class="text-xl">0</span>
+                </div>
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
+                    class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
+                    onclick="nextQuestion()">
+                    <span id="btn-text">التالي</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- حاوية النتيجة النهائية -->
+        <div id="result-container"
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-teal-100">
+            <i class="fa-solid fa-microscope text-7xl text-teal-600 mb-6 drop-shadow-md"></i>
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت التقييم المقارن لتفاعلات الإضافة والاستبدال.</p>
+
+            <div class="bg-teal-50 border border-teal-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-teal-700 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-teal-400">/ 20</span>
+                </div>
+                <p id="result-message" class="text-base text-teal-800 mt-4 font-bold"></p>
+            </div>
+
+            <button onclick="restartQuiz()"
+                class="w-full theme-gradient hover:opacity-90 text-white font-bold py-4 px-6 rounded-xl transition-opacity flex justify-center items-center gap-3 text-lg shadow-lg">
+                <i class="fa-solid fa-rotate-right"></i>
+                إعادة الاختبار
+            </button>
+        </div>
     </div>
 
-    <!-- القائمة الجانبية -->
-    <aside class="w-full md:w-72 bg-white shadow-lg flex flex-col z-20 flex-shrink-0">
-        <!-- ترويسة القائمة -->
-        <div class="p-6 border-b border-slate-100 flex items-center gap-4">
-            <div
-                class="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-md flex-shrink-0">
-                ك
-            </div>
-            <div class="flex-1 overflow-hidden">
-                <h1 class="text-lg font-extrabold text-slate-800 truncate">الكيمياء العضوية</h1>
-                <p id="lesson-title" class="text-sm text-blue-600 font-bold mt-0.5 truncate">جاري التحميل...</p>
-            </div>
-            <button onclick="location.reload()" title="تحديث المنصة"
-                class="p-2 bg-white border border-slate-200 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition flex-shrink-0 shadow-sm text-slate-500">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                    <path d="M3 3v5h5" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- أزرار التنقل بين التبويبات -->
-        <nav class="flex-1 p-4 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-y-auto">
-
-            <button id="btn-pdf" onclick="switchTab('pdf')"
-                class="nav-btn active flex items-center gap-3 px-4 py-3.5 rounded-lg text-right whitespace-nowrap w-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-                </svg>
-                <span class="text-base">مذكرة الشرح (PDF)</span>
-            </button>
-
-            <button id="btn-info" onclick="switchTab('info')"
-                class="nav-btn flex items-center gap-3 px-4 py-3.5 rounded-lg text-right whitespace-nowrap w-full text-slate-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <line x1="3" y1="9" x2="21" y2="9" />
-                    <line x1="9" y1="21" x2="9" y2="9" />
-                </svg>
-                <span class="text-base">الإنفوجرافيك التلخيصي</span>
-            </button>
-
-            <button id="btn-map" onclick="switchTab('map')"
-                class="nav-btn flex items-center gap-3 px-4 py-3.5 rounded-lg text-right whitespace-nowrap w-full text-slate-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="18" cy="5" r="3" />
-                    <circle cx="6" cy="12" r="3" />
-                    <circle cx="18" cy="19" r="3" />
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                </svg>
-                <span class="text-base">الخريطة الذهنية</span>
-            </button>
-
-            <button id="btn-quiz" onclick="switchTab('quiz')"
-                class="nav-btn flex items-center gap-3 px-4 py-3.5 rounded-lg text-right whitespace-nowrap w-full text-slate-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <path d="M9 15L11 17L15 13" />
-                </svg>
-                <span class="text-base">الاختبار التفاعلي</span>
-            </button>
-
-        </nav>
-
-        <!-- أزرار التنقل بين الدروس (المجلدات) -->
-        <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
-            <button id="btn-prev" onclick="changeLesson(-1)"
-                class="p-2 bg-white border border-slate-200 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                title="الدرس السابق">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m9 18 6-6-6-6" />
-                </svg>
-            </button>
-            <div class="text-center flex flex-col">
-                <span class="text-xs text-slate-500 font-bold">الحصة الحالية</span>
-                <span id="lesson-counter" class="text-sm font-bold text-slate-800 mt-0.5">1 / 1</span>
-            </div>
-            <button id="btn-next" onclick="changeLesson(1)"
-                class="p-2 bg-white border border-slate-200 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                title="الدرس التالي">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m15 18-6-6 6-6" />
-                </svg>
-            </button>
-        </div>
-    </aside>
-
-    <!-- منطقة المحتوى الرئيسي -->
-    <main class="flex-1 overflow-hidden relative bg-slate-100/50">
-
-        <!-- 1. تبويب المذكرة (PDF) -->
-        <div id="tab-pdf" class="tab-content active w-full h-full flex-col">
-            <div
-                class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm z-10 flex-shrink-0">
-                <h2 class="font-bold text-lg text-slate-800">مذكرة الشرح الخاصة بالدرس</h2>
-                <a id="pdf-link" href="#" target="_blank"
-                    class="text-sm bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 transition-colors shadow-sm font-medium">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                    فتح في نافذة مستقلة
-                </a>
-            </div>
-            <div class="flex-1 w-full h-full p-2 md:p-4 relative">
-                <div id="loading-pdf" class="absolute inset-0 flex items-center justify-center bg-slate-100 z-0">
-                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-                </div>
-                <iframe id="pdf-viewer"
-                    class="w-full h-full rounded-xl shadow-sm border border-slate-200 bg-white relative z-10"
-                    allow="autoplay" onload="document.getElementById('loading-pdf').style.display='none'"></iframe>
-            </div>
-        </div>
-
-        <!-- 2. تبويب الإنفوجرافيك -->
-        <div id="tab-info" class="tab-content w-full h-full flex-col">
-            <div
-                class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm z-10 flex-shrink-0">
-                <h2 class="font-bold text-lg text-slate-800">الإنفوجرافيك الشامل للمقرر</h2>
-                <a id="info-link" href="#" target="_blank"
-                    class="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2 transition-colors shadow-sm font-medium">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    فتح / تحميل الصورة
-                </a>
-            </div>
-            <div class="flex-1 overflow-auto p-4 md:p-8 flex items-start justify-center">
-                <img id="info-img" alt="إنفوجرافيك أسس الكيمياء"
-                    class="max-w-full h-auto rounded-xl shadow-lg border border-slate-200">
-            </div>
-        </div>
-
-        <!-- 3. تبويب الخريطة الذهنية -->
-        <div id="tab-map" class="tab-content w-full h-full flex-col">
-            <div
-                class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm z-10 flex-shrink-0">
-                <h2 class="font-bold text-lg text-slate-800">الخريطة الذهنية للمفاهيم</h2>
-                <a id="map-link" href="#" target="_blank"
-                    class="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2 transition-colors shadow-sm font-medium">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    فتح / تحميل الخريطة
-                </a>
-            </div>
-            <div class="flex-1 overflow-auto p-4 md:p-8 flex items-start justify-center">
-                <img id="map-img" alt="خريطة ذهنية لأسس الترابط"
-                    class="max-w-full h-auto rounded-xl shadow-lg border border-slate-200">
-            </div>
-        </div>
-
-        <!-- 4. تبويب الاختبار التفاعلي -->
-        <div id="tab-quiz" class="tab-content w-full h-full flex-col">
-            <div
-                class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shadow-sm z-10 flex-shrink-0">
-                <h2 class="font-bold text-lg text-slate-800">تطبيق تفاعلي: اختبر معلوماتك</h2>
-                <a id="quiz-link" href="#" target="_blank"
-                    class="text-sm bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 flex items-center gap-2 transition-colors shadow-sm font-medium">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 3h6v6" />
-                        <path d="M10 14 21 3" />
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    </svg>
-                    توسيع الشاشة
-                </a>
-            </div>
-            <div class="flex-1 w-full h-full p-0 relative">
-                <iframe id="quiz-frame" class="w-full h-full border-0 bg-white relative z-10"></iframe>
-            </div>
-        </div>
-
-    </main>
-
     <script>
-        // ==========================================
-        // ⚙️ نظام التشغيل والعرض المباشر (باستخدام lessons.js)
-        // ==========================================
+        const quizData = [
+            // --- Multiple Choice (1-5) ---
+            {
+                type: "Multiple Choice",
+                q: "Why does benzene primarily undergo electrophilic substitution rather than electrophilic addition?",
+                options: ["Addition would destroy its stable aromatic pi system.", "Substitution is faster than addition.", "Benzene has no pi electrons to undergo addition.", "Benzene is too sterically hindered for addition."],
+                a: "Addition would destroy its stable aromatic pi system.",
+                exp: "Aromaticity provides massive thermodynamic stability (resonance energy). Addition breaks the continuous ring of pi electrons, destroying this stability. Substitution replaces a hydrogen, preserving the aromatic ring."
+            },
+            {
+                type: "Multiple Choice",
+                q: "When cyclohexene reacts with bromine (Br₂), what type of reaction occurs?",
+                options: ["Nucleophilic Substitution", "Electrophilic Addition", "Electrophilic Substitution", "Free-Radical Substitution"],
+                a: "Electrophilic Addition",
+                exp: "Cyclohexene is an alkene. The weak pi bond acts as a nucleophile, attacking the electrophilic bromine. The pi bond breaks to form two new C-Br sigma bonds, defining an addition reaction."
+            },
+            {
+                type: "Multiple Choice",
+                q: "What catalyst is fundamentally required for benzene to react with Br₂ in a substitution reaction?",
+                options: ["A strong base (NaOH)", "A strong acid (H₂SO₄)", "A Lewis acid (like FeBr₃ or AlBr₃)", "UV light (hν)"],
+                a: "A Lewis acid (like FeBr₃ or AlBr₃)",
+                exp: "Benzene's pi cloud is stable and not reactive enough to attack neutral Br₂. A Lewis acid catalyst (FeBr₃) polarizes the Br-Br bond, creating a powerful Br⁺ electrophile capable of attacking the ring."
+            },
+            {
+                type: "Multiple Choice",
+                q: "In a substitution reaction of an alkane (like CH₄ + Cl₂), what fundamentally happens to the molecule?",
+                options: ["Two molecules combine into one larger molecule.", "A pi bond is broken.", "An atom or group is replaced by another atom or group.", "The carbon skeleton rearranges completely."],
+                a: "An atom or group is replaced by another atom or group.",
+                exp: "Substitution involves swapping parts. In alkanes, a hydrogen atom is substituted by a halogen atom (forming CH₃Cl and HCl). No unsaturation (pi bonds) is gained or lost."
+            },
+            {
+                type: "Multiple Choice",
+                q: "Compare the reaction of ethene (CH₂=CH₂) and benzene (C₆H₆) with Bromine. Which statement is correct?",
+                options: ["Both require a Lewis acid catalyst.", "Both undergo addition to form saturated products.", "Ethene undergoes addition (fast), while benzene requires a catalyst to undergo substitution (slow).", "Benzene undergoes addition (fast), while ethene undergoes substitution."],
+                a: "Ethene undergoes addition (fast), while benzene requires a catalyst to undergo substitution (slow).",
+                exp: "Alkenes (ethene) readily undergo addition to form 1,2-dibromoethane. Aromatic rings (benzene) resist addition and require harsh conditions/catalysts to force substitution (forming bromobenzene)."
+            },
 
-        let currentLessonIndex = 0;
+            // --- True / False (6-10) ---
+            {
+                type: "True / False",
+                q: "Addition reactions typically result in an increase in the degree of unsaturation (more pi bonds).",
+                options: ["True", "False"],
+                a: "False",
+                exp: "False. Addition reactions DECREASE unsaturation. You are 'adding' atoms to the molecule, which forces the breaking of double/triple (pi) bonds to form single (sigma) bonds."
+            },
+            {
+                type: "True / False",
+                q: "Benzene decolorizes reddish-brown bromine water (Br₂/H₂O) rapidly at room temperature without a catalyst.",
+                options: ["True", "False"],
+                a: "False",
+                exp: "False. This is a classic test to distinguish alkenes from benzene. Alkenes decolorize bromine water instantly (via addition). Benzene does NOT react without a Lewis acid catalyst."
+            },
+            {
+                type: "True / False",
+                q: "Electrophilic aromatic substitution involves an intermediate called a sigma complex (or arenium ion), which temporarily loses its aromaticity.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. When the electrophile attacks benzene, one sp² carbon becomes sp³, breaking the continuous pi ring. Aromaticity is quickly restored when a base removes a proton in the final step."
+            },
+            {
+                type: "True / False",
+                q: "Radical halogenation of alkanes is a type of substitution reaction.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. A hydrogen atom on the alkane is replaced (substituted) by a halogen atom through a free-radical mechanism. Because it's an alkane, addition is impossible (no pi bonds to break)."
+            },
+            {
+                type: "True / False",
+                q: "In an addition reaction, two reactant molecules combine to form two separate product molecules.",
+                options: ["True", "False"],
+                a: "False",
+                exp: "False. In a standard addition reaction (A + B → C), two molecules combine to form exactly ONE product molecule (e.g., Ethene + HBr → Bromoethane)."
+            },
 
-        // دالة تحميل بيانات الدرس الحالي إلى الشاشة المخصصة للطلاب
-        function loadLesson(index) {
-            if (typeof courseLessons === 'undefined') {
-                document.getElementById('lesson-title').innerText = "خطأ: تأكد من وجود ملف lessons.js";
-                document.getElementById('lesson-title').classList.replace('text-blue-600', 'text-red-600');
-                return;
+            // --- Fill in the Blanks (11-15) ---
+            {
+                type: "Fill in the Blank",
+                q: "Alkenes are highly reactive and naturally undergo ________ reactions because their pi electrons are loosely held and exposed to electrophiles.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Addition",
+                exp: "The defining characteristic of alkenes is their tendency to undergo addition reactions, transforming the unsaturated double bond into a saturated single bond."
+            },
+            {
+                type: "Fill in the Blank",
+                q: "Benzene strongly resists addition reactions because they would destroy its special resonance stability, known as ________.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Aromaticity",
+                exp: "Aromaticity (the delocalization of 6 pi electrons in a cyclic system) provides benzene with an unusually low energy state that it 'wants' to maintain."
+            },
+            {
+                type: "Fill in the Blank",
+                q: "To force benzene to undergo an electrophilic aromatic substitution with chlorine (Cl₂), a Lewis acid ________ such as FeCl₃ is required.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Catalyst",
+                exp: "The catalyst generates the powerful 'Cl⁺' electrophile needed to overcome the stability of the benzene ring."
+            },
+            {
+                type: "Fill in the Blank",
+                q: "During an addition reaction across a carbon-carbon double bond, the weaker ________ bond is broken to form two new stronger sigma bonds.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Pi (π)",
+                exp: "The pi bond is formed by the side-by-side overlap of p-orbitals, which is a weaker interaction than the head-on overlap of a sigma bond."
+            },
+            {
+                type: "Fill in the Blank",
+                q: "In alkyl halides, a substitution reaction can occur when an electron-rich species, called a ________, attacks the partially positive carbon atom.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Nucleophile",
+                exp: "A nucleophile ('nucleus-loving') seeks out the positive center created by the electronegative halogen, kicking the halogen out and substituting itself."
+            },
+
+            // --- Matching (16-20) ---
+            {
+                type: "Matching",
+                q: "Match the description to the correct term: \nA reaction that replaces an atom or group without permanently breaking any pi bonds in a ring.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Substitution Reaction",
+                exp: "Substitution allows aromatic rings to react with electrophiles while retaining their stable, alternating double bond structure."
+            },
+            {
+                type: "Matching",
+                q: "Match the description to the correct term: \nA reaction that combines two molecules into one by breaking a pi bond.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Addition Reaction",
+                exp: "This is the primary reaction pathway for isolated alkenes and alkynes, turning them into saturated compounds."
+            },
+            {
+                type: "Matching",
+                q: "Match the description to the correct term: \nThe structural feature responsible for benzene's unusual stability and preference for substitution.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Delocalized Pi System",
+                exp: "The overlapping p-orbitals create a continuous 'donut' of electron density above and below the ring, granting aromatic stability."
+            },
+            {
+                type: "Matching",
+                q: "Match the description to the correct term: \nA reagent used visually to differentiate between an alkene (which rapidly decolorizes it) and an alkane or benzene.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Bromine Test (Br₂)",
+                exp: "Because Br₂ is colored, its rapid consumption by an alkene (forming a colorless product) is an instant visual proof of an addition reaction."
+            },
+            {
+                type: "Matching",
+                q: "Match the description to the correct term: \nA substance (like FeBr₃ or AlCl₃) required to make halogens electrophilic enough to attack benzene.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Lewis Acid",
+                exp: "Lewis acids accept electron pairs. By interacting with a halogen molecule, they create a highly reactive electrophilic complex necessary for aromatic substitution."
             }
-            if (courseLessons.length === 0) {
-                document.getElementById('lesson-title').innerText = "لا يوجد دروس مضافة في lessons.js";
-                return;
-            }
-            const lesson = courseLessons[index];
+        ];
 
-            // 1. تحديث الأسماء والعدادات
-            document.getElementById('lesson-title').innerText = lesson.title;
-            document.getElementById('lesson-title').classList.replace('text-red-600', 'text-blue-600');
-            document.getElementById('lesson-counter').innerText = `${index + 1} / ${courseLessons.length}`;
+        let currentIdx = 0;
+        let score = 0;
+        let hasAnswered = false;
 
-            // التحكم بأزرار التنقل
-            document.getElementById('btn-prev').disabled = (index === 0);
-            document.getElementById('btn-next').disabled = (index === courseLessons.length - 1);
+        const elQuestionText = document.getElementById('question-text');
+        const elOptionsContainer = document.getElementById('options-container');
+        const elCurrentQNum = document.getElementById('current-q-num');
+        const elTotalQNum = document.getElementById('total-q-num');
+        const elProgressBar = document.getElementById('progress-bar');
+        const elQuestionType = document.getElementById('question-type');
+        const elNextBtn = document.getElementById('next-btn');
+        const elFeedbackBox = document.getElementById('feedback-box');
+        const elFeedbackIcon = document.getElementById('feedback-icon');
+        const elFeedbackTitle = document.getElementById('feedback-title');
+        const elFeedbackContentBg = document.getElementById('feedback-content-bg');
+        const elFeedbackExplanation = document.getElementById('feedback-explanation');
+        const elScoreDisplay = document.getElementById('score-display');
+        const elCurrentScore = document.getElementById('current-score');
+        const elExtraInstructions = document.getElementById('extra-instructions');
+        const elQuizContainer = document.getElementById('quiz-container');
+        const elResultContainer = document.getElementById('result-container');
+        const elBtnText = document.getElementById('btn-text');
 
-            document.getElementById('loading-pdf').style.display = 'flex';
-
-            // 2. تحديث مصادر الملفات
-            const pdfLink = document.getElementById('pdf-link');
-            if (pdfLink) pdfLink.href = lesson.pdf || '#';
-            const pdfViewer = document.getElementById('pdf-viewer');
-            if (pdfViewer) pdfViewer.src = lesson.pdf;
-
-            const infoLink = document.getElementById('info-link');
-            if (infoLink) infoLink.href = lesson.infoImg || '#';
-            const infoImg = document.getElementById('info-img');
-            if (infoImg) {
-                infoImg.onerror = function () {
-                    this.onerror = null;
-                    this.outerHTML = "<div id='info-img' class='text-center p-10 bg-red-50 border border-red-200 rounded-xl text-red-600 max-w-lg mt-10 mx-auto'><b>⚠️ لم يتم العثور على الصورة</b><br>تأكد من وضع مسار الصورة الصحيح في ملف lessons.js.</div>";
-                };
-                infoImg.src = lesson.infoImg;
-            }
-
-            const mapLink = document.getElementById('map-link');
-            if (mapLink) mapLink.href = lesson.mapImg || '#';
-            const mapImg = document.getElementById('map-img');
-            if (mapImg) {
-                mapImg.onerror = function () {
-                    this.onerror = null;
-                    this.outerHTML = "<div id='map-img' class='text-center p-10 bg-red-50 border border-red-200 rounded-xl text-red-600 max-w-lg mt-10 mx-auto'><b>⚠️ لم يتم العثور على الخريطة الذهنية</b><br>تأكد من وضع المسار الصحيح في ملف lessons.js.</div>";
-                };
-                mapImg.src = lesson.mapImg;
-            }
-
-            const quizLink = document.getElementById('quiz-link');
-            if (quizLink) quizLink.href = lesson.quiz || '#';
-            const quizFrame = document.getElementById('quiz-frame');
-            if (quizFrame) quizFrame.src = lesson.quiz || '';
+        function initQuiz() {
+            elTotalQNum.textContent = quizData.length;
+            loadQuestion();
         }
 
-        // ------------------------------------------
-        // لا نحتاج دوال (الإضافة والحذف) لأن إدارة الكورس أصبحت عبر ملف lessons.js
-        // ------------------------------------------
+        function loadQuestion() {
+            hasAnswered = false;
+            const q = quizData[currentIdx];
 
-        // وظيفة التنقل العادية بين الدروس (زر التالي والسابق)
-        function changeLesson(step) {
-            const newIndex = currentLessonIndex + step;
-            if (newIndex >= 0 && newIndex < courseLessons.length) {
-                currentLessonIndex = newIndex;
-                loadLesson(currentLessonIndex);
+            elCurrentQNum.textContent = currentIdx + 1;
+            elProgressBar.style.width = `${((currentIdx) / quizData.length) * 100}%`;
+            elQuestionType.textContent = q.type;
+            elQuestionText.innerText = q.q;
+
+            if (q.type === "Fill in the Blank") {
+                elExtraInstructions.innerHTML = "<strong class='text-sky-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Aromaticity, Addition, Catalyst, Nucleophile, Pi (π)";
+                elExtraInstructions.classList.remove('hidden');
+            } else if (q.type === "Matching") {
+                elExtraInstructions.innerHTML = "<strong class='text-sky-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Substitution Reaction, Addition Reaction, Delocalized Pi System, Bromine Test (Br₂), Lewis Acid";
+                elExtraInstructions.classList.remove('hidden');
+            } else {
+                elExtraInstructions.classList.add('hidden');
             }
-        }
 
-        // دالة التبديل بين التبويبات الرئيسية
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => {
-                el.classList.remove('active');
+            elFeedbackBox.classList.add('hidden');
+            elNextBtn.classList.add('hidden');
+            elScoreDisplay.classList.remove('hidden');
+            elCurrentScore.textContent = score;
+
+            elOptionsContainer.innerHTML = '';
+            q.options.forEach((option) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-teal-500 hover:bg-sky-50 flex justify-between items-center";
+
+                const spanText = document.createElement('span');
+                spanText.textContent = option;
+                btn.appendChild(spanText);
+
+                const iconSpan = document.createElement('span');
+                iconSpan.className = "icon-placeholder";
+                btn.appendChild(iconSpan);
+
+                btn.onclick = () => checkAnswer(option, btn);
+                elOptionsContainer.appendChild(btn);
             });
-
-            document.querySelectorAll('.nav-btn').forEach(el => {
-                el.classList.remove('active');
-                el.classList.add('text-slate-600');
-            });
-
-            const targetTab = document.getElementById('tab-' + tabId);
-            if (targetTab) targetTab.classList.add('active');
-
-            const activeBtn = document.getElementById('btn-' + tabId);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.classList.remove('text-slate-600');
-            }
         }
 
-        // تهيئة التطبيق عند الفتح والتخاطب مع Google Drive
-        document.addEventListener("DOMContentLoaded", async () => {
-            const loader = document.getElementById('global-loader');
-            const loaderMessage = document.getElementById('loader-message');
-            const retryBtn = document.getElementById('loader-retry-btn');
-            const headerLoader = document.querySelector('#global-loader h2');
-            const spinner = document.querySelector('#global-loader .animate-spin');
+        function checkAnswer(selectedOption, btnElement) {
+            if (hasAnswered) return;
+            hasAnswered = true;
 
-            try {
-                // استدعاء دالة الجلب من lessons.js
-                await fetchLessonsFromDrive();
+            const q = quizData[currentIdx];
+            const isCorrect = (selectedOption === q.a);
+            const allBtns = elOptionsContainer.querySelectorAll('button');
 
-                if (courseLessons && courseLessons.length > 0) {
-                    loadLesson(0);
-                    // إخفاء مجسم التحميل بنعومة
-                    loader.style.opacity = '0';
-                    setTimeout(() => loader.style.display = 'none', 500);
+            allBtns.forEach(btn => {
+                btn.disabled = true;
+                const btnText = btn.querySelector('span').textContent;
+                const iconContainer = btn.querySelector('.icon-placeholder');
+
+                if (btnText === q.a) {
+                    btn.classList.remove('border-slate-200', 'hover:border-teal-500', 'hover:bg-sky-50', 'text-slate-700');
+                    btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
+                    iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
+                } else if (btnText === selectedOption && !isCorrect) {
+                    btn.classList.remove('border-slate-200', 'hover:border-teal-500', 'hover:bg-sky-50', 'text-slate-700');
+                    btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
+                    iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
-                    throw new Error("المجلد فارغ، لم يتم العثور على أي دروس تتطابق مع الشروط.");
+                    btn.classList.add('opacity-40');
                 }
-            } catch (err) {
-                // إظهار رسالة الخطأ للمستخدم
-                spinner.style.display = 'none';
-                headerLoader.innerText = "اكتمل مع وجود خطأ";
-                headerLoader.classList.replace("text-slate-800", "text-red-600");
-                loaderMessage.innerText = "تفاصيل الخطأ: " + err.message + "\nتأكد من وضع رابط الـ Web App الخاص بك في ملف lessons.js";
-                loaderMessage.classList.replace("text-slate-500", "text-red-500");
-                retryBtn.classList.remove("hidden");
+            });
+
+            elFeedbackBox.classList.remove('hidden', 'bg-green-50', 'border-green-200', 'bg-red-50', 'border-red-200');
+
+            if (isCorrect) {
+                score++;
+                elCurrentScore.textContent = score;
+                elFeedbackBox.classList.add('bg-green-50', 'border-green-200');
+                elFeedbackIcon.innerHTML = '<i class="fa-solid fa-shield-check text-green-600"></i>';
+                elFeedbackTitle.textContent = "✔️ إجابة صحيحة!";
+                elFeedbackTitle.className = "font-extrabold text-xl mb-1 text-green-800";
+
+                elFeedbackContentBg.className = "text-sm leading-relaxed mt-2 p-3 rounded-lg bg-green-100 text-green-900";
+                elFeedbackExplanation.innerHTML = `<strong>التوضيح العلمي:</strong> ${q.exp}`;
+            } else {
+                elFeedbackBox.classList.add('bg-red-50', 'border-red-200');
+                elFeedbackIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-600"></i>';
+                elFeedbackTitle.textContent = "❌ إجابة خاطئة";
+                elFeedbackTitle.className = "font-extrabold text-xl mb-1 text-red-800";
+
+                elFeedbackContentBg.className = "text-sm leading-relaxed mt-2 p-4 rounded-lg bg-red-100 text-red-900 border border-red-200";
+                elFeedbackExplanation.innerHTML = `
+                    <div class="mb-3 border-b border-red-200 pb-2">
+                        لقد اخترت: <span class="line-through opacity-75">${selectedOption}</span><br>
+                        الخيار الصحيح هو: <strong class="bg-white px-2 py-1 rounded text-red-700 shadow-sm ml-1 inline-block mt-1">${q.a}</strong>
+                    </div>
+                    <strong>لماذا الخيار الصحيح أفضل؟</strong><br> ${q.exp}
+                `;
             }
-        });
+
+            if (currentIdx === quizData.length - 1) {
+                elBtnText.textContent = "عرض النتيجة النهائية";
+                elNextBtn.classList.add('px-8', 'py-3', 'text-lg');
+            } else {
+                elBtnText.textContent = "التالي";
+            }
+            elNextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentIdx < quizData.length - 1) {
+                currentIdx++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            elProgressBar.style.width = `100%`;
+            elQuizContainer.classList.add('hidden');
+            elResultContainer.classList.remove('hidden');
+
+            document.getElementById('final-score').textContent = score;
+
+            const msgEl = document.getElementById('result-message');
+            if (score >= 18) {
+                msgEl.textContent = "أداء استثنائي وممتاز! 🌟 قدرتك على التمييز بين الإضافة والاستبدال دقيقة جداً.";
+            } else if (score >= 13) {
+                msgEl.textContent = "مستوى متقدم وجميل! 👏 بقليل من المراجعة لحالات البنزين المحفزة ستكون محترفاً.";
+            } else {
+                msgEl.textContent = "مقارنة التفاعلات تحتاج إلى إدراك لهياكل الروابط. راجع التفسيرات بتأني وأعد التجربة! 💡";
+            }
+        }
+
+        function restartQuiz() {
+            currentIdx = 0;
+            score = 0;
+            elResultContainer.classList.add('hidden');
+            elQuizContainer.classList.remove('hidden');
+            elNextBtn.classList.remove('px-8', 'py-3', 'text-lg');
+            loadQuestion();
+        }
+
+        // Start Quiz
+        initQuiz();
 
     </script>
 </body>

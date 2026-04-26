@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Nomenclature of Carboxylic Acids and Their Derivatives</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #fdf4ff;
+            /* خلفية أرجوانية فاتحة جداً */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
         }
     </style>
 </head>
@@ -62,26 +65,30 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-fuchsia-900 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-list-ol text-fuchsia-600"></i>
+                Nomenclature of Carboxylic Acids
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (199 - 210): Acids & Their
+                Derivatives</p>
         </div>
 
+        <!-- حاوية الاختبار -->
         <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-fuchsia-200">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-fuchsia-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-fuchsia-100 text-fuchsia-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +96,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +125,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-fuchsia-800 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-fuchsia-500"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +141,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-fuchsia-200">
+            <i class="fa-solid fa-graduation-cap text-7xl text-fuchsia-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم تسمية الأحماض الكربوكسيلية ومشتقاتها.</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-fuchsia-50 border border-fuchsia-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-fuchsia-700 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-fuchsia-400">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-fuchsia-800 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +168,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "What is the systematic IUPAC suffix used to identify an open-chain carboxylic acid?",
+                options: ["-oate", "-oic acid", "-oyl halide", "-amide"],
+                a: "-oic acid",
+                exp: "According to IUPAC rules, the 'e' ending of the parent alkane is dropped and replaced by '-oic acid' (e.g., propane becomes propanoic acid)."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "What is the accepted common name for ethanoic acid (CH₃COOH)?",
+                options: ["Formic acid", "Propionic acid", "Acetic acid", "Butyric acid"],
+                a: "Acetic acid",
+                exp: "Acetic acid is the historical and widely used common name for the two-carbon carboxylic acid, which is the main component of vinegar."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "How are esters generally named in the IUPAC system?",
+                options: ["Alkanoyl alkanoate", "Alkyl alkanoate", "Alkyl alkanoic acid", "Alkanoyl ether"],
+                a: "Alkyl alkanoate",
+                exp: "The alkyl group attached to the oxygen is named first as a separate word, followed by the acyl group derived from the acid, which receives the '-oate' suffix."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "What is the correct IUPAC name for the acid halide CH₃CH₂COCl?",
+                options: ["Propanoic chloride", "Propanoyl chloride", "Propyl chloride", "Chloropropanone"],
+                a: "Propanoyl chloride",
+                exp: "The parent chain has 3 carbons (propane). For acid halides, the suffix is '-oyl halide'. Therefore, it is propanoyl chloride."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "Which functional group structure corresponds to a primary amide?",
+                options: ["-COOH", "-COOR", "-COCl", "-CONH₂"],
+                a: "-CONH₂",
+                exp: "Amides are derivatives where the -OH of the carboxylic acid is replaced by an amine group. -CONH₂ represents a primary (unsubstituted) amide."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
+                q: "In naming carboxylic acids, the carboxyl carbon is always designated as Carbon-1.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
+                exp: "True. Because the carboxyl group (-COOH) is located at the end of the chain and has the highest nomenclature priority of all standard functional groups, it automatically becomes C-1."
             },
             {
                 type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "The common name for the simplest, two-carbon dicarboxylic acid (HOOC-COOH) is malonic acid.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. The simplest dicarboxylic acid (2 carbons) is Oxalic acid. Malonic acid contains 3 carbons (HOOC-CH₂-COOH)."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "Cyclic carboxylic acids, where the -COOH group is attached directly to the ring, are named using the suffix '-carboxylic acid'.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. Because the carboxyl carbon is not part of the ring numbering, the full suffix '-carboxylic acid' is added to the cycloalkane name (e.g., cyclopentanecarboxylic acid)."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
+                q: "Symmetrical acid anhydrides are named by replacing the word 'acid' with 'anhydride' in the name of the parent carboxylic acid.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
+                exp: "True. For example, two molecules of ethanoic acid form ethanoic anhydride (or acetic anhydride)."
             },
             {
                 type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "Formic acid (HCOOH) is the strict systematic IUPAC name for a one-carbon carboxylic acid.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. Methanoic acid is the systematic IUPAC name. Formic acid is the universally accepted common name, originally derived from the Latin word for ant (formica)."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "Carboxylic acids generally hold the highest nomenclature ________ over other functional groups like aldehydes, ketones, and alcohols.",
+                options: ["Oate", "Formic", "Oxalic", "Substituent", "Priority"],
+                a: "Priority",
+                exp: "Due to this supreme priority, if a molecule contains both an -OH and a -COOH group, the molecule is named as a carboxylic acid with a 'hydroxy-' substituent."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "When naming an ester, the parent carboxylic acid portion of the molecule receives the suffix -________.",
+                options: ["Oate", "Formic", "Oxalic", "Substituent", "Priority"],
+                a: "Oate",
+                exp: "For instance, the ester formed from ethanol and acetic acid is named ethyl acetate (or ethyl ethanoate in IUPAC)."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "The simplest one-carbon carboxylic acid, famously found in ant venom, is known as ________ acid.",
+                options: ["Oate", "Formic", "Oxalic", "Substituent", "Priority"],
+                a: "Formic",
+                exp: "While its IUPAC name is methanoic acid, its historical common name (formic acid) remains predominantly used in chemistry and biology."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "The two-carbon dicarboxylic acid (HOOC-COOH) is universally known as ________ acid.",
+                options: ["Oate", "Formic", "Oxalic", "Substituent", "Priority"],
+                a: "Oxalic",
+                exp: "Dicarboxylic acids use common names easily remembered by the mnemonic 'Oh My Such Good Apple Pie' (Oxalic, Malonic, Succinic, Glutaric, Adipic, Pimelic)."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "In a substituted amide where the nitrogen is bonded to alkyl groups, these groups are named as a ________ with an 'N-' locant prefix.",
+                options: ["Oate", "Formic", "Oxalic", "Substituent", "Priority"],
+                a: "Substituent",
+                exp: "For example, N-methylacetamide indicates that a methyl group is attached directly to the nitrogen atom, not to the main carbon chain."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the structure or description to its correct chemical name: \nAn ester with the structure CH₃CH₂COOCH₃",
+                options: ["Acetyl chloride", "Benzamide", "Butyric acid", "Acetic anhydride", "Methyl propanoate"],
+                a: "Methyl propanoate",
+                exp: "The alkyl group attached to the oxygen is 'methyl', and the 3-carbon acid backbone is 'propanoate'."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the structure or description to its correct chemical name: \nA four-carbon carboxylic acid known for the smell of rancid butter",
+                options: ["Acetyl chloride", "Benzamide", "Butyric acid", "Acetic anhydride", "Methyl propanoate"],
+                a: "Butyric acid",
+                exp: "Its IUPAC name is butanoic acid. Its common name, butyric, stems from 'butyrum' (the Latin word for butter)."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the structure or description to its correct chemical name: \nA symmetrical acid anhydride formed from ethanoic acid",
+                options: ["Acetyl chloride", "Benzamide", "Butyric acid", "Acetic anhydride", "Methyl propanoate"],
+                a: "Acetic anhydride",
+                exp: "Also known systematically as ethanoic anhydride. It consists of two acetyl groups linked by a central oxygen atom."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the structure or description to its correct chemical name: \nAn aromatic amide consisting of a benzene ring attached directly to a -CONH₂ group",
+                options: ["Acetyl chloride", "Benzamide", "Butyric acid", "Acetic anhydride", "Methyl propanoate"],
+                a: "Benzamide",
+                exp: "Benzamide is the primary amide derivative of benzoic acid."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the structure or description to its correct chemical name: \nA two-carbon acid halide (CH₃COCl)",
+                options: ["Acetyl chloride", "Benzamide", "Butyric acid", "Acetic anhydride", "Methyl propanoate"],
+                a: "Acetyl chloride",
+                exp: "While the IUPAC name is ethanoyl chloride, acetyl chloride is the extremely common and widely used name for this reactive reagent."
             }
         ];
 
@@ -338,10 +352,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-fuchsia-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Oate, Formic, Oxalic, Substituent, Priority";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-fuchsia-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Acetyl chloride, Benzamide, Butyric acid, Acetic anhydride, Methyl propanoate";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +369,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-fuchsia-500 hover:bg-fuchsia-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +398,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-fuchsia-500', 'hover:bg-fuchsia-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-fuchsia-500', 'hover:bg-fuchsia-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +465,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "أداء استثنائي ومثالي! 🌟 فهمك لقواعد التسمية والمشتقات والأولويات لا تشوبه شائبة.";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "عمل رائع جداً! 👏 مع مراجعة بسيطة للأسماء الشائعة للأحماض ثنائية الكربوكسيل ستصل للكمال.";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "قواعد المشتقات الكربوكسيلية تتطلب تدريباً. راجع التفسيرات لكل تفاعل وأعد الاختبار! 💡";
             }
         }
 

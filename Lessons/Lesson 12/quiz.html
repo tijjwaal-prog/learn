@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Aromatic Compounds</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #f1f5f9;
+            /* خلفية رمادية مزرقة هادئة */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #312e81 0%, #4c1d95 100%);
         }
     </style>
 </head>
@@ -62,26 +65,30 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-indigo-900 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-hexagon-nodes text-indigo-700"></i>
+                Aromatic Compounds
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (127 - 134): Structure, Nomenclature
+                & EAS Reactions</p>
         </div>
 
+        <!-- حاوية الاختبار -->
         <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-indigo-100">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-indigo-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +96,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +125,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-indigo-800 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-indigo-600"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +141,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-indigo-100">
+            <i class="fa-solid fa-award text-7xl text-indigo-700 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم المركبات الأروماتية بنجاح.</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-indigo-800 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-indigo-500">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-indigo-900 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +168,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "According to Hückel's Rule, which of the following is NOT a strict requirement for a compound to be considered aromatic?",
+                options: ["It must be cyclic.", "It must be planar.", "It must contain exactly 4n pi electrons.", "It must have a continuous system of overlapping p-orbitals."],
+                a: "It must contain exactly 4n pi electrons.",
+                exp: "Hückel's Rule specifically states that an aromatic compound must contain (4n + 2) pi electrons (e.g., 2, 6, 10, 14). A compound with exactly 4n pi electrons is considered antiaromatic."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "What is the common, widely accepted IUPAC name for a benzene ring bearing a single methyl group (-CH₃)?",
+                options: ["Phenol", "Aniline", "Toluene", "Styrene"],
+                a: "Toluene",
+                exp: "Methylbenzene is universally known as Toluene. Phenol has an -OH, Aniline has an -NH₂, and Styrene has a vinyl (-CH=CH₂) group."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "Which specific combination of reagents is used to perform the nitration of benzene (adding an -NO₂ group)?",
+                options: ["HNO₃ only", "HNO₃ and H₂SO₄", "NO₂ and FeBr₃", "NH₃ and H₂O₂"],
+                a: "HNO₃ and H₂SO₄",
+                exp: "A mixture of concentrated nitric acid (HNO₃) and concentrated sulfuric acid (H₂SO₄) is used. Sulfuric acid acts as a catalyst to generate the highly reactive nitronium ion (NO₂⁺) electrophile."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "In Electrophilic Aromatic Substitution (EAS), which of the following substituents acts as a strongly activating ortho/para director?",
+                options: ["-NO₂ (Nitro)", "-COOH (Carboxyl)", "-OH (Hydroxyl)", "-Cl (Chloro)"],
+                a: "-OH (Hydroxyl)",
+                exp: "The -OH group has lone pairs of electrons on the oxygen that it can donate into the benzene ring via resonance. This strongly activates the ring and directs incoming electrophiles to the ortho and para positions."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "What type of catalyst is absolutely essential for a Friedel-Crafts alkylation reaction to occur between benzene and an alkyl halide (R-Cl)?",
+                options: ["A strong Brønsted-Lowry base", "A Lewis acid catalyst (like AlCl₃)", "A transition metal like Pt or Pd", "Ultraviolet light (hν)"],
+                a: "A Lewis acid catalyst (like AlCl₃)",
+                exp: "The Lewis acid catalyst (AlCl₃) is required to interact with the alkyl chloride to generate the strongly electrophilic carbocation (R⁺) that can then attack the stable benzene ring."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
-            },
-            {
-                type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "Benzene consists of alternating distinct single and double carbon-carbon bonds that rapidly flip back and forth in equilibrium.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. Benzene is a resonance hybrid. It does not flip between structures; rather, all six C-C bonds are perfectly identical in length and strength (intermediate between a single and double bond)."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "The prefix 'meta' (m-) indicates that two substituents on a benzene ring are located at positions 1 and 3 relative to each other.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. In disubstituted benzenes, 1,2- is 'ortho' (o-), 1,3- is 'meta' (m-), and 1,4- is 'para' (p-)."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
+                q: "Deactivating groups withdraw electron density from the benzene ring, causing it to react much slower in EAS reactions compared to unsubstituted benzene.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
+                exp: "True. Groups like -NO₂ or -CF₃ pull electrons away, making the ring less nucleophilic, which raises the activation energy and slows down the attack on an electrophile."
             },
             {
                 type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "Halogens (like -Cl and -Br) are unique substituents because they are deactivating groups, yet they direct incoming electrophiles to the ortho and para positions.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. Halogens deactivate the ring via a strong electron-withdrawing inductive effect, but their lone pairs provide resonance stabilization to the ortho/para intermediate states, directing substitution there."
+            },
+            {
+                type: "True / False",
+                q: "In the historical Kekulé representation of benzene, the molecule is depicted as a highly strained, non-planar cyclic hexatriene.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. Benzene is an exceptionally flat (planar) molecule. All carbon atoms are sp² hybridized, which allows the p-orbitals to align perfectly parallel for maximum delocalization."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "The extraordinary thermodynamic stability of benzene compared to the hypothetical '1,3,5-cyclohexatriene' is known as ________ energy.",
+                options: ["Resonance", "Acylation", "Ortho", "Aniline", "Heterocyclic"],
+                a: "Resonance",
+                exp: "Resonance energy (or delocalization energy) is the energy difference between the real, stable benzene molecule and the calculated value for a molecule with localized alternating double bonds."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "Aminobenzene, a critical compound used in the dye industry, is almost exclusively referred to by its common name, ________.",
+                options: ["Resonance", "Acylation", "Ortho", "Aniline", "Heterocyclic"],
+                a: "Aniline",
+                exp: "Aniline (C₆H₅NH₂) is the simplest aromatic amine and acts as an ortho/para directing, strongly activating group on the ring."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "When naming a di-substituted benzene, if the two substituents are located on adjacent carbon atoms (a 1,2-relationship), they are in the ________ position.",
+                options: ["Resonance", "Acylation", "Ortho", "Aniline", "Heterocyclic"],
+                a: "Ortho",
+                exp: "Ortho refers to the 1,2- position. For example, 1,2-dimethylbenzene is commonly called ortho-xylene (or o-xylene)."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "Friedel-Crafts ________ is a reaction that involves adding an acyl group (R-C=O) to a benzene ring using an acid chloride and AlCl₃ to form a ketone.",
+                options: ["Resonance", "Acylation", "Ortho", "Aniline", "Heterocyclic"],
+                a: "Acylation",
+                exp: "Unlike alkylation (which adds alkyl chains like -CH₃), acylation adds the R-C=O group, producing an aromatic ketone. This avoids polyalkylation issues."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "Pyridine and pyrrole are aromatic, but their rings contain a nitrogen atom instead of just carbons. They are classified as ________ aromatic compounds.",
+                options: ["Resonance", "Acylation", "Ortho", "Aniline", "Heterocyclic"],
+                a: "Heterocyclic",
+                exp: "Heterocyclic compounds have a cyclic structure where at least one atom in the ring is a heteroatom (an element other than carbon, such as N, O, or S)."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the description/formula to the correct term: \nA benzene ring bonded directly to a hydroxyl (-OH) group.",
+                options: ["Phenol", "-NO₂ (Nitro group)", "Styrene", "Sulfonation", "4n + 2"],
+                a: "Phenol",
+                exp: "Phenol (C₆H₅OH) is a mildly acidic aromatic compound, widely used as an antiseptic and in plastic manufacturing."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the description/formula to the correct term: \nA substituent that acts as a strong meta-directing and deactivating group.",
+                options: ["Phenol", "-NO₂ (Nitro group)", "Styrene", "Sulfonation", "4n + 2"],
+                a: "-NO₂ (Nitro group)",
+                exp: "The nitro group pulls significant electron density out of the ring, severely slowing down EAS reactions and directing electrophiles to the meta position."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the description/formula to the correct term: \nA benzene ring bonded to a vinyl (-CH=CH₂) group.",
+                options: ["Phenol", "-NO₂ (Nitro group)", "Styrene", "Sulfonation", "4n + 2"],
+                a: "Styrene",
+                exp: "Styrene (vinylbenzene) is an important industrial monomer used to produce the polymer polystyrene (Styrofoam)."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the description/formula to the correct term: \nThe electrophilic aromatic substitution reaction using fuming sulfuric acid (SO₃/H₂SO₄).",
+                options: ["Phenol", "-NO₂ (Nitro group)", "Styrene", "Sulfonation", "4n + 2"],
+                a: "Sulfonation",
+                exp: "Sulfonation adds a sulfonic acid group (-SO₃H) to the ring. Uniquely among EAS reactions, sulfonation is highly reversible."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the description/formula to the correct term: \nThe mathematical formula defining the specific number of pi electrons required for a ring to be aromatic.",
+                options: ["Phenol", "-NO₂ (Nitro group)", "Styrene", "Sulfonation", "4n + 2"],
+                a: "4n + 2",
+                exp: "Hückel's Rule states that if n is an integer (0, 1, 2, ...), then 2, 6, 10, or 14 pi electrons will yield an aromatic system."
             }
         ];
 
@@ -338,10 +352,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-purple-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Resonance, Acylation, Ortho, Aniline, Heterocyclic";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-purple-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Phenol, -NO₂ (Nitro group), Styrene, Sulfonation, 4n + 2";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +369,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-indigo-500 hover:bg-purple-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +398,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-indigo-500', 'hover:bg-purple-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-indigo-500', 'hover:bg-purple-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +465,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "مستوى احترافي عالٍ! استيعابك لقاعدة هوكل وميكانيكيات (EAS) ممتاز جداً. 🏆";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "أداء قوي! مع مراجعة بسيطة للمجموعات الموجهة (Ortho/Meta/Para) ستصل للعلامة الكاملة. ✨";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "تحتاج لتركيز أكبر في تفاعلات البنزين وتسمياته. اقرأ التوضيحات جيداً وأعد الاختبار! 💡";
             }
         }
 

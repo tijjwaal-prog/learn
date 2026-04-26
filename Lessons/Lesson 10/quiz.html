@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Types of Organic Reactions</title>
+    <title>Alkene and Alkyne</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
@@ -14,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #fff7ed;
-            /* خلفية برتقالية فاتحة جداً */
+            background-color: #eef2ff;
+            /* خلفية أزرق نيلي فاتح جداً */
         }
 
         .en-text {
@@ -54,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
         }
     </style>
 </head>
@@ -62,26 +65,30 @@
 <body class="min-h-screen py-10 px-4 flex justify-center items-center">
 
     <div class="max-w-3xl w-full">
+        <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-orange-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-fire-flame-curved text-orange-600"></i>
-                Types of Organic Reactions
+                class="text-3xl md:text-4xl font-bold text-indigo-800 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-code-merge text-indigo-600"></i>
+                Alkene and Alkyne
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (56 - 60): Reactions & Bond Cleavage
-            </p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (99 - 112): Structures, Properties &
+                Addition Reactions</p>
         </div>
 
+        <!-- حاوية الاختبار -->
         <div id="quiz-container"
-            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-orange-200">
+            class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-indigo-100">
+            <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
             </div>
 
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center border-b border-orange-100 pb-4 mb-6">
+                <!-- معلومات السؤال الحالي -->
+                <div class="flex justify-between items-center border-b border-indigo-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -89,18 +96,22 @@
                     </span>
                 </div>
 
+                <!-- نص السؤال -->
                 <h2 id="question-text"
                     class="en-text text-xl md:text-2xl font-bold text-slate-800 mb-6 leading-relaxed">
                     Loading question...
                 </h2>
 
+                <!-- تعليمات إضافية (لأسئلة الفراغات والتوصيل) -->
                 <div id="extra-instructions"
-                    class="en-text hidden mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r text-slate-800 text-sm shadow-sm">
+                    class="en-text hidden mb-6 p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r text-slate-800 text-sm shadow-sm">
                 </div>
 
+                <!-- الخيارات -->
                 <div id="options-container" class="en-text space-y-3 mb-8">
                 </div>
 
+                <!-- صندوق التغذية الراجعة (يظهر بعد الإجابة) -->
                 <div id="feedback-box" class="en-text hidden p-5 rounded-xl border mt-6 fade-in shadow-inner">
                     <div class="flex items-start gap-4">
                         <div id="feedback-icon" class="mt-1 text-2xl"></div>
@@ -114,12 +125,14 @@
                 </div>
             </div>
 
+            <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-orange-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-orange-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-indigo-700 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-indigo-500"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
-                <div></div> <button id="next-btn"
+                <div></div> <!-- Spacer -->
+                <button id="next-btn"
                     class="hidden theme-gradient hover:opacity-90 text-white font-bold py-2 px-6 rounded-lg transition-opacity flex items-center gap-2 shadow-md"
                     onclick="nextQuestion()">
                     <span id="btn-text">التالي</span>
@@ -128,17 +141,18 @@
             </div>
         </div>
 
+        <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-orange-200">
-            <i class="fa-solid fa-ranking-star text-7xl text-orange-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-indigo-100">
+            <i class="fa-solid fa-vials text-7xl text-indigo-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم أنواع التفاعلات العضوية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم الألكينات والألكاينات بنجاح.</p>
 
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-orange-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-orange-400">/ 20</span>
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-indigo-700 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-indigo-400">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-orange-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-indigo-800 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -154,149 +168,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which notation represents the heterolytic cleavage (Heterolysis) of a covalent bond?",
-                options: ["A—B → A• + B•", "A:B → A⁺ + :B⁻", "A + B → A—B", "A:B → A⁻ + B⁻"],
-                a: "A:B → A⁺ + :B⁻",
-                exp: "In heterolysis, the covalent bond breaks unevenly, and one atom takes both electrons, generating ions (a cation A⁺ and an anion :B⁻)."
+                q: "What is the correct IUPAC name for the straight-chain compound CH₃-CH=CH-CH₃?",
+                options: ["1-Butene", "2-Butene", "Butyne", "Butane"],
+                a: "2-Butene",
+                exp: "The longest chain has 4 carbons (but-), and it contains a double bond (-ene). The double bond starts at carbon number 2 (numbering from either side gives 2), so it is 2-butene."
             },
             {
                 type: "Multiple Choice",
-                q: "What type of reaction is characteristic of saturated compounds such as alkanes and alkyl halides?",
-                options: ["Addition Reactions", "Elimination Reactions", "Substitution Reactions", "Oxidation Reactions"],
-                a: "Substitution Reactions",
-                exp: "In saturated compounds, all valences are full. Therefore, they typically react by substituting (replacing) one group for another."
+                q: "According to Markovnikov's rule, the electrophilic addition of HCl to propene (CH₃-CH=CH₂) yields which major product?",
+                options: ["1-Chloropropane", "2-Chloropropane", "1,2-Dichloropropane", "Propyl chloride"],
+                a: "2-Chloropropane",
+                exp: "Markovnikov's rule states that the H⁺ adds to the carbon of the double bond that already has more hydrogens (C1). This creates a more stable secondary (2°) carbocation at C2, which is then attacked by Cl⁻ to form 2-chloropropane."
             },
             {
                 type: "Multiple Choice",
-                q: "In which reaction do all parts of the adding reagent appear in the product, making two molecules become one?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Homolysis"],
-                a: "Addition Reactions",
-                exp: "This is the definition of an addition reaction, which is characteristic of compounds with multiple bonds (like alkenes or alkynes)."
+                q: "Which of the following alkynes has a weakly acidic hydrogen atom?",
+                options: ["2-Butyne", "1-Butyne", "2-Pentyne", "3-Hexyne"],
+                a: "1-Butyne",
+                exp: "1-Butyne (CH≡C-CH₂-CH₃) is a 'terminal alkyne'. The hydrogen attached directly to the sp-hybridized carbon at the end of the chain is weakly acidic and can be removed by a strong base like NaNH₂."
             },
             {
                 type: "Multiple Choice",
-                q: "In organic chemistry, oxidation is generally defined as:",
-                options: ["The addition of Hydrogen to a compound.", "The removal of Hydrogen and/or the addition of Oxygen to a compound.", "The elimination of Oxygen from a compound.", "The homolytic cleavage of a bond."],
-                a: "The removal of Hydrogen and/or the addition of Oxygen to a compound.",
-                exp: "Oxidation increases the oxygen content or decreases the hydrogen content of a molecule, while reduction does the opposite."
+                q: "What specific catalyst is commonly used to partially reduce an alkyne, specifically producing a cis-alkene?",
+                options: ["Pt / H₂", "Na / NH₃ (liquid)", "Lindlar's catalyst / H₂", "H₂SO₄ / Heat"],
+                a: "Lindlar's catalyst / H₂",
+                exp: "Lindlar's catalyst (a 'poisoned' palladium catalyst) stops the hydrogenation at the alkene stage. Because both hydrogen atoms are delivered from the surface of the solid catalyst to the same side of the alkyne, a 'syn' addition occurs, producing a cis-alkene."
             },
             {
                 type: "Multiple Choice",
-                q: "Which reaction provides a useful method for preparing compounds with double and triple bonds?",
-                options: ["Addition Reactions", "Substitution Reactions", "Elimination Reactions", "Heterolysis"],
-                a: "Elimination Reactions",
-                exp: "In an elimination reaction, a molecule loses the elements of a smaller molecule (like H₂O or HBr) to form a new pi bond (double or triple bond)."
+                q: "The dehydration of an alcohol (removing H₂O) to form an alkene is classified as what type of reaction?",
+                options: ["Addition reaction", "Substitution reaction", "Elimination reaction", "Rearrangement reaction"],
+                a: "Elimination reaction",
+                exp: "In an elimination reaction, elements of the starting material are 'lost' or eliminated (in this case, H and OH from adjacent carbons) to form a new pi (π) bond in the product."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Homolysis is the cleavage of a covalent bond that produces two radicals (A• and B•).",
-                options: ["True", "False"],
-                a: "True",
-                exp: "True. In homolytic cleavage, the electron pair is split evenly, giving one electron to each atom and creating neutral free radicals."
-            },
-            {
-                type: "True / False",
-                q: "In a substitution reaction, two molecules combine to form a single, larger product molecule.",
+                q: "Alkenes contain a carbon-carbon double bond consisting of two pi (π) bonds.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. That describes an Addition reaction. In a Substitution reaction, one group simply replaces another group without combining the whole molecules into one."
+                exp: "False. A carbon-carbon double bond (C=C) is always composed of ONE strong sigma (σ) bond and ONE weaker pi (π) bond. Only a triple bond has two pi bonds."
             },
             {
                 type: "True / False",
-                q: "Reduction is the addition of Hydrogen to a compound and/or the elimination of Oxygen from a compound.",
+                q: "Geometric (cis-trans) isomerism is NOT possible in 1-butene (CH₂=CH-CH₂-CH₃).",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. This is the exact opposite of oxidation. Adding hydrogen (like hydrogenating an alkene) is a classic reduction."
+                exp: "True. For cis-trans isomerism to exist, both carbons of the double bond must be attached to two DIFFERENT groups. In 1-butene, Carbon-1 is attached to two identical Hydrogen atoms, making geometric isomerism impossible."
             },
             {
                 type: "True / False",
-                q: "Addition reactions are characteristic of compounds that contain multiple bonds.",
+                q: "The carbon atoms involved in the triple bond of an alkyne are sp-hybridized and exhibit a linear geometry.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "True. Molecules with double or triple (pi) bonds can undergo addition reactions by breaking the weak pi bond to add new atoms."
+                exp: "True. The sp hybridization results in two sp orbitals arranged 180° apart, giving alkynes their characteristic linear shape around the triple bond."
             },
             {
                 type: "True / False",
-                q: "Heterolysis involves the symmetrical sharing of electrons when a bond breaks.",
+                q: "Adding Br₂ (bromine solution) to an alkene in the dark results in a color change from reddish-brown to colorless.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. This is a classic visual test for unsaturation. The alkene rapidly reacts with the reddish-brown Br₂ via an addition reaction to form a colorless dibromoalkane."
+            },
+            {
+                type: "True / False",
+                q: "Symmetrical alkenes (like ethene or 2-butene) will yield two different structural isomers upon the addition of a hydrogen halide (HX).",
                 options: ["True", "False"],
                 a: "False",
-                exp: "False. Heterolysis is asymmetrical. One atom leaves with both electrons (becoming an anion), leaving the other atom deficient (a cation)."
+                exp: "False. Because a symmetrical alkene is identical on both sides of the double bond, it doesn't matter which carbon gets the H and which gets the X; it will yield only ONE identical product."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "________ is a homolytic cleavage of a covalent bond that produces A• and B• radicals.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Homolysis",
-                exp: "Homo- means same/equal. The bond electrons are distributed equally, forming radicals."
+                q: "The relatively weak ________ bond in alkenes is what makes them highly reactive towards electrophilic addition reactions compared to alkanes.",
+                options: ["Markovnikov", "Pi (π)", "Dehydrohalogenation", "Terminal", "Hydration"],
+                a: "Pi (π)",
+                exp: "The pi (π) bond is formed by the side-by-side overlap of p-orbitals. The electrons are more exposed and held less tightly than in a sigma bond, making them an excellent target for electrophiles."
             },
             {
                 type: "Fill in the Blank",
-                q: "In a ________ reaction, one group replaces another one, such as: \nH₃C-Br + NaOMe → H₃C-OMe + NaBr",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Substitution",
-                exp: "Notice how the '-OMe' group substituted (took the place of) the '-Br' atom on the carbon chain."
+                q: "________'s rule states that in the addition of HX to an asymmetrical alkene, the H atom attaches to the carbon with more hydrogen atoms.",
+                options: ["Markovnikov", "Pi (π)", "Dehydrohalogenation", "Terminal", "Hydration"],
+                a: "Markovnikov",
+                exp: "Markovnikov's rule ensures the formation of the most stable carbocation intermediate (3° > 2° > 1°). 'The rich get richer' in terms of hydrogen atoms."
             },
             {
                 type: "Fill in the Blank",
-                q: "In an ________ reaction, one molecule loses the elements of another small molecule, often forming a double bond.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Elimination",
-                exp: "By eliminating atoms from adjacent carbons, a pi bond must form to satisfy carbon's valency."
+                q: "The elimination reaction that involves the removal of a hydrogen atom and a halogen atom from adjacent carbons (using a strong base) to form an alkene is called ________.",
+                options: ["Markovnikov", "Pi (π)", "Dehydrohalogenation", "Terminal", "Hydration"],
+                a: "Dehydrohalogenation",
+                exp: "De- (removal) -hydro- (hydrogen) -halogen- (halogen) -ation. This is a primary method for synthesizing alkenes in the laboratory."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ reactions are characteristic of compounds with multiple bonds.",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Addition",
-                exp: "The pi bond breaks and allows new atoms to be added to the molecule."
+                q: "Alkynes with the triple bond located at the very end of the carbon chain (R-C≡C-H) are classified specifically as ________ alkynes.",
+                options: ["Markovnikov", "Pi (π)", "Dehydrohalogenation", "Terminal", "Hydration"],
+                a: "Terminal",
+                exp: "Terminal alkynes are unique because of the acidic nature of that final hydrogen atom, allowing for specialized carbon-carbon bond-forming reactions."
             },
             {
                 type: "Fill in the Blank",
-                q: "________ is a cleavage where one atom retains both electrons, generating ions (A⁺ and :B⁻).",
-                options: ["Homolysis", "Substitution", "Elimination", "Addition", "Heterolysis"],
-                a: "Heterolysis",
-                exp: "Hetero- means different/unequal. The electron pair goes entirely to the more electronegative atom."
+                q: "The acid-catalyzed addition of water (H₂O) across a double bond to form an alcohol is known as a ________ reaction.",
+                options: ["Markovnikov", "Pi (π)", "Dehydrohalogenation", "Terminal", "Hydration"],
+                a: "Hydration",
+                exp: "Hydration literally means adding water. It follows Markovnikov's rule, placing the -OH group on the more substituted carbon."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nOxidation",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Removal of Hydrogen/Addition of Oxygen",
-                exp: "Oxidation generally involves increasing the oxygen content or decreasing the hydrogen content in an organic molecule."
+                q: "Match the reaction description to its correct chemical term: \nAddition of H₂ to an alkene using a metal catalyst (Pt, Pd, or Ni) to form an alkane.",
+                options: ["Hydrogenation", "Hydration", "Halogenation", "Hydrohalogenation", "Ozonolysis"],
+                a: "Hydrogenation",
+                exp: "This is a reduction reaction where two hydrogen atoms are added across the pi bond, completely saturating the molecule."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nReduction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Addition of Hydrogen/Removal of Oxygen",
-                exp: "Reduction decreases the oxidation state by adding hydrogen atoms or removing oxygen atoms."
+                q: "Match the reaction description to its correct chemical term: \nAddition of H₂O to an alkene in the presence of an acid catalyst (H⁺) to form an alcohol.",
+                options: ["Hydrogenation", "Hydration", "Halogenation", "Hydrohalogenation", "Ozonolysis"],
+                a: "Hydration",
+                exp: "Hydration is the chemical addition of water. In biological systems, enzymes perform this without the need for harsh acids."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nElimination Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Reaction to form multiple bonds",
-                exp: "Elimination involves the loss of a small molecule to create unsaturation (a double or triple bond)."
+                q: "Match the reaction description to its correct chemical term: \nAddition of X₂ (like Br₂ or Cl₂) to an alkene, yielding a vicinal dihalide.",
+                options: ["Hydrogenation", "Hydration", "Halogenation", "Hydrohalogenation", "Ozonolysis"],
+                a: "Halogenation",
+                exp: "Halogenation adds two halogen atoms. Because it forms a cyclic intermediate (like a bromonium ion), it typically results in an 'anti' addition."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nSubstitution Reaction",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Replacement of one group by another",
-                exp: "This is a direct swap of one functional group or atom for another, maintaining the same degree of saturation."
+                q: "Match the reaction description to its correct chemical term: \nAddition of HX (like HCl or HBr) to an alkene to form an alkyl halide.",
+                options: ["Hydrogenation", "Hydration", "Halogenation", "Hydrohalogenation", "Ozonolysis"],
+                a: "Hydrohalogenation",
+                exp: "This reaction adds a Hydrogen (Hydro-) and a Halogen (-halogenation). This is the classic reaction governed by Markovnikov's rule."
             },
             {
                 type: "Matching",
-                q: "Match the term to its definition: \nHomolysis",
-                options: ["Removal of Hydrogen/Addition of Oxygen", "Addition of Hydrogen/Removal of Oxygen", "Reaction to form multiple bonds", "Replacement of one group by another", "Breaking a bond to form radicals"],
-                a: "Breaking a bond to form radicals",
-                exp: "Homolytic cleavage evenly divides the bonding electron pair, producing two highly reactive free radicals."
+                q: "Match the reaction description to its correct chemical term: \nCleavage of a carbon-carbon double bond using O₃ to form aldehydes or ketones.",
+                options: ["Hydrogenation", "Hydration", "Halogenation", "Hydrohalogenation", "Ozonolysis"],
+                a: "Ozonolysis",
+                exp: "Ozonolysis (Ozone + lysis/breaking) acts like chemical scissors, snipping the C=C double bond in half and capping each end with a double-bonded oxygen (C=O)."
             }
         ];
 
@@ -338,10 +352,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Homolysis, Substitution, Elimination, Addition, Heterolysis";
+                elExtraInstructions.innerHTML = "<strong class='text-indigo-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Markovnikov, Pi (π), Dehydrohalogenation, Terminal, Hydration";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-orange-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Removal of Hydrogen/Addition of Oxygen, Addition of Hydrogen/Removal of Oxygen, Reaction to form multiple bonds, Replacement of one group by another, Breaking a bond to form radicals";
+                elExtraInstructions.innerHTML = "<strong class='text-indigo-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Hydrogenation, Hydration, Halogenation, Hydrohalogenation, Ozonolysis";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -355,7 +369,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-orange-500 hover:bg-orange-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-indigo-500 hover:bg-indigo-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -384,11 +398,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-indigo-500', 'hover:bg-indigo-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-orange-500', 'hover:bg-orange-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-indigo-500', 'hover:bg-indigo-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -451,11 +465,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء ناري ومثالي! 🔥 ميكانيكية التفاعلات واضحة تماماً بالنسبة لك.";
+                msgEl.textContent = "أداء كيميائي مثالي! فهمك لتفاعلات الإضافة وقاعدة ماركوفنيكوف متين جداً. 🏆";
             } else if (score >= 13) {
-                msgEl.textContent = "عمل رائع! تذكر دائماً الفرق بين الاستبدال والإضافة لتصبح خبيراً. ✨";
+                msgEl.textContent = "مستوى متقدم! مع مراجعة بسيطة لكواشف التفاعلات (Reagents) ستكون بلا أخطاء. ✨";
             } else {
-                msgEl.textContent = "مفاهيم التفاعلات تحتاج لبعض التركيز. راجع التفسيرات وأعد الاختبار! 💡";
+                msgEl.textContent = "تفاعلات الألكينات تحتاج للممارسة الكثيفة. راجع التفسيرات لكل تفاعل وحاول مجدداً! 📘";
             }
         }
 

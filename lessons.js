@@ -32,14 +32,21 @@ async function fetchLessonsFromDrive() {
             throw new Error(data.error);
         }
 
+        // ترتيب الدروس بناءً على العنوان حتى نتأكد من الترتيب الصحيح
+        data.sort((a, b) => a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' }));
+
         // تحويل الروابط لتجنب حظر عرض الصور (Hotlinking) الجديد من Google
-        courseLessons = data.map(lesson => {
+        courseLessons = data.map((lesson, index) => {
             if (lesson.infoImg && lesson.infoImg.includes("uc?export=view&id=")) {
                 lesson.infoImg = lesson.infoImg.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w2000";
             }
             if (lesson.mapImg && lesson.mapImg.includes("uc?export=view&id=")) {
                 lesson.mapImg = lesson.mapImg.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w2000";
             }
+            // ربط ملف الاختبار المحلي بالمجلدات ذات التسمية التسلسلية (Lesson 01, Lesson 02...)
+            const folderNumber = String(index + 1).padStart(2, '0');
+            lesson.quiz = `Lessons/Lesson ${folderNumber}/quiz.html`;
+            
             // بالنسبة للـ PDF نتركه كما هو لأن العرض المدمج preview يعمل دائماً
             return lesson;
         });

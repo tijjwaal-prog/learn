@@ -27,7 +27,7 @@ async function fetchLessonsFromDrive() {
         }
 
         const data = await response.json();
-        
+
         if (data.error) {
             throw new Error(data.error);
         }
@@ -43,10 +43,13 @@ async function fetchLessonsFromDrive() {
             if (lesson.mapImg && lesson.mapImg.includes("uc?export=view&id=")) {
                 lesson.mapImg = lesson.mapImg.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w2000";
             }
-            // ربط ملف الاختبار المحلي بالمجلدات ذات التسمية التسلسلية (Lesson 01, Lesson 02...)
+
+            // حل مشكلة المسارات النسبية في GitHub Pages باستخدام المسار الكامل
             const folderNumber = String(index + 1).padStart(2, '0');
-            lesson.quiz = `Lessons/Lesson ${folderNumber}/quiz.html`;
-            
+            const baseUrl = window.location.href.split('?')[0].split('#')[0].replace(/\/index\.html$/, '');
+            const finalBaseUrl = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
+            lesson.quiz = encodeURI(finalBaseUrl + `Lessons/Lesson ${folderNumber}/quiz.html`);
+
             // بالنسبة للـ PDF نتركه كما هو لأن العرض المدمج preview يعمل دائماً
             return lesson;
         });

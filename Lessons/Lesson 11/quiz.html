@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Functional Groups Quiz</title>
+    <title>Addition and Substitution Reactions Compared</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
@@ -17,8 +17,8 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f0fdfa;
-            /* لون سماوي فاتح جداً للخلفية */
+            background-color: #f8fafc;
+            /* خلفية رمادية مزرقة فاتحة جداً */
         }
 
         .en-text {
@@ -57,7 +57,7 @@
         }
 
         .theme-gradient {
-            background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+            background: linear-gradient(135deg, #0f766e 0%, #0369a1 100%);
         }
     </style>
 </head>
@@ -68,16 +68,16 @@
         <!-- قسم رأس الاختبار -->
         <div class="text-center mb-8">
             <h1
-                class="text-3xl md:text-4xl font-bold text-cyan-800 mb-2 en-text text-center flex justify-center items-center gap-3">
-                <i class="fa-solid fa-diagram-project text-cyan-600"></i>
-                Functional Groups
+                class="text-3xl md:text-4xl font-bold text-teal-800 mb-2 en-text text-center flex justify-center items-center gap-3">
+                <i class="fa-solid fa-scale-balanced text-teal-600"></i>
+                Addition & Substitution Reactions Compared
             </h1>
-            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (61 - 64): Identification &
-                Structures</p>
+            <p class="text-gray-600 font-semibold text-lg mt-3">تغطية شاملة للصفحات (113 - 126): Alkenes vs. Aromatics &
+                Alkanes</p>
         </div>
 
         <!-- حاوية الاختبار -->
-        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-cyan-100">
+        <div id="quiz-container" class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-teal-100">
             <!-- شريط التقدم -->
             <div class="bg-gray-200 h-2 w-full">
                 <div id="progress-bar" class="theme-gradient h-2 transition-all duration-500" style="width: 0%;"></div>
@@ -85,9 +85,9 @@
 
             <div class="p-6 md:p-8">
                 <!-- معلومات السؤال الحالي -->
-                <div class="flex justify-between items-center border-b border-cyan-100 pb-4 mb-6">
+                <div class="flex justify-between items-center border-b border-teal-100 pb-4 mb-6">
                     <span id="question-type"
-                        class="bg-cyan-100 text-cyan-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        class="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                         Multiple Choice
                     </span>
                     <span class="text-gray-500 font-semibold text-sm border px-3 py-1 rounded-md bg-gray-50">
@@ -126,8 +126,8 @@
 
             <!-- ذيل الحاوية (الأزرار) -->
             <div class="bg-slate-50 p-5 border-t border-gray-100 flex justify-between items-center">
-                <div id="score-display" class="font-bold text-cyan-700 hidden text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-star text-cyan-500"></i> النتيجة: <span id="current-score"
+                <div id="score-display" class="font-bold text-teal-700 hidden text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-star text-teal-500"></i> النتيجة: <span id="current-score"
                         class="text-xl">0</span>
                 </div>
                 <div></div> <!-- Spacer -->
@@ -142,16 +142,16 @@
 
         <!-- حاوية النتيجة النهائية -->
         <div id="result-container"
-            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-cyan-100">
-            <i class="fa-solid fa-microscope text-7xl text-cyan-600 mb-6 drop-shadow-md"></i>
+            class="hidden bg-white p-8 rounded-2xl shadow-xl text-center fade-in max-w-lg mx-auto mt-10 border border-teal-100">
+            <i class="fa-solid fa-microscope text-7xl text-teal-600 mb-6 drop-shadow-md"></i>
             <h2 class="text-3xl font-bold text-slate-800 mb-2">اكتمل الاختبار!</h2>
-            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت تقييم المجموعات الوظيفية بنجاح.</p>
+            <p class="text-gray-600 mb-6 font-medium">لقد أنهيت التقييم المقارن لتفاعلات الإضافة والاستبدال.</p>
 
-            <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-6 mb-8 shadow-inner">
-                <div class="text-6xl font-black text-cyan-700 en-text text-center">
-                    <span id="final-score">0</span> <span class="text-3xl text-cyan-400">/ 20</span>
+            <div class="bg-teal-50 border border-teal-200 rounded-xl p-6 mb-8 shadow-inner">
+                <div class="text-6xl font-black text-teal-700 en-text text-center">
+                    <span id="final-score">0</span> <span class="text-3xl text-teal-400">/ 20</span>
                 </div>
-                <p id="result-message" class="text-base text-cyan-800 mt-4 font-bold"></p>
+                <p id="result-message" class="text-base text-teal-800 mt-4 font-bold"></p>
             </div>
 
             <button onclick="restartQuiz()"
@@ -167,149 +167,149 @@
             // --- Multiple Choice (1-5) ---
             {
                 type: "Multiple Choice",
-                q: "Which functional group is present in the molecule CH₃-CH₂-OH?",
-                options: ["Carboxylic acid", "Ether", "Alcohol", "Ketone"],
-                a: "Alcohol",
-                exp: "The -OH (hydroxyl) group attached directly to an sp³ hybridized (saturated) carbon atom is the defining characteristic of an alcohol."
+                q: "Why does benzene primarily undergo electrophilic substitution rather than electrophilic addition?",
+                options: ["Addition would destroy its stable aromatic pi system.", "Substitution is faster than addition.", "Benzene has no pi electrons to undergo addition.", "Benzene is too sterically hindered for addition."],
+                a: "Addition would destroy its stable aromatic pi system.",
+                exp: "Aromaticity provides massive thermodynamic stability (resonance energy). Addition breaks the continuous ring of pi electrons, destroying this stability. Substitution replaces a hydrogen, preserving the aromatic ring."
             },
             {
                 type: "Multiple Choice",
-                q: "What is the general structural formula for a ketone?",
-                options: ["R-CHO", "R-CO-R'", "R-O-R'", "R-COOH"],
-                a: "R-CO-R'",
-                exp: "A ketone contains a carbonyl group (C=O) bonded to two other carbon atoms (R and R'). R-CHO represents an aldehyde, where the carbonyl is attached to at least one hydrogen."
+                q: "When cyclohexene reacts with bromine (Br₂), what type of reaction occurs?",
+                options: ["Nucleophilic Substitution", "Electrophilic Addition", "Electrophilic Substitution", "Free-Radical Substitution"],
+                a: "Electrophilic Addition",
+                exp: "Cyclohexene is an alkene. The weak pi bond acts as a nucleophile, attacking the electrophilic bromine. The pi bond breaks to form two new C-Br sigma bonds, defining an addition reaction."
             },
             {
                 type: "Multiple Choice",
-                q: "The presence of a nitrogen atom bonded to carbon atoms (e.g., R-NH₂) indicates which functional group?",
-                options: ["Amide", "Amine", "Nitrile", "Nitro"],
-                a: "Amine",
-                exp: "Amines are organic derivatives of ammonia (NH₃) where one, two, or all three hydrogen atoms are replaced by alkyl or aryl (carbon) groups."
+                q: "What catalyst is fundamentally required for benzene to react with Br₂ in a substitution reaction?",
+                options: ["A strong base (NaOH)", "A strong acid (H₂SO₄)", "A Lewis acid (like FeBr₃ or AlBr₃)", "UV light (hν)"],
+                a: "A Lewis acid (like FeBr₃ or AlBr₃)",
+                exp: "Benzene's pi cloud is stable and not reactive enough to attack neutral Br₂. A Lewis acid catalyst (FeBr₃) polarizes the Br-Br bond, creating a powerful Br⁺ electrophile capable of attacking the ring."
             },
             {
                 type: "Multiple Choice",
-                q: "Which functional group contains BOTH a carbonyl group (C=O) and a hydroxyl group (-OH) attached to the exact same carbon atom?",
-                options: ["Ester", "Aldehyde", "Carboxylic Acid", "Alcohol"],
-                a: "Carboxylic Acid",
-                exp: "The -COOH group is known as the carboxyl group. It combines a carbonyl (C=O) and a hydroxyl (-OH) group on the same carbon, which gives the molecule its acidic properties."
+                q: "In a substitution reaction of an alkane (like CH₄ + Cl₂), what fundamentally happens to the molecule?",
+                options: ["Two molecules combine into one larger molecule.", "A pi bond is broken.", "An atom or group is replaced by another atom or group.", "The carbon skeleton rearranges completely."],
+                a: "An atom or group is replaced by another atom or group.",
+                exp: "Substitution involves swapping parts. In alkanes, a hydrogen atom is substituted by a halogen atom (forming CH₃Cl and HCl). No unsaturation (pi bonds) is gained or lost."
             },
             {
                 type: "Multiple Choice",
-                q: "An organic compound with the structure R-C(=O)-O-R' belongs to which class of compounds?",
-                options: ["Ethers", "Esters", "Carboxylic acids", "Anhydrides"],
-                a: "Esters",
-                exp: "Esters are formed from a carboxylic acid and an alcohol. The structural linkage consists of a carbonyl group adjacent to an ether-like oxygen (R-COO-R')."
+                q: "Compare the reaction of ethene (CH₂=CH₂) and benzene (C₆H₆) with Bromine. Which statement is correct?",
+                options: ["Both require a Lewis acid catalyst.", "Both undergo addition to form saturated products.", "Ethene undergoes addition (fast), while benzene requires a catalyst to undergo substitution (slow).", "Benzene undergoes addition (fast), while ethene undergoes substitution."],
+                a: "Ethene undergoes addition (fast), while benzene requires a catalyst to undergo substitution (slow).",
+                exp: "Alkenes (ethene) readily undergo addition to form 1,2-dibromoethane. Aromatic rings (benzene) resist addition and require harsh conditions/catalysts to force substitution (forming bromobenzene)."
             },
 
             // --- True / False (6-10) ---
             {
                 type: "True / False",
-                q: "Aldehydes always have their carbonyl group (C=O) at the end (terminal) of a carbon chain.",
-                options: ["True", "False"],
-                a: "True",
-                exp: "Because the structure of an aldehyde is R-CHO, the carbonyl carbon must be attached to at least one hydrogen atom. This forces it to be at the absolute end of the carbon skeleton."
-            },
-            {
-                type: "True / False",
-                q: "Ethers have the general formula R-OH, where an oxygen atom is bonded to a hydrogen atom.",
+                q: "Addition reactions typically result in an increase in the degree of unsaturation (more pi bonds).",
                 options: ["True", "False"],
                 a: "False",
-                exp: "Ethers have the general formula R-O-R', where an oxygen atom bridges two carbon groups. R-OH is the formula for an alcohol."
+                exp: "False. Addition reactions DECREASE unsaturation. You are 'adding' atoms to the molecule, which forces the breaking of double/triple (pi) bonds to form single (sigma) bonds."
             },
             {
                 type: "True / False",
-                q: "An amide is formed when the -OH of a carboxylic acid is conceptually replaced by an amino group (-NH₂).",
-                options: ["True", "False"],
-                a: "True",
-                exp: "Amides contain the functional group -C(=O)N-, which is a carbonyl group directly attached to a nitrogen atom. They are key components of proteins (peptide bonds)."
-            },
-            {
-                type: "True / False",
-                q: "Alkyl halides (haloalkanes) contain a halogen atom (F, Cl, Br, or I) bonded to an sp² hybridized carbon of a double bond.",
+                q: "Benzene decolorizes reddish-brown bromine water (Br₂/H₂O) rapidly at room temperature without a catalyst.",
                 options: ["True", "False"],
                 a: "False",
-                exp: "Alkyl halides have a halogen bonded to a single-bonded, sp³ hybridized carbon. If the halogen is bonded to an sp² carbon of an alkene, it is called a vinylic halide, not an alkyl halide."
+                exp: "False. This is a classic test to distinguish alkenes from benzene. Alkenes decolorize bromine water instantly (via addition). Benzene does NOT react without a Lewis acid catalyst."
             },
             {
                 type: "True / False",
-                q: "Functional groups are the specific parts of a molecule that determine its chemical properties and reactivity.",
+                q: "Electrophilic aromatic substitution involves an intermediate called a sigma complex (or arenium ion), which temporarily loses its aromaticity.",
                 options: ["True", "False"],
                 a: "True",
-                exp: "While the carbon backbone provides the inert physical framework, the functional groups are the 'active sites' where chemical reactions occur."
+                exp: "True. When the electrophile attacks benzene, one sp² carbon becomes sp³, breaking the continuous pi ring. Aromaticity is quickly restored when a base removes a proton in the final step."
+            },
+            {
+                type: "True / False",
+                q: "Radical halogenation of alkanes is a type of substitution reaction.",
+                options: ["True", "False"],
+                a: "True",
+                exp: "True. A hydrogen atom on the alkane is replaced (substituted) by a halogen atom through a free-radical mechanism. Because it's an alkane, addition is impossible (no pi bonds to break)."
+            },
+            {
+                type: "True / False",
+                q: "In an addition reaction, two reactant molecules combine to form two separate product molecules.",
+                options: ["True", "False"],
+                a: "False",
+                exp: "False. In a standard addition reaction (A + B → C), two molecules combine to form exactly ONE product molecule (e.g., Ethene + HBr → Bromoethane)."
             },
 
             // --- Fill in the Blanks (11-15) ---
             {
                 type: "Fill in the Blank",
-                q: "The -OH group is called the ________ group and is the defining characteristic of both alcohols and phenols.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Hydroxyl",
-                exp: "The hydroxyl group (-OH) is highly polar and allows molecules like alcohols to participate in hydrogen bonding, significantly increasing their boiling points."
+                q: "Alkenes are highly reactive and naturally undergo ________ reactions because their pi electrons are loosely held and exposed to electrophiles.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Addition",
+                exp: "The defining characteristic of alkenes is their tendency to undergo addition reactions, transforming the unsaturated double bond into a saturated single bond."
             },
             {
                 type: "Fill in the Blank",
-                q: "The C=O double bond is known as the ________ group, which is a structural feature shared by aldehydes, ketones, carboxylic acids, and amides.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Carbonyl",
-                exp: "The carbonyl group is strongly polarized (carbon is partially positive, oxygen is partially negative), making it a prime target for nucleophilic attack."
+                q: "Benzene strongly resists addition reactions because they would destroy its special resonance stability, known as ________.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Aromaticity",
+                exp: "Aromaticity (the delocalization of 6 pi electrons in a cyclic system) provides benzene with an unusually low energy state that it 'wants' to maintain."
             },
             {
                 type: "Fill in the Blank",
-                q: "A benzene ring attached to a main chain as a substituent (C₆H₅-) is an example of an ________ group, specifically called a phenyl group.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Aromatic",
-                exp: "Aromatic rings (like benzene) have specialized stability due to a continuous ring of delocalized pi electrons."
+                q: "To force benzene to undergo an electrophilic aromatic substitution with chlorine (Cl₂), a Lewis acid ________ such as FeCl₃ is required.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Catalyst",
+                exp: "The catalyst generates the powerful 'Cl⁺' electrophile needed to overcome the stability of the benzene ring."
             },
             {
                 type: "Fill in the Blank",
-                q: "The functional group represented generally by -X (where X = F, Cl, Br, I) is the ________ group.",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Halogen",
-                exp: "Halogens are highly electronegative. When attached to an alkyl chain, they create a polar carbon-halogen bond, making the carbon susceptible to nucleophilic substitution."
+                q: "During an addition reaction across a carbon-carbon double bond, the weaker ________ bond is broken to form two new stronger sigma bonds.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Pi (π)",
+                exp: "The pi bond is formed by the side-by-side overlap of p-orbitals, which is a weaker interaction than the head-on overlap of a sigma bond."
             },
             {
                 type: "Fill in the Blank",
-                q: "The sweet smell of many fruits and flowers is naturally due to the presence of the ________ functional group (R-COO-R').",
-                options: ["Carbonyl", "Hydroxyl", "Aromatic", "Ester", "Halogen"],
-                a: "Ester",
-                exp: "Esters are volatile, neutral compounds widely known for their pleasant, fruity, or floral odors and are heavily used in flavorings and perfumes."
+                q: "In alkyl halides, a substitution reaction can occur when an electron-rich species, called a ________, attacks the partially positive carbon atom.",
+                options: ["Aromaticity", "Addition", "Catalyst", "Nucleophile", "Pi (π)"],
+                a: "Nucleophile",
+                exp: "A nucleophile ('nucleus-loving') seeks out the positive center created by the electronegative halogen, kicking the halogen out and substituting itself."
             },
 
             // --- Matching (16-20) ---
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-O-R' (An oxygen atom bridging two alkyl or aryl groups).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Ether",
-                exp: "Ethers (R-O-R') are generally unreactive chemically, which makes them excellent solvents for conducting organic reactions (e.g., Diethyl ether)."
+                q: "Match the description to the correct term: \nA reaction that replaces an atom or group without permanently breaking any pi bonds in a ring.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Substitution Reaction",
+                exp: "Substitution allows aromatic rings to react with electrophiles while retaining their stable, alternating double bond structure."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-NH₂ (A nitrogen atom attached to an alkyl group).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Amine",
-                exp: "Amines are basic in nature because the nitrogen atom possesses a lone pair of electrons that can accept a proton (H⁺)."
+                q: "Match the description to the correct term: \nA reaction that combines two molecules into one by breaking a pi bond.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Addition Reaction",
+                exp: "This is the primary reaction pathway for isolated alkenes and alkynes, turning them into saturated compounds."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-COOH (A carbonyl group directly bonded to a hydroxyl group).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Carboxylic Acid",
-                exp: "Carboxylic acids act as weak acids because the resulting carboxylate ion (after losing H⁺) is highly stabilized by resonance."
+                q: "Match the description to the correct term: \nThe structural feature responsible for benzene's unusual stability and preference for substitution.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Delocalized Pi System",
+                exp: "The overlapping p-orbitals create a continuous 'donut' of electron density above and below the ring, granting aromatic stability."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-CHO (A carbonyl group directly bonded to at least one hydrogen atom).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Aldehyde",
-                exp: "The presence of the C-H bond on the carbonyl carbon makes aldehydes easily oxidizable into carboxylic acids, unlike ketones."
+                q: "Match the description to the correct term: \nA reagent used visually to differentiate between an alkene (which rapidly decolorizes it) and an alkane or benzene.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Bromine Test (Br₂)",
+                exp: "Because Br₂ is colored, its rapid consumption by an alkene (forming a colorless product) is an instant visual proof of an addition reaction."
             },
             {
                 type: "Matching",
-                q: "Match to the correct functional group structure: \nR-CO-R' (A carbonyl group bonded between two carbon atoms).",
-                options: ["Carboxylic Acid", "Aldehyde", "Ether", "Amine", "Ketone"],
-                a: "Ketone",
-                exp: "Ketones (like Acetone) have the carbonyl group securely positioned in the middle of the carbon skeleton, making them resistant to mild oxidation."
+                q: "Match the description to the correct term: \nA substance (like FeBr₃ or AlCl₃) required to make halogens electrophilic enough to attack benzene.",
+                options: ["Substitution Reaction", "Addition Reaction", "Delocalized Pi System", "Bromine Test (Br₂)", "Lewis Acid"],
+                a: "Lewis Acid",
+                exp: "Lewis acids accept electron pairs. By interacting with a halogen molecule, they create a highly reactive electrophilic complex necessary for aromatic substitution."
             }
         ];
 
@@ -351,10 +351,10 @@
             elQuestionText.innerText = q.q;
 
             if (q.type === "Fill in the Blank") {
-                elExtraInstructions.innerHTML = "<strong class='text-cyan-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Carbonyl, Hydroxyl, Aromatic, Ester, Halogen";
+                elExtraInstructions.innerHTML = "<strong class='text-sky-800'><i class='fa-solid fa-layer-group mr-2'></i> Word Bank:</strong> Aromaticity, Addition, Catalyst, Nucleophile, Pi (π)";
                 elExtraInstructions.classList.remove('hidden');
             } else if (q.type === "Matching") {
-                elExtraInstructions.innerHTML = "<strong class='text-cyan-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Carboxylic Acid, Aldehyde, Ether, Amine, Ketone";
+                elExtraInstructions.innerHTML = "<strong class='text-sky-800'><i class='fa-solid fa-link mr-2'></i> Select the correct match from List B:</strong> Substitution Reaction, Addition Reaction, Delocalized Pi System, Bromine Test (Br₂), Lewis Acid";
                 elExtraInstructions.classList.remove('hidden');
             } else {
                 elExtraInstructions.classList.add('hidden');
@@ -368,7 +368,7 @@
             elOptionsContainer.innerHTML = '';
             q.options.forEach((option) => {
                 const btn = document.createElement('button');
-                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-cyan-400 hover:bg-cyan-50 flex justify-between items-center";
+                btn.className = "option-btn w-full text-left bg-white border-2 border-slate-200 rounded-xl p-4 text-slate-700 font-bold hover:border-teal-500 hover:bg-sky-50 flex justify-between items-center";
 
                 const spanText = document.createElement('span');
                 spanText.textContent = option;
@@ -397,11 +397,11 @@
                 const iconContainer = btn.querySelector('.icon-placeholder');
 
                 if (btnText === q.a) {
-                    btn.classList.remove('border-slate-200', 'hover:border-cyan-400', 'hover:bg-cyan-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-teal-500', 'hover:bg-sky-50', 'text-slate-700');
                     btn.classList.add('border-green-500', 'bg-green-50', 'text-green-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-check text-green-500 text-2xl"></i>';
                 } else if (btnText === selectedOption && !isCorrect) {
-                    btn.classList.remove('border-slate-200', 'hover:border-cyan-400', 'hover:bg-cyan-50', 'text-slate-700');
+                    btn.classList.remove('border-slate-200', 'hover:border-teal-500', 'hover:bg-sky-50', 'text-slate-700');
                     btn.classList.add('border-red-500', 'bg-red-50', 'text-red-800');
                     iconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-500 text-2xl"></i>';
                 } else {
@@ -464,11 +464,11 @@
 
             const msgEl = document.getElementById('result-message');
             if (score >= 18) {
-                msgEl.textContent = "أداء كيميائي مذهل! أنت تميز المجموعات الوظيفية ببراعة. 🧪👨‍🔬";
+                msgEl.textContent = "أداء استثنائي وممتاز! 🌟 قدرتك على التمييز بين الإضافة والاستبدال دقيقة جداً.";
             } else if (score >= 13) {
-                msgEl.textContent = "مستوى ممتاز! بعض التمييز الدقيق بين المجموعات المتشابهة (كالكتيون والألدهيد) سيجعلك خبيراً. 👍";
+                msgEl.textContent = "مستوى متقدم وجميل! 👏 بقليل من المراجعة لحالات البنزين المحفزة ستكون محترفاً.";
             } else {
-                msgEl.textContent = "المجموعات الوظيفية تحتاج إلى حفظ وتدريب بصري. راجع التفسيرات وأعد المحاولة بثقة! 📘";
+                msgEl.textContent = "مقارنة التفاعلات تحتاج إلى إدراك لهياكل الروابط. راجع التفسيرات بتأني وأعد التجربة! 💡";
             }
         }
 

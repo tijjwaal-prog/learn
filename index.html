@@ -363,8 +363,15 @@
         }
 
         // تهيئة التطبيق عند الفتح
-        document.addEventListener("DOMContentLoaded", () => {
-            loadLesson(0);
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                document.getElementById('lesson-title').innerText = "جاري تحميل البيانات من Google Drive...";
+                await fetchLessonsFromDrive();
+                loadLesson(0);
+            } catch (error) {
+                document.getElementById('lesson-title').innerText = "خطأ في الاتصال بالخادم لجلب الدروس";
+                document.getElementById('lesson-title').classList.replace('text-blue-600', 'text-red-600');
+            }
         });
 
     </script>
